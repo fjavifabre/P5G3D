@@ -21,6 +21,25 @@
     <ClInclude Include="CatmullRom.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="SpotLight.h" />
+    <ClInclude Include="PointLight.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectionalLight.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="Light.h">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scr\main.cpp">
@@ -33,6 +52,25 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="CatmullRom.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="SpotLight.cpp" />
+    <ClCompile Include="DirectionalLight.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="Light.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="PointLight.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

@@ -12,15 +12,29 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CatmullRom.h" />
+    <ClInclude Include="DirectionalLight.h" />
+    <ClInclude Include="Light.h" />
     <ClInclude Include="Mesh.h" />
+    <ClInclude Include="Object.h" />
+    <ClInclude Include="PointLight.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="scr\auxiliar.h" />
     <ClInclude Include="scr\BOX.h" />
+    <ClInclude Include="Shader.h" />
+    <ClInclude Include="SpotLight.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CatmullRom.cpp" />
+    <ClCompile Include="DirectionalLight.cpp" />
+    <ClCompile Include="Light.cpp" />
     <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="Object.cpp" />
+    <ClCompile Include="PointLight.cpp" />
+    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="scr\auxiliar.cpp" />
     <ClCompile Include="scr\main.cpp" />
+    <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="SpotLight.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\shaders_P5\shader.v0.frag" />
