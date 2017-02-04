@@ -30,7 +30,6 @@
     <ClInclude Include="Object.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="SpotLight.h" />
     <ClInclude Include="PointLight.h">
       <Filter>src</Filter>
     </ClInclude>
@@ -38,6 +37,9 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="Light.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="SpotLight.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
@@ -63,7 +65,6 @@
     <ClCompile Include="Object.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="SpotLight.cpp" />
     <ClCompile Include="DirectionalLight.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -71,6 +72,9 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="PointLight.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="SpotLight.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
