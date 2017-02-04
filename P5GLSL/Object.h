@@ -1,12 +1,19 @@
 #pragma once
 #include <glm\glm.hpp>
+#include "Mesh.h"
 class Object
 {
 public:
 	Object();
 	~Object();
 
-	void InitObject();
+	void InitObject(Object* parent = nullptr, Mesh* mesh = nullptr);
+
+	void SetParent(Object* parent);
+	Object* GetParent();
+
+	void SetMesh(Mesh* mesh);
+	Mesh* GetMesh();
 
 	glm::mat4 GetModelMatrix();
 	glm::mat4 GetNormalMatrix();
@@ -16,6 +23,8 @@ public:
 	glm::mat4 GetScaleMatrix();
 
 	virtual void Update(float dt); //Metodo preparado para ser overrided, así se pueden crear nuevas clases de objetos con comportamientos especiales
+
+	virtual void RenderUpdate(float dt);
 
 	void SetPosition(glm::vec3 position);
 	void SetScale(glm::vec3 scale);
@@ -29,7 +38,9 @@ public:
 	bool IsActive();
 
 private:
-	Object* parent; //¿Crear herencia entre objetos para heredar transformaciones?
+	Object* m_parent; //¿Crear herencia entre objetos para heredar transformaciones?
+	Mesh* m_linkedMesh;
+
 	bool m_active; //Si no está activo el objeto sigue en memoria, pero no se dibuja ni actualiza
 
 	glm::vec3 m_globalPosition;
@@ -45,5 +56,8 @@ private:
 	glm::mat4 m_normalMat;
 
 	bool m_useAltMat = false;
+	bool m_updateMatrix = false;
+
+	void UpdateModelMatrix();
 };
 
