@@ -1,18 +1,21 @@
 #pragma once
 #include <glm\glm.hpp>
-#include "Mesh.h"
+//#include "Mesh.h"
+
+class Mesh;
+
 class Object
 {
 public:
 	Object();
 	~Object();
 
-	void InitObject(Object* parent = nullptr, Mesh* mesh = nullptr);
+	void InitObject(Object *parent, Mesh *mesh);
 
-	void SetParent(Object* parent);
+	void SetParent(Object *parent);
 	Object* GetParent();
 
-	void SetMesh(Mesh* mesh);
+	void SetMesh(Mesh *mesh);
 	Mesh* GetMesh();
 
 	glm::mat4 GetModelMatrix();
@@ -58,6 +61,6 @@ private:
 	bool m_useAltMat = false;
 	bool m_updateMatrix = false;
 
-	void UpdateModelMatrix();
+	void UpdateMatrix();
 };
 

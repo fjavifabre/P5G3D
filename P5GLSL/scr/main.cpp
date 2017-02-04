@@ -358,7 +358,9 @@ void initObj()
 	malla = new Mesh("../meshes/statue.obj");
 #endif
 
-	//Activar el Vertex Attribute Object
+	//Activar el Vertex Attribute 
+
+
 	glGenVertexArrays(1, &vao);
 	glBindVertexArray(vao);
 
