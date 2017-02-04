@@ -1,8 +1,16 @@
 #include "Mesh.h"
 
 #include <assimp/Importer.hpp>
-#include <assimp/scene.h>          // Output data structure
-#include <assimp/postprocess.h> 
+#include <assimp/scene.h>         
+#include <assimp/postprocess.h>
+
+#include <gl/glew.h> //Siempre antes que GL
+#include <gl/gl.h>
+
+//Carga de texturas
+#include <FreeImage.h>
+#define _CRT_SECURE_DEPRECATE_MEMORY
+#include <memory.h>
 
 //TODO mejorar, solo genera la primera malla del archivo
 Mesh::Mesh(const char* file)
@@ -16,7 +24,6 @@ Mesh::Mesh(const char* file)
 
 
 	//SOLO GENERA LA PRIMERA MALLA!!
-
 	const int objectNVertex = scene->mMeshes[0]->mNumVertices; //Numero de vertices
 	const int objectNTriangle = scene->mMeshes[0]->mNumFaces; //Numero de triangulos
 
@@ -200,6 +207,126 @@ Mesh::Mesh(const unsigned int objectNTriangle, const unsigned int objectNVertex,
 }
 
 
+ unsigned char*  Mesh::loadTexture(const char* fileName, unsigned int &w, unsigned int &h)
+ {
+	 FreeImage_Initialise(TRUE);
+
+	 FREE_IMAGE_FORMAT format = FreeImage_GetFileType(fileName, 0);
+	 if (format == FIF_UNKNOWN)
+		 format = FreeImage_GetFIFFromFilename(fileName);
+	 if ((format == FIF_UNKNOWN) || !FreeImage_FIFSupportsReading(format))
+		 return NULL;
+
+	 FIBITMAP* img = FreeImage_Load(format, fileName);
+	 if (img == NULL)
+		 return NULL;
+
+	 FIBITMAP* tempImg = img;
+	 img = FreeImage_ConvertTo32Bits(img);
+	 FreeImage_Unload(tempImg);
+
+	 w = FreeImage_GetWidth(img);
+	 h = FreeImage_GetHeight(img);
+
+	 //BGRA a RGBA
+	 unsigned char * map = new unsigned char[4 * w*h];
+	 char *buff = (char*)FreeImage_GetBits(img);
+
+	 for (unsigned int j = 0; j<w*h; j++){
+		 map[j * 4 + 0] = buff[j * 4 + 2];
+		 map[j * 4 + 1] = buff[j * 4 + 1];
+		 map[j * 4 + 2] = buff[j * 4 + 0];
+		 map[j * 4 + 3] = buff[j * 4 + 3];
+	 }
+
+	 FreeImage_Unload(img);
+	 FreeImage_DeInitialise();
+
+	 return map;
+ }
+
+ unsigned int Mesh::loadTex(const char* fileName)
+ {
+	 //Carga textura de fichero
+	 unsigned char *map;
+	 unsigned int w, h;
+	 map = loadTexture(fileName, w, h);
+	 if (!map) //Si devuelve null es que no se ha cargado la textura
+	 {
+		 return -1;
+	 }
+
+	 unsigned int texId;
+	 glGenTextures(1, &texId);
+	 glBindTexture(GL_TEXTURE_2D, texId);
+	 glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, w, h, 0, GL_RGBA,
+		 GL_UNSIGNED_BYTE, (GLvoid*)map); //Reserva espacio y sube textura, primer 0 indica los niveles de detalle, RGBA8: formato interno de la tarjeta gráfica (como se almacenan los datos), RGBA: formato en el que se pasan los datos, Unsigned: como son los datos
+
+	 delete[] map; //Borrar de memoria la textura original
+
+	 glGenerateMipmap(GL_TEXTURE_2D); //Genera midmaps
+
+	 glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
+		 GL_LINEAR_MIPMAP_LINEAR); //Filtrado trilinear
+	 glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); //Filtrado lineal
+	 glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	 glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+
+	 ////Anisotropico si es posible
+	 //if (anisotropico != -1.0f)
+	 // glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAX_ANISOTROPY_EXT, anisotropico);
+
+	 return texId; //Devuelve el identificador de textura
+ }
+
+ bool Mesh::loadColorTex(const char* fileName)
+ {
+	 colorTex = loadTex(fileName);
+	 return colorTex != -1;
+ }
+
+ bool Mesh::loadSpecTex(const char* fileName)
+ {
+	 specTex = loadTex(fileName);
+	 return specTex != -1;
+ }
+
+ bool  Mesh::loadEmiTex(const char* fileName)
+ {
+	 emiTex = loadTex(fileName);
+	 return emiTex != -1;
+ }
+ bool Mesh::loadNormTex(const char* fileName)
+ {
+	 normTex = loadTex(fileName);
+	 return normTex != -1;
+ }
+
+ void Mesh::addObject(Object* o)
+ {
+	 objects.push_back(o);
+ }
+
+ void Mesh::removeObject(Object* o)
+ {
+	 objects.remove(o);
+ }
+
+ void Mesh::render()
+ {
+	 for (Object* o : objects)
+	 {
+		 //TODO: add render functions at object class
+		 //o->render();
+	 }
+ }
+
+
 Mesh::~Mesh()
 {
+	//Delete textures
+	if (colorTex != -1) glDeleteTextures(1, &colorTex);
+	if (specTex != -1) glDeleteTextures(1, &specTex);
+	if (emiTex != -1) glDeleteTextures(1, &emiTex);
+	if (normTex != -1) glDeleteTextures(1, &normTex);
 }

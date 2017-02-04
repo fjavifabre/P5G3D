@@ -1,9 +1,15 @@
 #pragma once
 #include <vector>
+#include <list>
+#include "Object.h"
 
 class Mesh
 {
 private:
+
+	//Lista de objetos que usan esta malla
+	std::list<Object*> objects;
+
 
 	//Indices de los triangulos de la malla
 	std::vector<unsigned int> triangleIndex;
@@ -23,17 +29,22 @@ private:
 	//Tangente de los vertices
 	std::vector<float> vertexTangent;
 
+	//TEXTURAS
+
 	//Textura de color
-	char* colorTex = nullptr;
+	unsigned int colorTex = -1;
 
 	//Textura especular
-	char* specTex = nullptr;
+	unsigned int specTex = -1;
 
 	//Textura emisiva
-	char* emiTex = nullptr;
+	unsigned int emiTex = -1;
 
 	//Textura de normales
-	char* normTex = nullptr;
+	unsigned int normTex = -1;
+
+	static unsigned char* loadTexture(const char* fileName, unsigned int &w, unsigned int &h);
+	static unsigned int loadTex(const char* fileName);
 
 
 public:
@@ -55,6 +66,20 @@ public:
 
 	int getNumVertex();
 	int getNumTriangles();
+
+	//TODO: change texture management
+	//Texture loaders
+	bool loadColorTex(const char* file);
+	bool loadSpecTex(const char* file);
+	bool loadEmiTex(const char* file);
+	bool loadNormTex(const char* file);
+
+	//Object management
+	void addObject(Object* o);
+	void removeObject(Object* o);
+
+	//Render all objects
+	void render();
 
 	~Mesh();
 };
