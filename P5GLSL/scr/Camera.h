@@ -45,6 +45,8 @@ public:
 	*/
 	void SetOrthoProjection(float left, float right, float bottom, float top, float near, float far);
 	
+	void SetViewMatrix(glm::mat4 view);
+
 	//! Returns the projection matrix.
 	/*!
 	Returns the selected camera projection matrix (perspective or orthographic).

@@ -6,6 +6,7 @@
 #include <fstream>
 #include <exception>
 #include <string>
+#include <iostream>
 
 
 Shader::Shader(const char* vertex, const char* fragment)
@@ -88,9 +89,6 @@ void Shader::render(std::list<Light> &lightV, Camera &camera)
 {
 	glUseProgram(program);
 
-
-	const float lightIntensity = 1.0f, lightPitch = 0.0f, lightYaw = 0.0f; //TODO: check
-
 	//Subir luces
 	//for (int i = 0; i < MAX_LIGHTS; i++)
 	int i = 0;
@@ -99,40 +97,22 @@ void Shader::render(std::list<Light> &lightV, Camera &camera)
 
 		if (lights[i].uAmb != -1)
 		{
-
 			glUniform3fv(lights[i].uAmb, 1, &values.AmbientColor[0]);
 		}
 		if (lights[i].uDiff != -1)
 		{
-			glm::vec3 ambInt = values.DiffuseColor;
 
-			if (i == 0) {
-				ambInt *= lightIntensity;
-			}
-
-			glUniform3fv(lights[i].uDiff, 1, &ambInt[0]);
+			glUniform3fv(lights[i].uDiff, 1, &values.DiffuseColor[0]);
 		}
 		if (lights[i].uPos != -1)
 		{
-			glm::mat4 lightModel = glm::mat4(1.0);
-
-			if (i == 0)
-			{
-				lightModel = glm::rotate(lightModel, lightYaw, glm::vec3(1.0, 0.0, 0.0));
-				lightModel = glm::rotate(lightModel, lightPitch, glm::vec3(0.0, 1.0, 0.0));
-			}
-
-			glm::vec4 viewPos = *camera.GetView() * lightModel * *values.GetPosition();
+			glm::vec4 viewPos = *camera.GetView() * *values.GetPosition();
 
 			glUniform4fv(lights[i].uPos, 1, &viewPos[0]);
 		}
 		if (lights[i].uDir != -1)
 		{
-			glm::vec4 viewDir = glm::transpose(glm::inverse(*camera.GetView())) * *values.GetDirection();
-
-			viewDir.w = 0.0f;
-
-			glUniform4fv(lights[i].uDir, 1, &viewDir[0]);
+			glUniform4fv(lights[i].uDir, 1, &(*values.GetDirection())[0]);
 		}
 		if (lights[i].uC != -1)
 		{
@@ -154,6 +134,8 @@ void Shader::render(std::list<Light> &lightV, Camera &camera)
 	for (Mesh *m : meshes)
 	{
 		//Para cada objeto que usa esa malla
+		unsigned int vao = m->getVAO();
+		glBindVertexArray(vao);
 		for (Object *o : m->getObjects())
 		{
 			//Cargar las variables concretas del objeto
@@ -162,6 +144,7 @@ void Shader::render(std::list<Light> &lightV, Camera &camera)
 			glm::mat4 modelViewProj = *camera.GetProjection() * *camera.GetView() * *o->GetModelMatrix();
 			glm::mat4 normal = glm::transpose(glm::inverse(modelView));
 
+			std::cout << normal[3].x << " " << normal[3].y << " " << normal[3].z << std::endl;
 
 			if (uModelViewMat != -1) // Identificador a la variable uniforme
 				glUniformMatrix4fv(uModelViewMat, 1, GL_FALSE,
@@ -200,7 +183,6 @@ void Shader::render(std::list<Light> &lightV, Camera &camera)
 			}
 
 			//Subir cosas concretas de la malla
-			glBindVertexArray(m->getVAO());
 			glDrawElements(GL_TRIANGLES, m->getNumTriangles() * 3,
 				GL_UNSIGNED_INT, (void*)0); //Recoge los elementos del buffer de tres en tres para dibujar los triángulos del modelo (nº de triángulos * 3)
 
@@ -311,8 +293,8 @@ GLuint Shader::loadShader(const char *fileName, GLenum type)
 		char *logString = new char[logLen]; // Crear el string del error
 		glGetShaderInfoLog(shader, logLen, NULL, logString); // Obtener el string con el error
 
-		//std::cout << "FILENAME: " << fileName << std::endl;
-		//std::cout << "Error: " << logString << std::endl;
+		std::cout << "FILENAME: " << fileName << std::endl;
+		std::cout << "Error: " << logString << std::endl;
 
 		delete logString;
 		glDeleteShader(shader);

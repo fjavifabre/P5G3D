@@ -336,7 +336,7 @@ Mesh::Mesh(const unsigned int objectNTriangle, const unsigned int objectNVertex,
 	 glGenBuffers(1, &triangleIndexVBO);
 	 glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, triangleIndexVBO);
 	 glBufferData(GL_ELEMENT_ARRAY_BUFFER,
-		 getNumTriangles() * sizeof(unsigned int) * 3, getTriangleIndex(),
+		 this->getNumTriangles() * sizeof(unsigned int) * 3, this->getTriangleIndex(),
 		 GL_STATIC_DRAW);
  }
 

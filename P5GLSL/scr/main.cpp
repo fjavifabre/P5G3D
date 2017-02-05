@@ -188,8 +188,8 @@ int main(int argc, char** argv)
 	m->loadSpecTex("../meshes/specular.jpg");
 
 
-	scene.CreateObject(m, "test");
-
+	Object* obj = scene.CreateObject(m, "test");
+	obj->SetPosition(glm::vec3(0.0, -6.0, 0.0));
 	
 
 
@@ -695,6 +695,7 @@ void renderFunc()
 //
 //	glutSwapBuffers(); // Swap de los buffers
 //}
+
 void resizeFunc(int width, int height)
 {
 
@@ -702,6 +703,8 @@ void resizeFunc(int width, int height)
 	float f = 50.0f;
 
 	proj = glm::perspective(glm::radians(60.0f), (float)width / (float)height, n, f);
+
+	scene.camera.SetPerspProjection(glm::radians(60.0f), (float)width / (float)height, n, f);
 
 	glViewport(0, 0, width, height);
 
@@ -835,6 +838,8 @@ void keyboardFunc(unsigned char key, int x, int y)
 		view = glm::rotate(view, yaw, glm::vec3(1.0f, 0.0f, 0.0f));
 		view = glm::rotate(view, pitch, glm::vec3(0.0f, 1.0f, 0.0f));
 	}
+	scene.camera.SetViewMatrix(view);
+	std::cout << (*scene.camera.GetModelMatrix())[3].x << " " << (*scene.camera.GetModelMatrix())[3].y << " " << (*scene.camera.GetModelMatrix())[3].z << " " << std::endl;
 
 
 }
@@ -936,7 +941,6 @@ void mouseMotionFunc(int x, int y)
 	}
 
 
-	//IGlib::setViewMat(view);
 }
 
 bool checkExtension(std::string extName)

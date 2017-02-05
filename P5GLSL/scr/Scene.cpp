@@ -3,7 +3,7 @@
 
 Scene::Scene()
 {
-	camera.SetPerspProjection(glm::radians(60.0f), 1.0f, 0.1f, 50.0f);
+	//camera.SetPerspProjection(glm::radians(60.0f), 1.0f, 0.1f, 50.0f);
 
 }
 
@@ -18,8 +18,13 @@ void Scene::RenderLoop()
 	//glm::mat4* proj = camera.GetProjection();
 	//glm::mat4* view = camera.GetView();
 
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Limpia buffer de color y profundidad
+
 	sceneShaders.at(0).render(sceneLights, camera);
 
+	glUseProgram(NULL);
+	
+	glutSwapBuffers(); // Swap de los buffers
 	//TODO implementar multiples pasadas
 
 	//for (Shader &shader : sceneShaders)
@@ -34,6 +39,7 @@ void Scene::UpdateLoop()
 	{
 		object.Update(deltaTime);
 	}
+	
 }
 
 //Loads and compiles shader, adds it to the shader vector and returns it
@@ -52,6 +58,18 @@ Mesh* Scene::LoadMesh(char* mesh, Shader* shader)
 	Mesh newMesh(mesh);
 
 	sceneMeshes.push_back(newMesh);
+
+	Mesh *ret = &sceneMeshes.back();
+
+	shader->addMesh(ret);
+
+	return ret;
+}
+
+//Loads mesh, adds it to the mesh vectr and returns it
+Mesh* Scene::LoadMesh(Mesh* mesh, Shader* shader)
+{
+	sceneMeshes.push_back(*mesh);
 
 	Mesh *ret = &sceneMeshes.back();
 

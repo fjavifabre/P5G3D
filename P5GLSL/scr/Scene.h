@@ -37,6 +37,7 @@ public:
 
 	//Loads mesh, adds it to the mesh vectr and returns it
 	Mesh* LoadMesh(char* mesh, Shader* shader);
+	Mesh* LoadMesh(Mesh* mesh, Shader* shader);
 
 	//Creates object, adds it to the object vector, and returns it
 	Object* CreateObject(Mesh* mesh, char* name);
