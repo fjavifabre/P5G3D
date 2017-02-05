@@ -29,20 +29,6 @@ struct LightIds {
 
 
 };
-
-//Ahora se trata como clase
-
-//struct LightValues{
-//
-//	glm::vec3 Amb; // Intesidad ambiental
-//	glm::vec3 Diff; // Intensidad difusa
-//	glm::vec4 Pos; // Posición
-//	glm::vec4 Dir; // Dirección
-//	glm::vec3 C; // Atenuación
-//	GLfloat CosCutOff;
-//	GLfloat SpotExponent;
-//};
-
 	
 private:
 	

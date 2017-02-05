@@ -182,7 +182,7 @@ int main(int argc, char** argv)
 	Shader* shader =  scene.LoadShader("../shaders_P5/shader.v1.vert", "../shaders_P5/shader.v1.frag");
 	scene.AddPointLight();
 
-	Mesh* m = scene.LoadMesh("../meshes/statue.obj",shader);
+	Mesh* m = scene.LoadMesh("../meshes/statue.obj", shader);
 	m->loadColorTex("../meshes/color.jpg");
 	m->loadNormTex("../meshes/normales.jpg");
 	m->loadSpecTex("../meshes/specular.jpg");
@@ -257,7 +257,7 @@ void initContext(int argc, char** argv)
 void initOGL()
 {
 	glEnable(GL_DEPTH_TEST); // Activa el test de profundidad
-							 //glClearColor(1.0f, 0.2f, 0.2f, 0.0f);
+	
 	glClearColor(0.38f, 0.38f, 0.38f, 0.0f);
 
 	glFrontFace(GL_CCW); // Counter clock wise
@@ -276,6 +276,7 @@ void initOGL()
 	view = glm::mat4(1.0f);
 	view[3].z = -6;
 	translation.z = -6;
+	scene.camera.SetViewMatrix(view);
 
 }
 void destroy()
@@ -383,89 +384,89 @@ void initShader(const char *vname, const char *fname)
 	inTangent = glGetAttribLocation(program, "inTangent");
 
 }
-void initObj()
-{
-
-#if CUBE
-	malla = new Mesh(cubeNTriangleIndex, cubeNVertex, cubeTriangleIndex, cubeVertexPos, cubeVertexNormal, cubeVertexColor, cubeVertexTexCoord, cubeVertexTangent);
-#else
-	malla = new Mesh("../meshes/statue.obj");
-#endif
-
-	//Activar el Vertex Attribute 
-
-
-	glGenVertexArrays(1, &vao);
-	glBindVertexArray(vao);
-
-	if (inPos != -1) //Localizador de la posición con la información de las posiciones de los vértices
-	{
-		glGenBuffers(1, &posVBO); //NO TOCA VAO
-		glBindBuffer(GL_ARRAY_BUFFER, posVBO); //Activa VBO
-		glBufferData(GL_ARRAY_BUFFER, malla->getNumVertex() * sizeof(float) * 3,
-			malla->getVertexPos(), GL_STATIC_DRAW); //Sube información
-		glVertexAttribPointer(inPos, 3, GL_FLOAT, GL_FALSE, 0, 0); //Vertice tiene tres elementos, del tipo float, no notmaliza, stride y offset
-		glEnableVertexAttribArray(inPos); //Configura en el VAO que tiene que utilizar inPos. Si no se quiere utilizar, llamar a glDisable...
-	}
-	if (inColor != -1) //Se repite como en inPos
-	{
-		glGenBuffers(1, &colorVBO);
-		glBindBuffer(GL_ARRAY_BUFFER, colorVBO);
-		glBufferData(GL_ARRAY_BUFFER, malla->getNumVertex() * sizeof(float) * 3,
-			malla->getVertexColor(), GL_STATIC_DRAW);
-		glVertexAttribPointer(inColor, 3, GL_FLOAT, GL_FALSE, 0, 0);
-		glEnableVertexAttribArray(inColor);
-	}
-	if (inNormal != -1)
-	{
-		glGenBuffers(1, &normalVBO);
-		glBindBuffer(GL_ARRAY_BUFFER, normalVBO);
-		glBufferData(GL_ARRAY_BUFFER, malla->getNumVertex() * sizeof(float) * 3,
-			malla->getVertexNormals(), GL_STATIC_DRAW);
-		glVertexAttribPointer(inNormal, 3, GL_FLOAT, GL_FALSE, 0, 0);
-		glEnableVertexAttribArray(inNormal);
-	}
-	if (inTexCoord != -1)
-	{
-		glGenBuffers(1, &texCoordVBO);
-		glBindBuffer(GL_ARRAY_BUFFER, texCoordVBO);
-		glBufferData(GL_ARRAY_BUFFER, malla->getNumVertex() * sizeof(float) * 2,
-			malla->getVertexTexCoord(), GL_STATIC_DRAW);
-		glVertexAttribPointer(inTexCoord, 2, GL_FLOAT, GL_FALSE, 0, 0);
-		glEnableVertexAttribArray(inTexCoord);
-	}
-	if (inTangent != -1)
-	{
-		glGenBuffers(1, &tangentVBO);
-		glBindBuffer(GL_ARRAY_BUFFER, tangentVBO);
-		glBufferData(GL_ARRAY_BUFFER, malla->getNumVertex() * sizeof(float) * 3,
-			malla->getVertexTangent(), GL_STATIC_DRAW);
-		glVertexAttribPointer(inTangent, 3, GL_FLOAT, GL_FALSE, 0, 0);
-		glEnableVertexAttribArray(inTangent);
-	}
-
-	//Indica como recorrer los elementos
-	glGenBuffers(1, &triangleIndexVBO);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, triangleIndexVBO);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER,
-		malla->getNumTriangles() * sizeof(unsigned int) * 3, malla->getTriangleIndex(),
-		GL_STATIC_DRAW);
-
-	//Carga las texturas
-#if CUBE
-	colorTexId = loadTex("../img/color2.png");
-	emiTexId = loadTex("../img/emissive.png");
-	normTexId = loadTex("../img/normal.png");
-	specTexId = loadTex("../img/specMap.png");
-#else
-	colorTexId = loadTex("../meshes/color.jpg");
-	//emiTexId = loadTex("../img/emissive.png");
-	normTexId = loadTex("../meshes/normales.jpg");
-	specTexId = loadTex("../meshes/specular.jpg");
-#endif
-	model = glm::mat4(1.0f); //Matriz identidad
-
-}
+//void initObj()
+//{
+//
+//#if CUBE
+//	malla = new Mesh(cubeNTriangleIndex, cubeNVertex, cubeTriangleIndex, cubeVertexPos, cubeVertexNormal, cubeVertexColor, cubeVertexTexCoord, cubeVertexTangent);
+//#else
+//	malla = new Mesh("../meshes/statue.obj");
+//#endif
+//
+//	//Activar el Vertex Attribute 
+//
+//
+//	glGenVertexArrays(1, &vao);
+//	glBindVertexArray(vao);
+//
+//	if (inPos != -1) //Localizador de la posición con la información de las posiciones de los vértices
+//	{
+//		glGenBuffers(1, &posVBO); //NO TOCA VAO
+//		glBindBuffer(GL_ARRAY_BUFFER, posVBO); //Activa VBO
+//		glBufferData(GL_ARRAY_BUFFER, malla->getNumVertex() * sizeof(float) * 3,
+//			malla->getVertexPos(), GL_STATIC_DRAW); //Sube información
+//		glVertexAttribPointer(inPos, 3, GL_FLOAT, GL_FALSE, 0, 0); //Vertice tiene tres elementos, del tipo float, no notmaliza, stride y offset
+//		glEnableVertexAttribArray(inPos); //Configura en el VAO que tiene que utilizar inPos. Si no se quiere utilizar, llamar a glDisable...
+//	}
+//	if (inColor != -1) //Se repite como en inPos
+//	{
+//		glGenBuffers(1, &colorVBO);
+//		glBindBuffer(GL_ARRAY_BUFFER, colorVBO);
+//		glBufferData(GL_ARRAY_BUFFER, malla->getNumVertex() * sizeof(float) * 3,
+//			malla->getVertexColor(), GL_STATIC_DRAW);
+//		glVertexAttribPointer(inColor, 3, GL_FLOAT, GL_FALSE, 0, 0);
+//		glEnableVertexAttribArray(inColor);
+//	}
+//	if (inNormal != -1)
+//	{
+//		glGenBuffers(1, &normalVBO);
+//		glBindBuffer(GL_ARRAY_BUFFER, normalVBO);
+//		glBufferData(GL_ARRAY_BUFFER, malla->getNumVertex() * sizeof(float) * 3,
+//			malla->getVertexNormals(), GL_STATIC_DRAW);
+//		glVertexAttribPointer(inNormal, 3, GL_FLOAT, GL_FALSE, 0, 0);
+//		glEnableVertexAttribArray(inNormal);
+//	}
+//	if (inTexCoord != -1)
+//	{
+//		glGenBuffers(1, &texCoordVBO);
+//		glBindBuffer(GL_ARRAY_BUFFER, texCoordVBO);
+//		glBufferData(GL_ARRAY_BUFFER, malla->getNumVertex() * sizeof(float) * 2,
+//			malla->getVertexTexCoord(), GL_STATIC_DRAW);
+//		glVertexAttribPointer(inTexCoord, 2, GL_FLOAT, GL_FALSE, 0, 0);
+//		glEnableVertexAttribArray(inTexCoord);
+//	}
+//	if (inTangent != -1)
+//	{
+//		glGenBuffers(1, &tangentVBO);
+//		glBindBuffer(GL_ARRAY_BUFFER, tangentVBO);
+//		glBufferData(GL_ARRAY_BUFFER, malla->getNumVertex() * sizeof(float) * 3,
+//			malla->getVertexTangent(), GL_STATIC_DRAW);
+//		glVertexAttribPointer(inTangent, 3, GL_FLOAT, GL_FALSE, 0, 0);
+//		glEnableVertexAttribArray(inTangent);
+//	}
+//
+//	//Indica como recorrer los elementos
+//	glGenBuffers(1, &triangleIndexVBO);
+//	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, triangleIndexVBO);
+//	glBufferData(GL_ELEMENT_ARRAY_BUFFER,
+//		malla->getNumTriangles() * sizeof(unsigned int) * 3, malla->getTriangleIndex(),
+//		GL_STATIC_DRAW);
+//
+//	//Carga las texturas
+//#if CUBE
+//	colorTexId = loadTex("../img/color2.png");
+//	emiTexId = loadTex("../img/emissive.png");
+//	normTexId = loadTex("../img/normal.png");
+//	specTexId = loadTex("../img/specMap.png");
+//#else
+//	colorTexId = loadTex("../meshes/color.jpg");
+//	//emiTexId = loadTex("../img/emissive.png");
+//	normTexId = loadTex("../meshes/normales.jpg");
+//	specTexId = loadTex("../meshes/specular.jpg");
+//#endif
+//	model = glm::mat4(1.0f); //Matriz identidad
+//
+//}
 
 void initLights()
 {
@@ -939,6 +940,7 @@ void mouseMotionFunc(int x, int y)
 		view = glm::rotate(view, yaw, glm::vec3(1.0f, 0.0f, 0.0f));
 		view = glm::rotate(view, pitch, glm::vec3(0.0f, 1.0f, 0.0f));
 	}
+	scene.camera.SetViewMatrix(view);
 
 
 }

@@ -3,6 +3,7 @@
 #include <list>
 #include "Object.h"
 
+class Shader;
 
 class Mesh
 {
@@ -67,11 +68,13 @@ private:
 
 public:
 	/* Construye la malla a partir de un fichero utilizando assimp*/
-	Mesh(const char* file);
+	Mesh(const char* file, Shader * material);
 
 	/* Construye maalla a partir de arrays */
 	Mesh(const unsigned int nTriangles, const unsigned int nVertex,
-		const unsigned int* index, const float* pos, const float* n=nullptr, const float* color= nullptr, const float* tex = nullptr, const float* tangent= nullptr);
+		const unsigned int* index, const float* pos, Shader * material, const float* n=nullptr, const float* color= nullptr, const float* tex = nullptr, const float* tangent= nullptr);
+
+	void ApplyMaterial(Shader * material);
 
 	//Getters (devuelven null si no esta)
 

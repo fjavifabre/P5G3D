@@ -22,7 +22,7 @@ void Scene::RenderLoop()
 
 	sceneShaders.at(0).render(sceneLights, camera);
 
-	glUseProgram(NULL);
+	//glUseProgram(NULL);
 	
 	glutSwapBuffers(); // Swap de los buffers
 	//TODO implementar multiples pasadas
@@ -55,7 +55,7 @@ Shader* Scene::LoadShader(char* vertexShader, char* fragmentShader)
 //Loads mesh, adds it to the mesh vectr and returns it
 Mesh* Scene::LoadMesh(char* mesh, Shader* shader)
 {
-	Mesh newMesh(mesh);
+	Mesh newMesh(mesh, shader);
 
 	sceneMeshes.push_back(newMesh);
 
@@ -109,7 +109,7 @@ PointLight* Scene::AddPointLight()
 
 	sceneLights.push_back(newLight);
 
-	return  static_cast<PointLight*>(&sceneLights.back());
+	return static_cast<PointLight*>(&sceneLights.back());
 }
 
 SpotLight* Scene::AddSpotLight()

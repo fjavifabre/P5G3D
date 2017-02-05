@@ -134,17 +134,16 @@ void Shader::render(std::list<Light> &lightV, Camera &camera)
 	for (Mesh *m : meshes)
 	{
 		//Para cada objeto que usa esa malla
-		unsigned int vao = m->getVAO();
-		glBindVertexArray(vao);
+		glBindVertexArray(m->getVAO());
 		for (Object *o : m->getObjects())
 		{
 			//Cargar las variables concretas del objeto
-
+			glm::mat4 model = glm::mat4(1.0);
 			glm::mat4 modelView = *camera.GetView() * *o->GetModelMatrix();
 			glm::mat4 modelViewProj = *camera.GetProjection() * *camera.GetView() * *o->GetModelMatrix();
 			glm::mat4 normal = glm::transpose(glm::inverse(modelView));
 
-			std::cout << normal[3].x << " " << normal[3].y << " " << normal[3].z << std::endl;
+			std::cout << modelViewProj[3].x << " " << modelViewProj[3].y << " " << modelViewProj[3].z << std::endl;
 
 			if (uModelViewMat != -1) // Identificador a la variable uniforme
 				glUniformMatrix4fv(uModelViewMat, 1, GL_FALSE,

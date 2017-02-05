@@ -11,9 +11,10 @@
 #include <FreeImage.h>
 #define _CRT_SECURE_DEPRECATE_MEMORY
 #include <memory.h>
+#include "Shader.h"
 
 //TODO mejorar, solo genera la primera malla del archivo
-Mesh::Mesh(const char* file)
+Mesh::Mesh(const char* file, Shader * material)
 {
 
 	Assimp::Importer importer;
@@ -108,13 +109,13 @@ Mesh::Mesh(const char* file)
 		}
 	}
 
-	generateVAO();
+	ApplyMaterial(material);
 
 
 }
 
 Mesh::Mesh(const unsigned int objectNTriangle, const unsigned int objectNVertex,
-	const unsigned int* index, const float* pos, const float* n, const float* color, const float* tex, const float* tangent)
+	const unsigned int* index, const float* pos, Shader * material, const float* n, const float* color, const float* tex, const float* tangent)
 {
 
 	//Indices y posiciones
@@ -164,9 +165,15 @@ Mesh::Mesh(const unsigned int objectNTriangle, const unsigned int objectNVertex,
 	else
 		vertexTangent.clear();
 
+	ApplyMaterial(material);
+}
+
+void Mesh::ApplyMaterial(Shader * material)
+{
 
 	generateVAO();
 }
+
 
  unsigned int* Mesh::getTriangleIndex()
 {
