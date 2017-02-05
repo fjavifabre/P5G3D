@@ -84,7 +84,7 @@ Shader::Shader(const char* vertex, const char* fragment)
 	inTangent = glGetAttribLocation(program, "inTangent");
 }
 
-void Shader::render(std::list<LightValues> &lightV, glm::mat4 &view)
+void Shader::render(std::list<Light> &lightV, glm::mat4 &view)
 {
 	glUseProgram(program);
 
@@ -94,17 +94,17 @@ void Shader::render(std::list<LightValues> &lightV, glm::mat4 &view)
 	//Subir luces
 	//for (int i = 0; i < MAX_LIGHTS; i++)
 	int i = 0;
-	for (LightValues values : lightV)
+	for (Light values : lightV)
 	{
 
 		if (lights[i].uAmb != -1)
 		{
 
-			glUniform3fv(lights[i].uAmb, 1, &values.Amb[0]);
+			glUniform3fv(lights[i].uAmb, 1, &values.AmbientColor[0]);
 		}
 		if (lights[i].uDiff != -1)
 		{
-			glm::vec3 ambInt = values.Diff;
+			glm::vec3 ambInt = values.DiffuseColor;
 
 			if (i == 0) {
 				ambInt *= lightIntensity;
@@ -122,13 +122,13 @@ void Shader::render(std::list<LightValues> &lightV, glm::mat4 &view)
 				lightModel = glm::rotate(lightModel, lightPitch, glm::vec3(0.0, 1.0, 0.0));
 			}
 
-			glm::vec4 viewPos = view * lightModel * values.Pos;
+			glm::vec4 viewPos = view * lightModel * *values.GetPosition();
 
 			glUniform4fv(lights[i].uPos, 1, &viewPos[0]);
 		}
 		if (lights[i].uDir != -1)
 		{
-			glm::vec4 viewDir = glm::transpose(glm::inverse(view)) * values.Dir;
+			glm::vec4 viewDir = glm::transpose(glm::inverse(view)) * *values.GetDirection();
 
 			viewDir.w = 0.0f;
 
@@ -136,15 +136,15 @@ void Shader::render(std::list<LightValues> &lightV, glm::mat4 &view)
 		}
 		if (lights[i].uC != -1)
 		{
-			glUniform3fv(lights[i].uC, 1, &values.C[0]);
+			glUniform3fv(lights[i].uC, 1, &(*values.GetAttenuation())[0]);
 		}
 		if (lights[i].uCosCutOff != -1)
 		{
-			glUniform1f(lights[i].uCosCutOff, values.CosCutOff);
+			glUniform1f(lights[i].uCosCutOff, values.GetCosCutOff());
 		}
 		if (lights[i].uSpotExponent != -1)
 		{
-			glUniform1f(lights[i].uSpotExponent, values.SpotExponent);
+			glUniform1f(lights[i].uSpotExponent, values.GetSpotExponent());
 		}
 
 		i++;

@@ -8,6 +8,8 @@
 #define GLM_FORCE_RADIANS
 #include <glm/glm.hpp>  //Librería matemática
 #include <glm/gtc/matrix_transform.hpp>
+#include "Light.h"
+
 #define MAX_LIGHTS 2
 
 class Shader
@@ -27,16 +29,18 @@ struct LightIds {
 
 };
 
-struct LightValues{
+//Ahora se trata como clase
 
-	glm::vec3 Amb; // Intesidad ambiental
-	glm::vec3 Diff; // Intensidad difusa
-	glm::vec4 Pos; // Posición
-	glm::vec4 Dir; // Dirección
-	glm::vec3 C; // Atenuación
-	GLfloat CosCutOff;
-	GLfloat SpotExponent;
-};
+//struct LightValues{
+//
+//	glm::vec3 Amb; // Intesidad ambiental
+//	glm::vec3 Diff; // Intensidad difusa
+//	glm::vec4 Pos; // Posición
+//	glm::vec4 Dir; // Dirección
+//	glm::vec3 C; // Atenuación
+//	GLfloat CosCutOff;
+//	GLfloat SpotExponent;
+//};
 
 	
 private:
@@ -77,7 +81,7 @@ public:
 	Shader(const char* vertex, const char* fragment);
 
 	//Renderizar usando las luces definidas en escena
-	void render(std::list<LightValues> &lightV, glm::mat4 &view); //TODO: chage to camera obj
+	void render(std::list<Light> &lightV, glm::mat4 &view); //TODO: chage to camera obj
 
 	~Shader();
 
