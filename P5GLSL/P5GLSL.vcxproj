@@ -11,32 +11,32 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Camera.h" />
-    <ClInclude Include="CatmullRom.h" />
-    <ClInclude Include="DirectionalLight.h" />
-    <ClInclude Include="Light.h" />
-    <ClInclude Include="Mesh.h" />
-    <ClInclude Include="Object.h" />
-    <ClInclude Include="PointLight.h" />
-    <ClInclude Include="Scene.h" />
     <ClInclude Include="scr\auxiliar.h" />
     <ClInclude Include="scr\BOX.h" />
-    <ClInclude Include="Shader.h" />
-    <ClInclude Include="SpotLight.h" />
+    <ClInclude Include="scr\Camera.h" />
+    <ClInclude Include="scr\CatmullRom.h" />
+    <ClInclude Include="scr\DirectionalLight.h" />
+    <ClInclude Include="scr\Light.h" />
+    <ClInclude Include="scr\Mesh.h" />
+    <ClInclude Include="scr\Object.h" />
+    <ClInclude Include="scr\PointLight.h" />
+    <ClInclude Include="scr\Scene.h" />
+    <ClInclude Include="scr\Shader.h" />
+    <ClInclude Include="scr\SpotLight.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="CatmullRom.cpp" />
-    <ClCompile Include="DirectionalLight.cpp" />
-    <ClCompile Include="Light.cpp" />
-    <ClCompile Include="Mesh.cpp" />
-    <ClCompile Include="Object.cpp" />
-    <ClCompile Include="PointLight.cpp" />
-    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="scr\auxiliar.cpp" />
+    <ClCompile Include="scr\Camera.cpp" />
+    <ClCompile Include="scr\CatmullRom.cpp" />
+    <ClCompile Include="scr\DirectionalLight.cpp" />
+    <ClCompile Include="scr\Light.cpp" />
     <ClCompile Include="scr\main.cpp" />
-    <ClCompile Include="Shader.cpp" />
-    <ClCompile Include="SpotLight.cpp" />
+    <ClCompile Include="scr\Mesh.cpp" />
+    <ClCompile Include="scr\Object.cpp" />
+    <ClCompile Include="scr\PointLight.cpp" />
+    <ClCompile Include="scr\Scene.cpp" />
+    <ClCompile Include="scr\Shader.cpp" />
+    <ClCompile Include="scr\SpotLight.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\shaders_P5\shader.v0.frag" />

@@ -1,0 +1,56 @@
+\hypertarget{class_scene}{}\section{Scene Class Reference}
+\label{class_scene}\index{Scene@{Scene}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_scene_a71708279f69885e838e288c6689ddd1c}\label{class_scene_a71708279f69885e838e288c6689ddd1c}} 
+void {\bfseries Render\+Loop} ()
+\item 
+\mbox{\Hypertarget{class_scene_ab0293e9c900f18ce4ca26621d4b7ddfe}\label{class_scene_ab0293e9c900f18ce4ca26621d4b7ddfe}} 
+void {\bfseries Update\+Loop} ()
+\item 
+\mbox{\Hypertarget{class_scene_a6f0f7af3d07acbee2d6864c3ded98351}\label{class_scene_a6f0f7af3d07acbee2d6864c3ded98351}} 
+\hyperlink{class_shader}{Shader} $\ast$ {\bfseries Load\+Shader} (char $\ast$vertex\+Shader, char $\ast$fragment\+Shader)
+\item 
+\mbox{\Hypertarget{class_scene_ab729ec633aed779aedb3cd43058da683}\label{class_scene_ab729ec633aed779aedb3cd43058da683}} 
+\hyperlink{class_mesh}{Mesh} $\ast$ {\bfseries Load\+Mesh} (char $\ast$mesh, char $\ast$name)
+\item 
+\mbox{\Hypertarget{class_scene_adfdea29bf0ed9107c28f99fb8ebe34d1}\label{class_scene_adfdea29bf0ed9107c28f99fb8ebe34d1}} 
+\hyperlink{class_object}{Object} $\ast$ {\bfseries Create\+Object} (\hyperlink{class_mesh}{Mesh} $\ast$mesh, char $\ast$name)
+\item 
+\mbox{\Hypertarget{class_scene_a8ba56754e230d7a99736c5232bd912ea}\label{class_scene_a8ba56754e230d7a99736c5232bd912ea}} 
+\hyperlink{class_directional_light}{Directional\+Light} $\ast$ {\bfseries Add\+Directional\+Light} ()
+\item 
+\mbox{\Hypertarget{class_scene_ac33b9cc536096a447892f524802dd2ec}\label{class_scene_ac33b9cc536096a447892f524802dd2ec}} 
+\hyperlink{class_point_light}{Point\+Light} $\ast$ {\bfseries Add\+Point\+Light} ()
+\item 
+\mbox{\Hypertarget{class_scene_a5086a9e37b94c2dfb30dfacbee668c79}\label{class_scene_a5086a9e37b94c2dfb30dfacbee668c79}} 
+\hyperlink{class_spot_light}{Spot\+Light} $\ast$ {\bfseries Add\+Spot\+Light} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_scene_afed13ec4ba2d7ab75b273d507911b498}\label{class_scene_afed13ec4ba2d7ab75b273d507911b498}} 
+\hyperlink{class_camera}{Camera} {\bfseries camera}
+\item 
+\mbox{\Hypertarget{class_scene_a5f692c13f2db4299793ffc4d36c7e2ba}\label{class_scene_a5f692c13f2db4299793ffc4d36c7e2ba}} 
+std\+::vector$<$ \hyperlink{class_shader}{Shader} $>$ {\bfseries scene\+Shaders}
+\item 
+\mbox{\Hypertarget{class_scene_a7be2dbccfae00f70b1d07b2c4d738ece}\label{class_scene_a7be2dbccfae00f70b1d07b2c4d738ece}} 
+std\+::vector$<$ \hyperlink{class_mesh}{Mesh} $>$ {\bfseries scene\+Meshes}
+\item 
+\mbox{\Hypertarget{class_scene_ad9e4d19ec059a134617ee31d1df03714}\label{class_scene_ad9e4d19ec059a134617ee31d1df03714}} 
+std\+::vector$<$ \hyperlink{class_object}{Object} $>$ {\bfseries scene\+Objects}
+\item 
+\mbox{\Hypertarget{class_scene_adfe38881a26c650efb48cd53452dca7b}\label{class_scene_adfe38881a26c650efb48cd53452dca7b}} 
+std\+::vector$<$ \hyperlink{class_light}{Light} $>$ {\bfseries scene\+Lights}
+\item 
+\mbox{\Hypertarget{class_scene_a4624158c6d315465401ccdda659bc13b}\label{class_scene_a4624158c6d315465401ccdda659bc13b}} 
+float {\bfseries delta\+Time}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Scene.\+h\item 
+Scene.\+cpp\end{DoxyCompactItemize}

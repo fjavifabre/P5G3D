@@ -1,0 +1,128 @@
+\hypertarget{class_object}{}\section{Object Class Reference}
+\label{class_object}\index{Object@{Object}}
+Inheritance diagram for Object\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_object}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_object_ab37a94ec1146c22546445d4baaf55697}\label{class_object_ab37a94ec1146c22546445d4baaf55697}} 
+void {\bfseries Init\+Object} (char $\ast$name, \hyperlink{class_object}{Object} $\ast$parent, \hyperlink{class_mesh}{Mesh} $\ast$mesh)
+\item 
+\mbox{\Hypertarget{class_object_a344ba3716db86c373345265935280968}\label{class_object_a344ba3716db86c373345265935280968}} 
+void {\bfseries Set\+Parent} (\hyperlink{class_object}{Object} $\ast$parent)
+\item 
+\mbox{\Hypertarget{class_object_a6f86d9e3b77d79cc3a6a4d57a5c9ed72}\label{class_object_a6f86d9e3b77d79cc3a6a4d57a5c9ed72}} 
+\hyperlink{class_object}{Object} $\ast$ {\bfseries Get\+Parent} ()
+\item 
+\mbox{\Hypertarget{class_object_a6be7369b2a3382f82ea8d3e61c061b59}\label{class_object_a6be7369b2a3382f82ea8d3e61c061b59}} 
+void {\bfseries Set\+Mesh} (\hyperlink{class_mesh}{Mesh} $\ast$mesh)
+\item 
+\mbox{\Hypertarget{class_object_ac59efbef5ea2a39576d7a057eb5e11ac}\label{class_object_ac59efbef5ea2a39576d7a057eb5e11ac}} 
+\hyperlink{class_mesh}{Mesh} $\ast$ {\bfseries Get\+Mesh} ()
+\item 
+\mbox{\Hypertarget{class_object_a58e26d2cc568b514884336ed279dc00c}\label{class_object_a58e26d2cc568b514884336ed279dc00c}} 
+glm\+::mat4 $\ast$ {\bfseries Get\+Model\+Matrix} ()
+\item 
+\mbox{\Hypertarget{class_object_ae7ebb71e79aeb36213dd3e053a72b446}\label{class_object_ae7ebb71e79aeb36213dd3e053a72b446}} 
+glm\+::mat4 $\ast$ {\bfseries Get\+Normal\+Matrix} ()
+\item 
+\mbox{\Hypertarget{class_object_aa26a8254ffe085f5f68c37f5b7f19f23}\label{class_object_aa26a8254ffe085f5f68c37f5b7f19f23}} 
+glm\+::mat4 {\bfseries Get\+Pos\+Matrix} ()
+\item 
+\mbox{\Hypertarget{class_object_a806ea3c855a382f8f6986760505ac808}\label{class_object_a806ea3c855a382f8f6986760505ac808}} 
+glm\+::mat4 {\bfseries Get\+Rot\+Matrix} ()
+\item 
+\mbox{\Hypertarget{class_object_ac35d079dfc5a9fbab69fe6ab5d5e2696}\label{class_object_ac35d079dfc5a9fbab69fe6ab5d5e2696}} 
+glm\+::mat4 {\bfseries Get\+Scale\+Matrix} ()
+\item 
+\mbox{\Hypertarget{class_object_a03bd9ae689e9535934f46222644f44aa}\label{class_object_a03bd9ae689e9535934f46222644f44aa}} 
+virtual void {\bfseries Update} (float dt)
+\item 
+\mbox{\Hypertarget{class_object_a9b9491a79b85055e08ab3c8e7f2a4283}\label{class_object_a9b9491a79b85055e08ab3c8e7f2a4283}} 
+virtual void {\bfseries Render\+Update} (float dt)
+\item 
+\mbox{\Hypertarget{class_object_adbffb47c9daf536f5ccd668d060a0490}\label{class_object_adbffb47c9daf536f5ccd668d060a0490}} 
+void {\bfseries Set\+Position} (glm\+::vec3 position)
+\item 
+\mbox{\Hypertarget{class_object_a08faf59cf967fae31dd3ed0aea43a372}\label{class_object_a08faf59cf967fae31dd3ed0aea43a372}} 
+void {\bfseries Set\+Scale} (glm\+::vec3 scale)
+\item 
+\mbox{\Hypertarget{class_object_a0aaf9cce0a37d5bb0af6eb11ab8dce64}\label{class_object_a0aaf9cce0a37d5bb0af6eb11ab8dce64}} 
+void {\bfseries Set\+Euler\+Rotation} (glm\+::vec3 euler\+Angles)
+\item 
+\mbox{\Hypertarget{class_object_a5930b30196790ae109835e4f24a85b29}\label{class_object_a5930b30196790ae109835e4f24a85b29}} 
+void {\bfseries Use\+Alternative\+Model\+Mat} (bool use)
+\item 
+\mbox{\Hypertarget{class_object_a178b374670d4681c61556a352276f96a}\label{class_object_a178b374670d4681c61556a352276f96a}} 
+void {\bfseries Set\+Alternative\+Model\+Mat} (glm\+::mat4 model\+Mat)
+\item 
+\mbox{\Hypertarget{class_object_ab1946453ecbf12a897ba6a363704cd86}\label{class_object_ab1946453ecbf12a897ba6a363704cd86}} 
+bool {\bfseries Set\+Active} (bool active)
+\item 
+\mbox{\Hypertarget{class_object_a49327b515f7e613c882f33c2b058ab98}\label{class_object_a49327b515f7e613c882f33c2b058ab98}} 
+bool {\bfseries Is\+Active} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_object_af08c7cf7a01b230d6967551c52bdff63}\label{class_object_af08c7cf7a01b230d6967551c52bdff63}} 
+void {\bfseries Update\+Matrix} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_object_ab37ae04046c449f0a8ab2833cfee5353}\label{class_object_ab37ae04046c449f0a8ab2833cfee5353}} 
+char $\ast$ {\bfseries m\+\_\+name}
+\item 
+\mbox{\Hypertarget{class_object_a2ee3d966f96dbabae641ad390d82a6f3}\label{class_object_a2ee3d966f96dbabae641ad390d82a6f3}} 
+\hyperlink{class_object}{Object} $\ast$ {\bfseries m\+\_\+parent}
+\item 
+\mbox{\Hypertarget{class_object_a82441da4d382a765bcf9c0a929f0a240}\label{class_object_a82441da4d382a765bcf9c0a929f0a240}} 
+\hyperlink{class_mesh}{Mesh} $\ast$ {\bfseries m\+\_\+linked\+Mesh}
+\item 
+\mbox{\Hypertarget{class_object_a9f5194b69d79120761526865270df0a6}\label{class_object_a9f5194b69d79120761526865270df0a6}} 
+bool {\bfseries m\+\_\+active}
+\item 
+\mbox{\Hypertarget{class_object_a6628ff13c375c8a2bc9cc36c8585943c}\label{class_object_a6628ff13c375c8a2bc9cc36c8585943c}} 
+glm\+::vec3 {\bfseries m\+\_\+global\+Position}
+\item 
+\mbox{\Hypertarget{class_object_ad717cc77240082806b13cd67338a4923}\label{class_object_ad717cc77240082806b13cd67338a4923}} 
+glm\+::vec3 {\bfseries m\+\_\+global\+Scale}
+\item 
+\mbox{\Hypertarget{class_object_a2b740c7fb22122a34286e0181fc69c8a}\label{class_object_a2b740c7fb22122a34286e0181fc69c8a}} 
+glm\+::vec3 {\bfseries m\+\_\+euler\+Angles}
+\item 
+\mbox{\Hypertarget{class_object_a6efcd32bee6c6acb64292a4798da7c0f}\label{class_object_a6efcd32bee6c6acb64292a4798da7c0f}} 
+glm\+::mat4 {\bfseries m\+\_\+pos\+Mat}
+\item 
+\mbox{\Hypertarget{class_object_a6657aad81115123d8d9bca416d012b46}\label{class_object_a6657aad81115123d8d9bca416d012b46}} 
+glm\+::mat4 {\bfseries m\+\_\+scale\+Mat}
+\item 
+\mbox{\Hypertarget{class_object_a9d7273efa1fbbe8a45c9042cf70222a5}\label{class_object_a9d7273efa1fbbe8a45c9042cf70222a5}} 
+glm\+::mat4 {\bfseries m\+\_\+rot\+Mat}
+\item 
+\mbox{\Hypertarget{class_object_a63576ab555502bfb8de52e0f75b0d012}\label{class_object_a63576ab555502bfb8de52e0f75b0d012}} 
+glm\+::mat4 {\bfseries m\+\_\+model\+Mat}
+\item 
+\mbox{\Hypertarget{class_object_aa8ca8a51906713190326b0b2667d975e}\label{class_object_aa8ca8a51906713190326b0b2667d975e}} 
+glm\+::mat4 {\bfseries m\+\_\+alt\+Model\+Mat}
+\item 
+\mbox{\Hypertarget{class_object_af542c9ba8be80682203c4fe426eb071a}\label{class_object_af542c9ba8be80682203c4fe426eb071a}} 
+glm\+::mat4 {\bfseries m\+\_\+normal\+Mat}
+\item 
+\mbox{\Hypertarget{class_object_ac7370557bcc44f3054712733de22d9ee}\label{class_object_ac7370557bcc44f3054712733de22d9ee}} 
+bool {\bfseries m\+\_\+use\+Alt\+Mat} = false
+\item 
+\mbox{\Hypertarget{class_object_a4e7183f8631f7473e648138facdee129}\label{class_object_a4e7183f8631f7473e648138facdee129}} 
+bool {\bfseries m\+\_\+update\+Matrix} = false
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Object.\+h\item 
+Object.\+cpp\end{DoxyCompactItemize}

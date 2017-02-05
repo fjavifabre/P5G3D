@@ -1,4 +1,5 @@
 #include "Object.h"
+#define GLM_FORCE_RADIANS
 #include <glm/gtc/matrix_transform.hpp>
 #include "Mesh.h"
 
@@ -79,7 +80,7 @@ void Object::Update(float dt)
 	if (m_updateMatrix)
 	{
 		m_updateMatrix = false;
-		//UpdateMatrix();
+		UpdateMatrix();
 	}
 }
 
@@ -141,9 +142,9 @@ void Object::UpdateMatrix()
 	if (!m_useAltMat)
 	{
 		m_modelMat = glm::translate(m_modelMat, m_globalPosition);
-		/*m_modelMat = glm::rotate(m_modelMat, m_eulerAngles.z, glm::vec3(0.0f, 0.0f, 1.0f));
+		m_modelMat = glm::rotate(m_modelMat, m_eulerAngles.z, glm::vec3(0.0f, 0.0f, 1.0f));
 		m_modelMat = glm::rotate(m_modelMat, m_eulerAngles.y, glm::vec3(0.0f, 1.0f, 0.0f));
-		m_modelMat = glm::rotate(m_modelMat, m_eulerAngles.x, glm::vec3(1.0f, 0.0f, 0.0f));*/
+		m_modelMat = glm::rotate(m_modelMat, m_eulerAngles.x, glm::vec3(1.0f, 0.0f, 0.0f));
 		m_modelMat = glm::scale(m_modelMat, m_globalScale);
 	}
 	else

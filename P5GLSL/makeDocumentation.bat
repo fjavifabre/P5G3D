@@ -1,0 +1,3 @@
+cd scr
+doxygen
+pause

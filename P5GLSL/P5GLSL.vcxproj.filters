@@ -15,34 +15,34 @@
     <ClInclude Include="scr\auxiliar.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="Mesh.h">
+    <ClInclude Include="scr\Camera.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="CatmullRom.h">
+    <ClInclude Include="scr\CatmullRom.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="Shader.h">
+    <ClInclude Include="scr\DirectionalLight.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="Scene.h">
+    <ClInclude Include="scr\Light.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="Object.h">
+    <ClInclude Include="scr\Mesh.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="PointLight.h">
+    <ClInclude Include="scr\Object.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="DirectionalLight.h">
+    <ClInclude Include="scr\PointLight.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="Light.h">
+    <ClInclude Include="scr\Scene.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="SpotLight.h">
+    <ClInclude Include="scr\Shader.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.h">
+    <ClInclude Include="scr\SpotLight.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
@@ -53,34 +53,34 @@
     <ClCompile Include="scr\auxiliar.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="Mesh.cpp">
+    <ClCompile Include="scr\Camera.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="CatmullRom.cpp">
+    <ClCompile Include="scr\CatmullRom.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="Shader.cpp">
+    <ClCompile Include="scr\DirectionalLight.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="Scene.cpp">
+    <ClCompile Include="scr\Light.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="Object.cpp">
+    <ClCompile Include="scr\Mesh.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="DirectionalLight.cpp">
+    <ClCompile Include="scr\Object.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="Light.cpp">
+    <ClCompile Include="scr\PointLight.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="PointLight.cpp">
+    <ClCompile Include="scr\Scene.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="SpotLight.cpp">
+    <ClCompile Include="scr\Shader.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="Camera.cpp">
+    <ClCompile Include="scr\SpotLight.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

@@ -15,8 +15,8 @@
 #include <string>
 #include <vector>
 
-#include "../Mesh.h"
-#include "../CatmullRom.h"
+#include "Mesh.h"
+#include "CatmullRom.h"
 
 
 #define CUBE 0 //Si es 1 se pinta cubo, si es 0 se carga un modelo

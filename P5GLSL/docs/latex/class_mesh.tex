@@ -1,0 +1,77 @@
+\hypertarget{class_mesh}{}\section{Mesh Class Reference}
+\label{class_mesh}\index{Mesh@{Mesh}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_mesh_af00a97ca15339b6d131be3ce502bebe9}\label{class_mesh_af00a97ca15339b6d131be3ce502bebe9}} 
+{\bfseries Mesh} (const char $\ast$file)
+\item 
+\mbox{\Hypertarget{class_mesh_a52065a07657fadff457f4009b3e694d0}\label{class_mesh_a52065a07657fadff457f4009b3e694d0}} 
+{\bfseries Mesh} (const unsigned int n\+Triangles, const unsigned int n\+Vertex, const unsigned int $\ast$index, const float $\ast$pos, const float $\ast$n=nullptr, const float $\ast$color=nullptr, const float $\ast$tex=nullptr, const float $\ast$tangent=nullptr)
+\item 
+\mbox{\Hypertarget{class_mesh_a99962ed2f4a6a0999127f5e4defef6dc}\label{class_mesh_a99962ed2f4a6a0999127f5e4defef6dc}} 
+unsigned int $\ast$ {\bfseries get\+Triangle\+Index} ()
+\item 
+\mbox{\Hypertarget{class_mesh_a2345e6c20aa6a0f05521b8aeb62203f4}\label{class_mesh_a2345e6c20aa6a0f05521b8aeb62203f4}} 
+float $\ast$ {\bfseries get\+Vertex\+Pos} ()
+\item 
+\mbox{\Hypertarget{class_mesh_ab16f1115ed7865c9e7322c85e2d785af}\label{class_mesh_ab16f1115ed7865c9e7322c85e2d785af}} 
+float $\ast$ {\bfseries get\+Vertex\+Normals} ()
+\item 
+\mbox{\Hypertarget{class_mesh_ade2dd22f7cbe37df8e51ba65c800bbc8}\label{class_mesh_ade2dd22f7cbe37df8e51ba65c800bbc8}} 
+float $\ast$ {\bfseries get\+Vertex\+Color} ()
+\item 
+\mbox{\Hypertarget{class_mesh_ab6ba57a10fbed17d8f9dc8ec09b92657}\label{class_mesh_ab6ba57a10fbed17d8f9dc8ec09b92657}} 
+float $\ast$ {\bfseries get\+Vertex\+Tex\+Coord} ()
+\item 
+\mbox{\Hypertarget{class_mesh_ae5cd8d05ef13c4e71bea276a9783adaf}\label{class_mesh_ae5cd8d05ef13c4e71bea276a9783adaf}} 
+float $\ast$ {\bfseries get\+Vertex\+Tangent} ()
+\item 
+\mbox{\Hypertarget{class_mesh_a838bd5498ec781707bb28830ff5e064d}\label{class_mesh_a838bd5498ec781707bb28830ff5e064d}} 
+unsigned int {\bfseries get\+Color\+Tex} ()
+\item 
+\mbox{\Hypertarget{class_mesh_ad4787ea15b5ad63eed00a1a0ef272637}\label{class_mesh_ad4787ea15b5ad63eed00a1a0ef272637}} 
+unsigned int {\bfseries get\+Spec\+Tex} ()
+\item 
+\mbox{\Hypertarget{class_mesh_ad0b8c57f20a5319e2e730cfa61271904}\label{class_mesh_ad0b8c57f20a5319e2e730cfa61271904}} 
+unsigned int {\bfseries get\+Emi\+Tex} ()
+\item 
+\mbox{\Hypertarget{class_mesh_a8b60518f329c4e3d15824ef68c794fa1}\label{class_mesh_a8b60518f329c4e3d15824ef68c794fa1}} 
+unsigned int {\bfseries get\+Norm\+Tex} ()
+\item 
+\mbox{\Hypertarget{class_mesh_add2e2bafe60711ec9f67308c140640a9}\label{class_mesh_add2e2bafe60711ec9f67308c140640a9}} 
+unsigned int {\bfseries get\+V\+AO} ()
+\item 
+\mbox{\Hypertarget{class_mesh_ae4163571bceed9d224fc43e943dda118}\label{class_mesh_ae4163571bceed9d224fc43e943dda118}} 
+int {\bfseries get\+Num\+Vertex} ()
+\item 
+\mbox{\Hypertarget{class_mesh_a4452aed4ac63ff0639b839bba095347e}\label{class_mesh_a4452aed4ac63ff0639b839bba095347e}} 
+int {\bfseries get\+Num\+Triangles} ()
+\item 
+\mbox{\Hypertarget{class_mesh_ac06b928f547c1eec3b66ae5503608c21}\label{class_mesh_ac06b928f547c1eec3b66ae5503608c21}} 
+bool {\bfseries load\+Color\+Tex} (const char $\ast$file)
+\item 
+\mbox{\Hypertarget{class_mesh_ada437d0826057661de46ab5ce2b497a4}\label{class_mesh_ada437d0826057661de46ab5ce2b497a4}} 
+bool {\bfseries load\+Spec\+Tex} (const char $\ast$file)
+\item 
+\mbox{\Hypertarget{class_mesh_abb21ce55711b89f7018d103b50294f69}\label{class_mesh_abb21ce55711b89f7018d103b50294f69}} 
+bool {\bfseries load\+Emi\+Tex} (const char $\ast$file)
+\item 
+\mbox{\Hypertarget{class_mesh_a443b1a0a0c36ff911f58f2a5f4616538}\label{class_mesh_a443b1a0a0c36ff911f58f2a5f4616538}} 
+bool {\bfseries load\+Norm\+Tex} (const char $\ast$file)
+\item 
+\mbox{\Hypertarget{class_mesh_a81e2edec37429d2830a551d07476c7ba}\label{class_mesh_a81e2edec37429d2830a551d07476c7ba}} 
+void {\bfseries add\+Object} (\hyperlink{class_object}{Object} $\ast$o)
+\item 
+\mbox{\Hypertarget{class_mesh_a7c209ba6e5596edaeb9062cf23d3532b}\label{class_mesh_a7c209ba6e5596edaeb9062cf23d3532b}} 
+void {\bfseries remove\+Object} (\hyperlink{class_object}{Object} $\ast$o)
+\item 
+\mbox{\Hypertarget{class_mesh_aadc3cc59b0dccf99961105431a717579}\label{class_mesh_aadc3cc59b0dccf99961105431a717579}} 
+std\+::list$<$ \hyperlink{class_object}{Object} $\ast$ $>$ \& {\bfseries get\+Objects} ()
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Mesh.\+h\item 
+Mesh.\+cpp\end{DoxyCompactItemize}
