@@ -3,6 +3,7 @@
 #include <list>
 #include "Object.h"
 
+
 class Mesh
 {
 private:
@@ -43,8 +44,25 @@ private:
 	//Textura de normales
 	unsigned int normTex = -1;
 
+	//IDs VAO VBOs
+
+	unsigned int vao;
+	unsigned int posVBO;
+	unsigned int colorVBO;
+	unsigned int normalVBO;
+	unsigned int texCoordVBO;
+	unsigned int tangentVBO;
+	unsigned int triangleIndexVBO;
+
+	int inPos;
+	int inColor;
+	int inNormal;
+	int inTexCoord;
+	int inTangent;
+
 	static unsigned char* loadTexture(const char* fileName, unsigned int &w, unsigned int &h);
 	static unsigned int loadTex(const char* fileName);
+	void generateVAO();
 
 
 public:
@@ -64,6 +82,13 @@ public:
 	float* getVertexTexCoord(); //Coordenadas de textura
 	float* getVertexTangent(); //Tangentes
 
+	//Getters de textura
+	unsigned int getColorTex();
+	unsigned int getSpecTex();
+	unsigned int getEmiTex();
+	unsigned int getNormTex();
+	unsigned int getVAO();
+
 	int getNumVertex();
 	int getNumTriangles();
 
@@ -78,8 +103,11 @@ public:
 	void addObject(Object* o);
 	void removeObject(Object* o);
 
+	//Get objects list
+	std::list<Object*>& getObjects();
+
 	//Render all objects
-	void render();
+	//void render(Camera &camera, Shader &shader);
 
 	~Mesh();
 };

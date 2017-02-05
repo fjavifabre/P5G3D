@@ -634,7 +634,7 @@ void renderFunc()
 	glDrawElements(GL_TRIANGLES, malla->getNumTriangles() * 3,
 		GL_UNSIGNED_INT, (void*)0); //Recoge los elementos del buffer de tres en tres para dibujar los triángulos del modelo (nº de triángulos * 3)
 
-									//Segundo cubo
+	//Segundo cubo
 	glm::mat4 modelView2 = view * model2;
 	glm::mat4 modelViewProj2 = proj * view * model2;
 	glm::mat4 normal2 = glm::transpose(glm::inverse(modelView2));

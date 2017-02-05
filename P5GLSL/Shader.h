@@ -9,6 +9,7 @@
 #include <glm/glm.hpp>  //Librería matemática
 #include <glm/gtc/matrix_transform.hpp>
 #include "Light.h"
+#include "Camera.h"
 
 #define MAX_LIGHTS 2
 
@@ -81,7 +82,9 @@ public:
 	Shader(const char* vertex, const char* fragment);
 
 	//Renderizar usando las luces definidas en escena
-	void render(std::list<Light> &lightV, glm::mat4 &view); //TODO: chage to camera obj
+	void render(std::list<Light> &lightV, Camera &camera); //TODO: chage to camera obj
+
+
 
 	~Shader();
 

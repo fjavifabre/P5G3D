@@ -84,7 +84,7 @@ Shader::Shader(const char* vertex, const char* fragment)
 	inTangent = glGetAttribLocation(program, "inTangent");
 }
 
-void Shader::render(std::list<Light> &lightV, glm::mat4 &view)
+void Shader::render(std::list<Light> &lightV, Camera &camera)
 {
 	glUseProgram(program);
 
@@ -122,13 +122,13 @@ void Shader::render(std::list<Light> &lightV, glm::mat4 &view)
 				lightModel = glm::rotate(lightModel, lightPitch, glm::vec3(0.0, 1.0, 0.0));
 			}
 
-			glm::vec4 viewPos = view * lightModel * *values.GetPosition();
+			glm::vec4 viewPos = *camera.GetView() * lightModel * *values.GetPosition();
 
 			glUniform4fv(lights[i].uPos, 1, &viewPos[0]);
 		}
 		if (lights[i].uDir != -1)
 		{
-			glm::vec4 viewDir = glm::transpose(glm::inverse(view)) * *values.GetDirection();
+			glm::vec4 viewDir = glm::transpose(glm::inverse(*camera.GetView())) * *values.GetDirection();
 
 			viewDir.w = 0.0f;
 
@@ -148,6 +148,64 @@ void Shader::render(std::list<Light> &lightV, glm::mat4 &view)
 		}
 
 		i++;
+	}
+
+	//Para cada malla
+	for (Mesh *m : meshes)
+	{
+		//Para cada objeto que usa esa malla
+		for (Object *o : m->getObjects())
+		{
+			//Cargar las variables concretas del objeto
+
+			glm::mat4 modelView = *camera.GetView() * *o->GetModelMatrix();
+			glm::mat4 modelViewProj = *camera.GetProjection() * *camera.GetView() * *o->GetModelMatrix();
+			glm::mat4 normal = glm::transpose(glm::inverse(modelView));
+
+
+			if (uModelViewMat != -1) // Identificador a la variable uniforme
+				glUniformMatrix4fv(uModelViewMat, 1, GL_FALSE,
+					&(modelView[0][0]));
+			if (uModelViewProjMat != -1)
+				glUniformMatrix4fv(uModelViewProjMat, 1, GL_FALSE,
+					&(modelViewProj[0][0]));
+			if (uNormalMat != -1)
+				glUniformMatrix4fv(uNormalMat, 1, GL_FALSE,
+					&(normal[0][0]));
+
+			//Texturas
+			if (uColorTex != -1)
+			{
+				glActiveTexture(GL_TEXTURE0); //Activa texture unit 0
+				glBindTexture(GL_TEXTURE_2D, m->getColorTex());
+				glUniform1i(uColorTex, 0);
+			}
+			if (uEmiTex != -1)
+			{
+				glActiveTexture(GL_TEXTURE0 + 1); //Activa texture unit 1
+				glBindTexture(GL_TEXTURE_2D, m->getEmiTex());
+				glUniform1i(uEmiTex, 1);
+			}
+			if (uSpecTex != -1)
+			{
+				glActiveTexture(GL_TEXTURE0 + 2); //Activa texture unit 2 (especular)
+				glBindTexture(GL_TEXTURE_2D, m->getSpecTex());
+				glUniform1i(uSpecTex, 2);
+			}
+			if (uNormTex != -1)
+			{
+				glActiveTexture(GL_TEXTURE0 + 3); //Activa texture unit 3 (normal)
+				glBindTexture(GL_TEXTURE_2D, m->getNormTex());
+				glUniform1i(uNormTex, 3);
+			}
+
+			//Subir cosas concretas de la malla
+			glBindVertexArray(m->getVAO());
+			glDrawElements(GL_TRIANGLES, m->getNumTriangles() * 3,
+				GL_UNSIGNED_INT, (void*)0); //Recoge los elementos del buffer de tres en tres para dibujar los triángulos del modelo (nº de triángulos * 3)
+
+
+		}
 	}
 
 	/*

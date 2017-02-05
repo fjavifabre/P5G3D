@@ -108,7 +108,6 @@ Mesh::Mesh(const char* file)
 	}
 
 
-	//delete scene;
 }
 
 Mesh::Mesh(const unsigned int objectNTriangle, const unsigned int objectNVertex,
@@ -279,6 +278,65 @@ Mesh::Mesh(const unsigned int objectNTriangle, const unsigned int objectNVertex,
 	 return texId; //Devuelve el identificador de textura
  }
 
+ void Mesh::generateVAO()
+ {
+	 glGenVertexArrays(1, &vao);
+	 glBindVertexArray(vao);
+
+	 if (inPos != -1) //Localizador de la posición con la información de las posiciones de los vértices
+	 {
+		 glGenBuffers(1, &posVBO); //NO TOCA VAO
+		 glBindBuffer(GL_ARRAY_BUFFER, posVBO); //Activa VBO
+		 glBufferData(GL_ARRAY_BUFFER, getNumVertex() * sizeof(float) * 3,
+			 getVertexPos(), GL_STATIC_DRAW); //Sube información
+		 glVertexAttribPointer(inPos, 3, GL_FLOAT, GL_FALSE, 0, 0); //Vertice tiene tres elementos, del tipo float, no notmaliza, stride y offset
+		 glEnableVertexAttribArray(inPos); //Configura en el VAO que tiene que utilizar inPos. Si no se quiere utilizar, llamar a glDisable...
+	 }
+	 if (inColor != -1) //Se repite como en inPos
+	 {
+		 glGenBuffers(1, &colorVBO);
+		 glBindBuffer(GL_ARRAY_BUFFER, colorVBO);
+		 glBufferData(GL_ARRAY_BUFFER, getNumVertex() * sizeof(float) * 3,
+			 getVertexColor(), GL_STATIC_DRAW);
+		 glVertexAttribPointer(inColor, 3, GL_FLOAT, GL_FALSE, 0, 0);
+		 glEnableVertexAttribArray(inColor);
+	 }
+	 if (inNormal != -1)
+	 {
+		 glGenBuffers(1, &normalVBO);
+		 glBindBuffer(GL_ARRAY_BUFFER, normalVBO);
+		 glBufferData(GL_ARRAY_BUFFER, getNumVertex() * sizeof(float) * 3,
+			getVertexNormals(), GL_STATIC_DRAW);
+		 glVertexAttribPointer(inNormal, 3, GL_FLOAT, GL_FALSE, 0, 0);
+		 glEnableVertexAttribArray(inNormal);
+	 }
+	 if (inTexCoord != -1)
+	 {
+		 glGenBuffers(1, &texCoordVBO);
+		 glBindBuffer(GL_ARRAY_BUFFER, texCoordVBO);
+		 glBufferData(GL_ARRAY_BUFFER, getNumVertex() * sizeof(float) * 2,
+			 getVertexTexCoord(), GL_STATIC_DRAW);
+		 glVertexAttribPointer(inTexCoord, 2, GL_FLOAT, GL_FALSE, 0, 0);
+		 glEnableVertexAttribArray(inTexCoord);
+	 }
+	 if (inTangent != -1)
+	 {
+		 glGenBuffers(1, &tangentVBO);
+		 glBindBuffer(GL_ARRAY_BUFFER, tangentVBO);
+		 glBufferData(GL_ARRAY_BUFFER, getNumVertex() * sizeof(float) * 3,
+			 getVertexTangent(), GL_STATIC_DRAW);
+		 glVertexAttribPointer(inTangent, 3, GL_FLOAT, GL_FALSE, 0, 0);
+		 glEnableVertexAttribArray(inTangent);
+	 }
+
+	 //Indica como recorrer los elementos
+	 glGenBuffers(1, &triangleIndexVBO);
+	 glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, triangleIndexVBO);
+	 glBufferData(GL_ELEMENT_ARRAY_BUFFER,
+		 getNumTriangles() * sizeof(unsigned int) * 3, getTriangleIndex(),
+		 GL_STATIC_DRAW);
+ }
+
  bool Mesh::loadColorTex(const char* fileName)
  {
 	 colorTex = loadTex(fileName);
@@ -312,14 +370,85 @@ Mesh::Mesh(const unsigned int objectNTriangle, const unsigned int objectNVertex,
 	 objects.remove(o);
  }
 
- void Mesh::render()
+ //void Mesh::render(Camera &camera, Shader &shader)
+ //{
+	// for (Object* o : objects)
+	// {
+	//	 //Subir las variables de este objeto
+
+	//	 //Se suben las variables uniformes
+	//	 glm::mat4 modelView = *camera.GetView() * *o->GetModelMatrix();
+	//	 glm::mat4 modelViewProj = *camera.GetProjection() * *camera.GetView() * *o->GetModelMatrix();
+	//	 glm::mat4 normal = glm::transpose(glm::inverse(modelView));
+
+
+	//	 if (uModelViewMat != -1) // Identificador a la variable uniforme
+	//		 glUniformMatrix4fv(uModelViewMat, 1, GL_FALSE,
+	//			 &(modelView[0][0]));
+	//	 if (uModelViewProjMat != -1)
+	//		 glUniformMatrix4fv(uModelViewProjMat, 1, GL_FALSE,
+	//			 &(modelViewProj[0][0]));
+	//	 if (uNormalMat != -1)
+	//		 glUniformMatrix4fv(uNormalMat, 1, GL_FALSE,
+	//			 &(normal[0][0]));
+
+	//	 //Texturas
+	//	 if (uColorTex != -1)
+	//	 {
+	//		 glActiveTexture(GL_TEXTURE0); //Activa texture unit 0
+	//		 glBindTexture(GL_TEXTURE_2D, colorTexId);
+	//		 glUniform1i(uColorTex, 0);
+	//	 }
+	//	 if (uEmiTex != -1)
+	//	 {
+	//		 glActiveTexture(GL_TEXTURE0 + 1); //Activa texture unit 1
+	//		 glBindTexture(GL_TEXTURE_2D, emiTexId);
+	//		 glUniform1i(uEmiTex, 1);
+	//	 }
+	//	 if (uSpecTex != -1)
+	//	 {
+	//		 glActiveTexture(GL_TEXTURE0 + 2); //Activa texture unit 2 (especular)
+	//		 glBindTexture(GL_TEXTURE_2D, specTexId);
+	//		 glUniform1i(uSpecTex, 2);
+	//	 }
+	//	 if (uNormTex != -1)
+	//	 {
+	//		 glActiveTexture(GL_TEXTURE0 + 3); //Activa texture unit 3 (normal)
+	//		 glBindTexture(GL_TEXTURE_2D, normTexId);
+	//		 glUniform1i(uNormTex, 3);
+	//	 }
+	// }
+ //}
+
+ unsigned int Mesh::getColorTex()
  {
-	 for (Object* o : objects)
-	 {
-		 //TODO: add render functions at object class
-		 //o->render();
-	 }
+	 return colorTex;
  }
+
+ unsigned int Mesh::getSpecTex()
+ {
+	 return specTex;
+ }
+
+ unsigned int Mesh::getEmiTex()
+ {
+	 return emiTex;
+ }
+
+ unsigned int Mesh::getNormTex()
+ {
+	 return normTex;
+ }
+
+unsigned int Mesh::getVAO()
+{
+	 return vao;
+}
+
+std::list<Object*>& Mesh::getObjects()
+{
+	return objects;
+}
 
 
 Mesh::~Mesh()
