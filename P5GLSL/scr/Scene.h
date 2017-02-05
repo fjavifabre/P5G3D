@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <list>
 
 #include "Shader.h"
 #include "Mesh.h"
@@ -24,7 +25,7 @@ public:
 	std::vector<Shader> sceneShaders;
 	std::vector<Mesh> sceneMeshes;
 	std::vector<Object> sceneObjects;
-	std::vector<Light> sceneLights;
+	std::list<Light> sceneLights; //std::vector<Light> sceneLights;
 
 	float deltaTime;
 
@@ -35,7 +36,7 @@ public:
 	Shader* LoadShader(char* vertexShader, char* fragmentShader);
 
 	//Loads mesh, adds it to the mesh vectr and returns it
-	Mesh* LoadMesh(char* mesh, char* name);
+	Mesh* LoadMesh(char* mesh, Shader* shader);
 
 	//Creates object, adds it to the object vector, and returns it
 	Object* CreateObject(Mesh* mesh, char* name);
@@ -44,5 +45,9 @@ public:
 	DirectionalLight* AddDirectionalLight();
 	PointLight* AddPointLight();
 	SpotLight* AddSpotLight();
+
+	//Deleters
+
+
 };
 

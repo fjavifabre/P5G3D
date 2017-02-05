@@ -84,7 +84,7 @@ public:
 	//Renderizar usando las luces definidas en escena
 	void render(std::list<Light> &lightV, Camera &camera); //TODO: chage to camera obj
 
-
+	void addMesh(Mesh *mesh);
 
 	~Shader();
 

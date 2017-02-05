@@ -3,13 +3,14 @@
 
 Scene::Scene()
 {
-	//camera.SetPerspProjection(glm::radians(60.0f), 1.0f, 0.1f, 50.0f);
+	camera.SetPerspProjection(glm::radians(60.0f), 1.0f, 0.1f, 50.0f);
 
 }
 
 
 Scene::~Scene()
 {
+
 }
 
 void Scene::RenderLoop()
@@ -17,11 +18,16 @@ void Scene::RenderLoop()
 	//glm::mat4* proj = camera.GetProjection();
 	//glm::mat4* view = camera.GetView();
 
-	for (Shader &shader : sceneShaders)
-	{
-		//Pasar vector luces y matrices vista y proyección
-	}
+	sceneShaders.at(0).render(sceneLights, camera);
+
+	//TODO implementar multiples pasadas
+
+	//for (Shader &shader : sceneShaders)
+	//{
+	//	//Pasar vector luces y matrices vista y proyección
+	//}
 }
+
 void Scene::UpdateLoop()
 {
 	for (Object &object : sceneObjects)
@@ -37,17 +43,21 @@ Shader* Scene::LoadShader(char* vertexShader, char* fragmentShader)
 
 	sceneShaders.push_back(newShader);
 
-	return &newShader;
+	return &sceneShaders.back();
 }
 
 //Loads mesh, adds it to the mesh vectr and returns it
-Mesh* Scene::LoadMesh(char* mesh, char* name)
+Mesh* Scene::LoadMesh(char* mesh, Shader* shader)
 {
 	Mesh newMesh(mesh);
 
 	sceneMeshes.push_back(newMesh);
 
-	return &newMesh;
+	Mesh *ret = &sceneMeshes.back();
+
+	shader->addMesh(ret);
+
+	return ret;
 }
 
 //Creates object, adds it to the object vector, and returns it
@@ -58,9 +68,11 @@ Object* Scene::CreateObject(Mesh* mesh, char* name)
 
 	sceneObjects.push_back(newObject);
 
-	mesh->addObject(&newObject);
+	Object *ret = &sceneObjects.back();
 
-	return &newObject;
+	mesh->addObject(ret);
+
+	return ret;
 }
 
 //Adds light to the scene and returns it
@@ -70,7 +82,7 @@ DirectionalLight* Scene::AddDirectionalLight()
 
 	sceneLights.push_back(newLight);
 
-	return &newLight;
+	return static_cast<DirectionalLight*>(&sceneLights.back());
 }
 
 PointLight* Scene::AddPointLight()
@@ -79,7 +91,7 @@ PointLight* Scene::AddPointLight()
 
 	sceneLights.push_back(newLight);
 
-	return &newLight;
+	return  static_cast<PointLight*>(&sceneLights.back());
 }
 
 SpotLight* Scene::AddSpotLight()
@@ -89,5 +101,5 @@ SpotLight* Scene::AddSpotLight()
 	sceneLights.push_back(newLight);
 
 
-	return &newLight;
+	return static_cast<SpotLight*>(&sceneLights.back());
 }

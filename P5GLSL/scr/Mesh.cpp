@@ -15,6 +15,7 @@
 //TODO mejorar, solo genera la primera malla del archivo
 Mesh::Mesh(const char* file)
 {
+
 	Assimp::Importer importer;
 
 	const aiScene* scene = importer.ReadFile(file, aiProcess_Triangulate | aiProcess_GenNormals | aiProcess_CalcTangentSpace);
@@ -107,6 +108,8 @@ Mesh::Mesh(const char* file)
 		}
 	}
 
+	generateVAO();
+
 
 }
 
@@ -162,7 +165,7 @@ Mesh::Mesh(const unsigned int objectNTriangle, const unsigned int objectNVertex,
 		vertexTangent.clear();
 
 
-	
+	generateVAO();
 }
 
  unsigned int* Mesh::getTriangleIndex()
@@ -244,7 +247,7 @@ Mesh::Mesh(const unsigned int objectNTriangle, const unsigned int objectNVertex,
 	 return map;
  }
 
- unsigned int Mesh::loadTex(const char* fileName)
+ int Mesh::loadTex(const char* fileName)
  {
 	 //Carga textura de fichero
 	 unsigned char *map;
@@ -255,7 +258,7 @@ Mesh::Mesh(const unsigned int objectNTriangle, const unsigned int objectNVertex,
 		 return -1;
 	 }
 
-	 unsigned int texId;
+	 unsigned int texId = -1;
 	 glGenTextures(1, &texId);
 	 glBindTexture(GL_TEXTURE_2D, texId);
 	 glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, w, h, 0, GL_RGBA,
@@ -283,7 +286,7 @@ Mesh::Mesh(const unsigned int objectNTriangle, const unsigned int objectNVertex,
 	 glGenVertexArrays(1, &vao);
 	 glBindVertexArray(vao);
 
-	 if (inPos != -1) //Localizador de la posición con la información de las posiciones de los vértices
+	 if (inPos != -1 && vertexPos.size() > 0) //Localizador de la posición con la información de las posiciones de los vértices
 	 {
 		 glGenBuffers(1, &posVBO); //NO TOCA VAO
 		 glBindBuffer(GL_ARRAY_BUFFER, posVBO); //Activa VBO
@@ -292,7 +295,7 @@ Mesh::Mesh(const unsigned int objectNTriangle, const unsigned int objectNVertex,
 		 glVertexAttribPointer(inPos, 3, GL_FLOAT, GL_FALSE, 0, 0); //Vertice tiene tres elementos, del tipo float, no notmaliza, stride y offset
 		 glEnableVertexAttribArray(inPos); //Configura en el VAO que tiene que utilizar inPos. Si no se quiere utilizar, llamar a glDisable...
 	 }
-	 if (inColor != -1) //Se repite como en inPos
+	 if (inColor != -1 && vertexColor.size() > 0) //Se repite como en inPos
 	 {
 		 glGenBuffers(1, &colorVBO);
 		 glBindBuffer(GL_ARRAY_BUFFER, colorVBO);
@@ -301,7 +304,7 @@ Mesh::Mesh(const unsigned int objectNTriangle, const unsigned int objectNVertex,
 		 glVertexAttribPointer(inColor, 3, GL_FLOAT, GL_FALSE, 0, 0);
 		 glEnableVertexAttribArray(inColor);
 	 }
-	 if (inNormal != -1)
+	 if (inNormal != -1 && vertexNormal.size() > 0)
 	 {
 		 glGenBuffers(1, &normalVBO);
 		 glBindBuffer(GL_ARRAY_BUFFER, normalVBO);
@@ -310,7 +313,7 @@ Mesh::Mesh(const unsigned int objectNTriangle, const unsigned int objectNVertex,
 		 glVertexAttribPointer(inNormal, 3, GL_FLOAT, GL_FALSE, 0, 0);
 		 glEnableVertexAttribArray(inNormal);
 	 }
-	 if (inTexCoord != -1)
+	 if (inTexCoord != -1 && vertexTexCoord.size() > 0)
 	 {
 		 glGenBuffers(1, &texCoordVBO);
 		 glBindBuffer(GL_ARRAY_BUFFER, texCoordVBO);
@@ -319,7 +322,7 @@ Mesh::Mesh(const unsigned int objectNTriangle, const unsigned int objectNVertex,
 		 glVertexAttribPointer(inTexCoord, 2, GL_FLOAT, GL_FALSE, 0, 0);
 		 glEnableVertexAttribArray(inTexCoord);
 	 }
-	 if (inTangent != -1)
+	 if (inTangent != -1 && vertexTangent.size() > 0)
 	 {
 		 glGenBuffers(1, &tangentVBO);
 		 glBindBuffer(GL_ARRAY_BUFFER, tangentVBO);
@@ -454,8 +457,8 @@ std::list<Object*>& Mesh::getObjects()
 Mesh::~Mesh()
 {
 	//Delete textures
-	if (colorTex != -1) glDeleteTextures(1, &colorTex);
-	if (specTex != -1) glDeleteTextures(1, &specTex);
-	if (emiTex != -1) glDeleteTextures(1, &emiTex);
-	if (normTex != -1) glDeleteTextures(1, &normTex);
+	//if (colorTex != -1) glDeleteTextures(1, &colorTex);
+	//if (specTex != -1) glDeleteTextures(1, &specTex);
+	//if (emiTex != -1) glDeleteTextures(1, &emiTex);
+	//if (normTex != -1) glDeleteTextures(1, &normTex);
 }

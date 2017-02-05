@@ -1,5 +1,6 @@
 #include "BOX.h"
 #include "auxiliar.h"
+#include <list>
 
 #include <windows.h>
 
@@ -15,7 +16,8 @@
 #include <string>
 #include <vector>
 
-#include "Mesh.h"
+#include "Scene.h"
+//#include "Mesh.h"
 #include "CatmullRom.h"
 
 
@@ -168,20 +170,52 @@ GLuint loadShader(const char *fileName, GLenum type);
 unsigned int loadTex(const char *fileName);
 
 
+Scene scene;
+
 int main(int argc, char** argv)
 {
 	std::locale::global(std::locale("spanish"));// acentos ;)
 
 	initContext(argc, argv);
 	initOGL();
-	initShader("../shaders_P5/shader.v1.vert", "../shaders_P5/shader.v1.frag");
-	initObj();
-	initLights(); // Inicializa las luces
+
+	Shader* shader =  scene.LoadShader("../shaders_P5/shader.v1.vert", "../shaders_P5/shader.v1.frag");
+	scene.AddPointLight();
+
+	Mesh* m = scene.LoadMesh("../meshes/statue.obj",shader);
+	m->loadColorTex("../meshes/color.jpg");
+	m->loadNormTex("../meshes/normales.jpg");
+	m->loadSpecTex("../meshes/specular.jpg");
+
+
+	scene.CreateObject(m, "test");
+
+	
+
+
+	//initShader("../shaders_P5/shader.v1.vert", "../shaders_P5/shader.v1.frag");
+	//initObj();
+	//initLights(); // Inicializa las luces
 	glutMainLoop(); // Loop principal
-	destroy();
+	//destroy();
 
 	return 0;
 }
+
+//int main(int argc, char** argv)
+//{
+//	std::locale::global(std::locale("spanish"));// acentos ;)
+//
+//	initContext(argc, argv);
+//	initOGL();
+//	initShader("../shaders_P5/shader.v1.vert", "../shaders_P5/shader.v1.frag");
+//	initObj();
+//	initLights(); // Inicializa las luces
+//	glutMainLoop(); // Loop principal
+//	destroy();
+//
+//	return 0;
+//}
 
 //////////////////////////////////////////
 // Funciones auxiliares 
@@ -526,136 +560,141 @@ unsigned int loadTex(const char *fileName)
 
 void renderFunc()
 {
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Limpia buffer de color y profundidad
-
-	glUseProgram(program);
-
-	//Subir luces
-	for (int i = 0; i < MAX_LIGHTS; i++)
-	{
-		if (lights[i].uAmb != -1)
-		{
-
-			glUniform3fv(lights[i].uAmb, 1, &lights[i].Amb[0]);
-		}
-		if (lights[i].uDiff != -1)
-		{
-			glm::vec3 ambInt = lights[i].Diff;
-
-			if (i == 0) {
-				ambInt *= lightIntensity;
-			}
-
-			glUniform3fv(lights[i].uDiff, 1, &ambInt[0]);
-		}
-		if (lights[i].uPos != -1)
-		{
-			glm::mat4 lightModel = glm::mat4(1.0);
-
-			if (i == 0)
-			{
-				lightModel = glm::rotate(lightModel, lightYaw, glm::vec3(1.0, 0.0, 0.0));
-				lightModel = glm::rotate(lightModel, lightPitch, glm::vec3(0.0, 1.0, 0.0));
-			}
-
-			glm::vec4 viewPos = view * lightModel * lights[i].Pos;
-
-			glUniform4fv(lights[i].uPos, 1, &viewPos[0]);
-		}
-		if (lights[i].uDir != -1)
-		{
-			glm::vec4 viewDir = glm::transpose(glm::inverse(view)) * lights[i].Dir;
-
-			viewDir.w = 0.0f;
-
-			glUniform4fv(lights[i].uDir, 1, &viewDir[0]);
-		}
-		if (lights[i].uC != -1)
-		{
-			glUniform3fv(lights[i].uC, 1, &lights[i].C[0]);
-		}
-		if (lights[i].uCosCutOff != -1)
-		{
-			glUniform1f(lights[i].uCosCutOff, lights[i].CosCutOff);
-		}
-		if (lights[i].uSpotExponent != -1)
-		{
-			glUniform1f(lights[i].uSpotExponent, lights[i].SpotExponent);
-		}
-	}
-
-	// -> pintado del objeto!!!!
-	//Se suben las variables uniformes
-	glm::mat4 modelView = view * model;
-	glm::mat4 modelViewProj = proj * view * model;
-	glm::mat4 normal = glm::transpose(glm::inverse(modelView));
-
-
-	if (uModelViewMat != -1) // Identificador a la variable uniforme
-		glUniformMatrix4fv(uModelViewMat, 1, GL_FALSE,
-			&(modelView[0][0]));
-	if (uModelViewProjMat != -1)
-		glUniformMatrix4fv(uModelViewProjMat, 1, GL_FALSE,
-			&(modelViewProj[0][0]));
-	if (uNormalMat != -1)
-		glUniformMatrix4fv(uNormalMat, 1, GL_FALSE,
-			&(normal[0][0]));
-
-	//Texturas
-	if (uColorTex != -1)
-	{
-		glActiveTexture(GL_TEXTURE0); //Activa texture unit 0
-		glBindTexture(GL_TEXTURE_2D, colorTexId);
-		glUniform1i(uColorTex, 0);
-	}
-	if (uEmiTex != -1)
-	{
-		glActiveTexture(GL_TEXTURE0 + 1); //Activa texture unit 1
-		glBindTexture(GL_TEXTURE_2D, emiTexId);
-		glUniform1i(uEmiTex, 1);
-	}
-	if (uSpecTex != -1)
-	{
-		glActiveTexture(GL_TEXTURE0 + 2); //Activa texture unit 2 (especular)
-		glBindTexture(GL_TEXTURE_2D, specTexId);
-		glUniform1i(uSpecTex, 2);
-	}
-	if (uNormTex != -1)
-	{
-		glActiveTexture(GL_TEXTURE0 + 3); //Activa texture unit 3 (normal)
-		glBindTexture(GL_TEXTURE_2D, normTexId);
-		glUniform1i(uNormTex, 3);
-	}
-
-
-
-	//Activar el vao del objeto
-	glBindVertexArray(vao);
-	glDrawElements(GL_TRIANGLES, malla->getNumTriangles() * 3,
-		GL_UNSIGNED_INT, (void*)0); //Recoge los elementos del buffer de tres en tres para dibujar los triángulos del modelo (nº de triángulos * 3)
-
-	//Segundo cubo
-	glm::mat4 modelView2 = view * model2;
-	glm::mat4 modelViewProj2 = proj * view * model2;
-	glm::mat4 normal2 = glm::transpose(glm::inverse(modelView2));
-
-	if (uModelViewMat != -1) // Identificador a la variable uniforme
-		glUniformMatrix4fv(uModelViewMat, 1, GL_FALSE,
-			&(modelView2[0][0]));
-	if (uModelViewProjMat != -1)
-		glUniformMatrix4fv(uModelViewProjMat, 1, GL_FALSE,
-			&(modelViewProj2[0][0]));
-	if (uNormalMat != -1)
-		glUniformMatrix4fv(uNormalMat, 1, GL_FALSE,
-			&(normal2[0][0]));
-
-	glDrawElements(GL_TRIANGLES, malla->getNumTriangles() * 3,
-		GL_UNSIGNED_INT, (void*)0); //Recoge los elementos del buffer de tres en tres para dibujar los triángulos del modelo (nº de triángulos * 3)
-
-	glUseProgram(NULL);
-
-	glutSwapBuffers(); // Swap de los buffers
+	scene.RenderLoop();
 }
+
+//void renderFunc()
+//{
+//	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Limpia buffer de color y profundidad
+//
+//	glUseProgram(program);
+//
+//	//Subir luces
+//	for (int i = 0; i < MAX_LIGHTS; i++)
+//	{
+//		if (lights[i].uAmb != -1)
+//		{
+//
+//			glUniform3fv(lights[i].uAmb, 1, &lights[i].Amb[0]);
+//		}
+//		if (lights[i].uDiff != -1)
+//		{
+//			glm::vec3 ambInt = lights[i].Diff;
+//
+//			if (i == 0) {
+//				ambInt *= lightIntensity;
+//			}
+//
+//			glUniform3fv(lights[i].uDiff, 1, &ambInt[0]);
+//		}
+//		if (lights[i].uPos != -1)
+//		{
+//			glm::mat4 lightModel = glm::mat4(1.0);
+//
+//			if (i == 0)
+//			{
+//				lightModel = glm::rotate(lightModel, lightYaw, glm::vec3(1.0, 0.0, 0.0));
+//				lightModel = glm::rotate(lightModel, lightPitch, glm::vec3(0.0, 1.0, 0.0));
+//			}
+//
+//			glm::vec4 viewPos = view * lightModel * lights[i].Pos;
+//
+//			glUniform4fv(lights[i].uPos, 1, &viewPos[0]);
+//		}
+//		if (lights[i].uDir != -1)
+//		{
+//			glm::vec4 viewDir = glm::transpose(glm::inverse(view)) * lights[i].Dir;
+//
+//			viewDir.w = 0.0f;
+//
+//			glUniform4fv(lights[i].uDir, 1, &viewDir[0]);
+//		}
+//		if (lights[i].uC != -1)
+//		{
+//			glUniform3fv(lights[i].uC, 1, &lights[i].C[0]);
+//		}
+//		if (lights[i].uCosCutOff != -1)
+//		{
+//			glUniform1f(lights[i].uCosCutOff, lights[i].CosCutOff);
+//		}
+//		if (lights[i].uSpotExponent != -1)
+//		{
+//			glUniform1f(lights[i].uSpotExponent, lights[i].SpotExponent);
+//		}
+//	}
+//
+//	// -> pintado del objeto!!!!
+//	//Se suben las variables uniformes
+//	glm::mat4 modelView = view * model;
+//	glm::mat4 modelViewProj = proj * view * model;
+//	glm::mat4 normal = glm::transpose(glm::inverse(modelView));
+//
+//
+//	if (uModelViewMat != -1) // Identificador a la variable uniforme
+//		glUniformMatrix4fv(uModelViewMat, 1, GL_FALSE,
+//			&(modelView[0][0]));
+//	if (uModelViewProjMat != -1)
+//		glUniformMatrix4fv(uModelViewProjMat, 1, GL_FALSE,
+//			&(modelViewProj[0][0]));
+//	if (uNormalMat != -1)
+//		glUniformMatrix4fv(uNormalMat, 1, GL_FALSE,
+//			&(normal[0][0]));
+//
+//	//Texturas
+//	if (uColorTex != -1)
+//	{
+//		glActiveTexture(GL_TEXTURE0); //Activa texture unit 0
+//		glBindTexture(GL_TEXTURE_2D, colorTexId);
+//		glUniform1i(uColorTex, 0);
+//	}
+//	if (uEmiTex != -1)
+//	{
+//		glActiveTexture(GL_TEXTURE0 + 1); //Activa texture unit 1
+//		glBindTexture(GL_TEXTURE_2D, emiTexId);
+//		glUniform1i(uEmiTex, 1);
+//	}
+//	if (uSpecTex != -1)
+//	{
+//		glActiveTexture(GL_TEXTURE0 + 2); //Activa texture unit 2 (especular)
+//		glBindTexture(GL_TEXTURE_2D, specTexId);
+//		glUniform1i(uSpecTex, 2);
+//	}
+//	if (uNormTex != -1)
+//	{
+//		glActiveTexture(GL_TEXTURE0 + 3); //Activa texture unit 3 (normal)
+//		glBindTexture(GL_TEXTURE_2D, normTexId);
+//		glUniform1i(uNormTex, 3);
+//	}
+//
+//
+//
+//	//Activar el vao del objeto
+//	glBindVertexArray(vao);
+//	glDrawElements(GL_TRIANGLES, malla->getNumTriangles() * 3,
+//		GL_UNSIGNED_INT, (void*)0); //Recoge los elementos del buffer de tres en tres para dibujar los triángulos del modelo (nº de triángulos * 3)
+//
+//	//Segundo cubo
+//	glm::mat4 modelView2 = view * model2;
+//	glm::mat4 modelViewProj2 = proj * view * model2;
+//	glm::mat4 normal2 = glm::transpose(glm::inverse(modelView2));
+//
+//	if (uModelViewMat != -1) // Identificador a la variable uniforme
+//		glUniformMatrix4fv(uModelViewMat, 1, GL_FALSE,
+//			&(modelView2[0][0]));
+//	if (uModelViewProjMat != -1)
+//		glUniformMatrix4fv(uModelViewProjMat, 1, GL_FALSE,
+//			&(modelViewProj2[0][0]));
+//	if (uNormalMat != -1)
+//		glUniformMatrix4fv(uNormalMat, 1, GL_FALSE,
+//			&(normal2[0][0]));
+//
+//	glDrawElements(GL_TRIANGLES, malla->getNumTriangles() * 3,
+//		GL_UNSIGNED_INT, (void*)0); //Recoge los elementos del buffer de tres en tres para dibujar los triángulos del modelo (nº de triángulos * 3)
+//
+//	glUseProgram(NULL);
+//
+//	glutSwapBuffers(); // Swap de los buffers
+//}
 void resizeFunc(int width, int height)
 {
 

@@ -358,6 +358,10 @@ char * Shader::loadStringFromFile(const char *fileName, unsigned int &fileLen)
 	return source;
 }
 
+void Shader::addMesh(Mesh *mesh)
+{
+	meshes.push_back(mesh);
+}
 
 
 Shader::~Shader()
