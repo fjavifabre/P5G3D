@@ -14,8 +14,9 @@ Object::~Object()
 {
 }
 
-void Object::InitObject(Object* parent = nullptr, Mesh *mesh = nullptr)
+void Object::InitObject(char * name, Object* parent = nullptr, Mesh *mesh = nullptr)
 {
+	m_name = name;
 	m_parent = parent;
 	m_linkedMesh = mesh;
 	m_updateMatrix = true;
@@ -41,14 +42,17 @@ Mesh* Object::GetMesh()
 	return m_linkedMesh;
 }
 
-glm::mat4 Object::GetModelMatrix()
+glm::mat4* Object::GetModelMatrix()
 {
-	return m_modelMat;
+	if (m_useAltMat)
+		return &m_altModelMat;
+	else
+		return &m_modelMat;
 }
 
-glm::mat4 Object::GetNormalMatrix()
+glm::mat4* Object::GetNormalMatrix()
 {
-	return m_normalMat;
+	return &m_normalMat;
 }
 
 
@@ -129,9 +133,13 @@ bool Object::IsActive()
 
 void Object::UpdateMatrix()
 {
+	m_modelMat = glm::mat4(1.0f);
+
+	if (m_parent != nullptr)
+		m_modelMat = *m_parent->GetModelMatrix();
+
 	if (!m_useAltMat)
 	{
-		m_modelMat = glm::mat4(1.0f);
 		m_modelMat = glm::translate(m_modelMat, m_globalPosition);
 		/*m_modelMat = glm::rotate(m_modelMat, m_eulerAngles.z, glm::vec3(0.0f, 0.0f, 1.0f));
 		m_modelMat = glm::rotate(m_modelMat, m_eulerAngles.y, glm::vec3(0.0f, 1.0f, 0.0f));
@@ -142,5 +150,6 @@ void Object::UpdateMatrix()
 	{
 		m_modelMat = m_altModelMat;
 	}
+
 	m_normalMat = glm::inverse(glm::transpose(m_modelMat));
 }

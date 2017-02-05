@@ -1,6 +1,5 @@
 #pragma once
 #include <glm\glm.hpp>
-//#include "Mesh.h"
 
 class Mesh;
 
@@ -10,7 +9,7 @@ public:
 	Object();
 	~Object();
 
-	void InitObject(Object *parent, Mesh *mesh);
+	void InitObject(char * name, Object *parent, Mesh *mesh);
 
 	void SetParent(Object *parent);
 	Object* GetParent();
@@ -18,8 +17,8 @@ public:
 	void SetMesh(Mesh *mesh);
 	Mesh* GetMesh();
 
-	glm::mat4 GetModelMatrix();
-	glm::mat4 GetNormalMatrix();
+	glm::mat4* GetModelMatrix();
+	glm::mat4* GetNormalMatrix();
 
 	glm::mat4 GetPosMatrix();
 	glm::mat4 GetRotMatrix();
@@ -40,7 +39,9 @@ public:
 	bool SetActive(bool active);
 	bool IsActive();
 
-private:
+protected:
+	char * m_name;
+
 	Object* m_parent; //¿Crear herencia entre objetos para heredar transformaciones?
 	Mesh* m_linkedMesh;
 

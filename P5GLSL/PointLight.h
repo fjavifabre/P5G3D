@@ -6,5 +6,9 @@ class PointLight :
 public:
 	PointLight();
 	~PointLight();
+
+	void SetPosition(glm::vec3 position);
+	void SetAttenuation(glm::vec3 attenuation);
+	
 };
 

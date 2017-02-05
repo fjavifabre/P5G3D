@@ -6,5 +6,7 @@ class DirectionalLight :
 public:
 	DirectionalLight();
 	~DirectionalLight();
+
+	void SetDirection(glm::vec3 position);
 };
 
