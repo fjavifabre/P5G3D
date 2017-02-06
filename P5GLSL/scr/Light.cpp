@@ -3,7 +3,7 @@
 
 Light::Light()
 {
-	AmbientColor = glm::vec3(1.0); // Intesidad ambiental
+	AmbientColor = glm::vec3(0.0); // Intesidad ambiental
 	DiffuseColor = glm::vec3(1.0); // Intensidad difusa
 	m_pos = glm::vec4(1.0); // Posición
 	m_dir = glm::vec4(1.0); // Dirección

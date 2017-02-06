@@ -28,7 +28,6 @@
 //////////////////////////////////////////////////////////////
 
 //Matrices
-glm::mat4	proj = glm::mat4(1.0f);
 glm::mat4	view = glm::mat4(1.0f);
 glm::mat4	model = glm::mat4(1.0f); //Una por objeto
 glm::mat4	model2 = glm::mat4(1.0f); //Segundo cubo
@@ -129,12 +128,6 @@ float lightPitch = 0.0f, lightYaw = 0.0f, lightIntensity = 1.0f;
 CatmullRom cr1 = CatmullRom(glm::vec3(0.0f, 0.0f,  40.0f), glm::vec3(4.0f, -5.0f, 0.0f), glm::vec3(-4.0f, 5.0f,  0.0f), glm::vec3(0.0f, 0.0f, 40.0f));
 CatmullRom cr2 = CatmullRom(glm::vec3(0.0f, 0.0f, -40.0f), glm::vec3(-4.0f, 5.0f, 0.0f), glm::vec3(4.0f, -5.0f, 0.0f), glm::vec3(0.0f, 0.0f, -40.0f));
 
-//BSpline cubicSpline2 = BSpline(glm::vec3(-2.0f, .0f, -2.0f), glm::vec3(-2.0f, .0f, -2.0f), glm::vec3(2.0f, .0f, -2.0f), glm::vec3(-2.0f, .0f, -2.0f));
-
-//BSpline cubicSpline1= BSpline(glm::vec3(-2.0f, 0.0f, -2.0f), glm::vec3(1.0f, 2.0f, -1.0f), glm::vec3(-1.0f, -2.0f, 1.0f), glm::vec3(2.0f, 2.0f, 2.0f));
-////BSpline cubicSpline2 = BSpline(glm::vec3(2.0f, 2.0f, 2.0f), glm::vec3(-1.0f, 2.0f, -1.0f), glm::vec3(1.0f, -2.0f, 1.0f), glm::vec3(-2.0f, 0.0f, -2.0f));
-//BSpline cubicSpline2 = BSpline(glm::vec3(2.0f, 2.0f, 2.0f), glm::vec3(-1.0f, 2.0f, -1.0f), glm::vec3(1.0f, -2.0f, 1.0f), glm::vec3(-2.0f, 0.0f, -2.0f));
-
 //////////////////////////////////////////////////////////////
 // Funciones auxiliares
 //////////////////////////////////////////////////////////////
@@ -152,23 +145,10 @@ void mouseMotionFunc(int x, int y);
 void initContext(int argc, char** argv);
 void initOGL();
 void initShader(const char *vname, const char *fname);
-void initObj();
-void initLights(); // Crea las luces
 void destroy();
 
 //Funcion manual check extensiones
 bool checkExtension(std::string extName);
-
-
-//Carga el shader indicado, devuele el ID del shader
-//!Por implementar
-GLuint loadShader(const char *fileName, GLenum type);
-
-//Crea una textura, la configura, la sube a OpenGL, 
-//y devuelve el identificador de la textura 
-//!!Por implementar
-unsigned int loadTex(const char *fileName);
-
 
 Scene scene;
 
@@ -180,7 +160,10 @@ int main(int argc, char** argv)
 	initOGL();
 
 	Shader* shader =  scene.LoadShader("../shaders_P5/shader.v1.vert", "../shaders_P5/shader.v1.frag");
-	scene.AddPointLight();
+	DirectionalLight* light = scene.AddDirectionalLight();
+	light->SetDirection(glm::vec3(1.0));
+	light->AmbientColor = glm::vec3(0.0);
+	light->DiffuseColor = glm::vec3(0.0);
 
 	Mesh* m = scene.LoadMesh("../meshes/statue.obj", shader);
 
@@ -194,29 +177,11 @@ int main(int argc, char** argv)
 	obj->Update(0.0);
 
 
-	//initShader("../shaders_P5/shader.v1.vert", "../shaders_P5/shader.v1.frag");
-	//initObj();
-	//initLights(); // Inicializa las luces
 	glutMainLoop(); // Loop principal
 	//destroy();
 
 	return 0;
 }
-
-//int main(int argc, char** argv)
-//{
-//	std::locale::global(std::locale("spanish"));// acentos ;)
-//
-//	initContext(argc, argv);
-//	initOGL();
-//	initShader("../shaders_P5/shader.v1.vert", "../shaders_P5/shader.v1.frag");
-//	initObj();
-//	initLights(); // Inicializa las luces
-//	glutMainLoop(); // Loop principal
-//	destroy();
-//
-//	return 0;
-//}
 
 //////////////////////////////////////////
 // Funciones auxiliares 
@@ -273,7 +238,6 @@ void initOGL()
 	}
 
 	// Matriz de perspectiva
-	proj = glm::perspective(glm::radians(60.0f), 1.0f, 0.1f, 50.0f);
 	view = glm::mat4(1.0f);
 	view[3].z = -6;
 	translation.z = -6;
@@ -385,326 +349,18 @@ void initShader(const char *vname, const char *fname)
 	inTangent = glGetAttribLocation(program, "inTangent");
 
 }
-//void initObj()
-//{
-//
-//#if CUBE
-//	malla = new Mesh(cubeNTriangleIndex, cubeNVertex, cubeTriangleIndex, cubeVertexPos, cubeVertexNormal, cubeVertexColor, cubeVertexTexCoord, cubeVertexTangent);
-//#else
-//	malla = new Mesh("../meshes/statue.obj");
-//#endif
-//
-//	//Activar el Vertex Attribute 
-//
-//
-//	glGenVertexArrays(1, &vao);
-//	glBindVertexArray(vao);
-//
-//	if (inPos != -1) //Localizador de la posición con la información de las posiciones de los vértices
-//	{
-//		glGenBuffers(1, &posVBO); //NO TOCA VAO
-//		glBindBuffer(GL_ARRAY_BUFFER, posVBO); //Activa VBO
-//		glBufferData(GL_ARRAY_BUFFER, malla->getNumVertex() * sizeof(float) * 3,
-//			malla->getVertexPos(), GL_STATIC_DRAW); //Sube información
-//		glVertexAttribPointer(inPos, 3, GL_FLOAT, GL_FALSE, 0, 0); //Vertice tiene tres elementos, del tipo float, no notmaliza, stride y offset
-//		glEnableVertexAttribArray(inPos); //Configura en el VAO que tiene que utilizar inPos. Si no se quiere utilizar, llamar a glDisable...
-//	}
-//	if (inColor != -1) //Se repite como en inPos
-//	{
-//		glGenBuffers(1, &colorVBO);
-//		glBindBuffer(GL_ARRAY_BUFFER, colorVBO);
-//		glBufferData(GL_ARRAY_BUFFER, malla->getNumVertex() * sizeof(float) * 3,
-//			malla->getVertexColor(), GL_STATIC_DRAW);
-//		glVertexAttribPointer(inColor, 3, GL_FLOAT, GL_FALSE, 0, 0);
-//		glEnableVertexAttribArray(inColor);
-//	}
-//	if (inNormal != -1)
-//	{
-//		glGenBuffers(1, &normalVBO);
-//		glBindBuffer(GL_ARRAY_BUFFER, normalVBO);
-//		glBufferData(GL_ARRAY_BUFFER, malla->getNumVertex() * sizeof(float) * 3,
-//			malla->getVertexNormals(), GL_STATIC_DRAW);
-//		glVertexAttribPointer(inNormal, 3, GL_FLOAT, GL_FALSE, 0, 0);
-//		glEnableVertexAttribArray(inNormal);
-//	}
-//	if (inTexCoord != -1)
-//	{
-//		glGenBuffers(1, &texCoordVBO);
-//		glBindBuffer(GL_ARRAY_BUFFER, texCoordVBO);
-//		glBufferData(GL_ARRAY_BUFFER, malla->getNumVertex() * sizeof(float) * 2,
-//			malla->getVertexTexCoord(), GL_STATIC_DRAW);
-//		glVertexAttribPointer(inTexCoord, 2, GL_FLOAT, GL_FALSE, 0, 0);
-//		glEnableVertexAttribArray(inTexCoord);
-//	}
-//	if (inTangent != -1)
-//	{
-//		glGenBuffers(1, &tangentVBO);
-//		glBindBuffer(GL_ARRAY_BUFFER, tangentVBO);
-//		glBufferData(GL_ARRAY_BUFFER, malla->getNumVertex() * sizeof(float) * 3,
-//			malla->getVertexTangent(), GL_STATIC_DRAW);
-//		glVertexAttribPointer(inTangent, 3, GL_FLOAT, GL_FALSE, 0, 0);
-//		glEnableVertexAttribArray(inTangent);
-//	}
-//
-//	//Indica como recorrer los elementos
-//	glGenBuffers(1, &triangleIndexVBO);
-//	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, triangleIndexVBO);
-//	glBufferData(GL_ELEMENT_ARRAY_BUFFER,
-//		malla->getNumTriangles() * sizeof(unsigned int) * 3, malla->getTriangleIndex(),
-//		GL_STATIC_DRAW);
-//
-//	//Carga las texturas
-//#if CUBE
-//	colorTexId = loadTex("../img/color2.png");
-//	emiTexId = loadTex("../img/emissive.png");
-//	normTexId = loadTex("../img/normal.png");
-//	specTexId = loadTex("../img/specMap.png");
-//#else
-//	colorTexId = loadTex("../meshes/color.jpg");
-//	//emiTexId = loadTex("../img/emissive.png");
-//	normTexId = loadTex("../meshes/normales.jpg");
-//	specTexId = loadTex("../meshes/specular.jpg");
-//#endif
-//	model = glm::mat4(1.0f); //Matriz identidad
-//
-//}
-
-void initLights()
-{
-	lights[0].Amb = glm::vec3(0.0);
-	lights[0].Diff = glm::vec3(1.0);
-	lights[0].Pos = glm::vec4(0.0, .0, 0.01, 0.0);
-	lights[0].Dir = glm::vec4(0.0, 0.0, 0.01f, 0.0);
-	lights[0].C = glm::vec3(0.0, 0.0, 0.0);
-	lights[0].CosCutOff = -1.0f;// 0.3f;
-	lights[0].SpotExponent = 1.0f;
-
-	lights[1].Amb = glm::vec3(0.0);
-	lights[1].Diff = glm::vec3(0.0);
-	lights[1].Pos = glm::vec4(0.0);
-	lights[1].Dir = glm::vec4(0.0);
-	lights[1].C = glm::vec3(1.0, 0.0, 0.0);
-	lights[1].CosCutOff = 0.0f;
-	lights[1].SpotExponent = 0.0f;
-}
-
-GLuint loadShader(const char *fileName, GLenum type)
-{
-	unsigned int fileLen;
-	char *source = loadStringFromFile(fileName, fileLen);
-
-	//////////////////////////////////////////////
-	//Creación y compilación del Shader
-	GLuint shader;
-	shader = glCreateShader(type);
-	glShaderSource(shader, 1, //1: numero de cadenas del fichero
-		(const GLchar **)&source, (const GLint *)&fileLen);
-	glCompileShader(shader);
-	delete source; // Liberar el recurso utilizado para cargar el shader
-
-				   //Comprobamos que se compiló bien
-	GLint compiled;
-	glGetShaderiv(shader, GL_COMPILE_STATUS, &compiled); // Obtiene si el shader se ha compilado o no
-	if (!compiled)
-	{
-		//Calculamos una cadena de error
-		GLint logLen; // Longitud de la cadena de error
-		glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &logLen); // Reservar el espacio en la cadena de error
-		char *logString = new char[logLen]; // Crear el string del error
-		glGetShaderInfoLog(shader, logLen, NULL, logString); // Obtener el string con el error
-		std::cout << "FILENAME: " << fileName << std::endl;
-		std::cout << "Error: " << logString << std::endl;
-		delete logString;
-		glDeleteShader(shader);
-		std::cout << "Press Return to end the program" << std::endl;
-		std::cin.get();
-		exit(-1);
-	}
-
-
-	return shader;
-}
-unsigned int loadTex(const char *fileName)
-{
-	//Carga textura de fichero
-	unsigned char *map;
-	unsigned int w, h;
-	map = loadTexture(fileName, w, h);
-	if (!map) //Si devuelve null es que no se ha cargado la textura
-	{
-		std::cout << "Error cargando el fichero: "
-			<< fileName << std::endl;
-		exit(-1);
-	}
-
-	unsigned int texId;
-	glGenTextures(1, &texId);
-	glBindTexture(GL_TEXTURE_2D, texId);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, w, h, 0, GL_RGBA,
-		GL_UNSIGNED_BYTE, (GLvoid*)map); //Reserva espacio y sube textura, primer 0 indica los niveles de detalle, RGBA8: formato interno de la tarjeta gráfica (como se almacenan los datos), RGBA: formato en el que se pasan los datos, Unsigned: como son los datos
-
-	delete[] map; //Borrar de memoria la textura original
-
-	glGenerateMipmap(GL_TEXTURE_2D); //Genera midmaps
-
-	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
-		GL_LINEAR_MIPMAP_LINEAR); //Filtrado trilinear
-	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); //Filtrado lineal
-	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-
-	//Anisotropico si es posible
-	if (anisotropico != -1.0f)
-		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAX_ANISOTROPY_EXT, anisotropico);
-
-	return texId; //Devuelve el identificador de textura
-}
 
 void renderFunc()
 {
 	scene.RenderLoop();
 }
 
-//void renderFunc()
-//{
-//	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Limpia buffer de color y profundidad
-//
-//	glUseProgram(program);
-//
-//	//Subir luces
-//	for (int i = 0; i < MAX_LIGHTS; i++)
-//	{
-//		if (lights[i].uAmb != -1)
-//		{
-//
-//			glUniform3fv(lights[i].uAmb, 1, &lights[i].Amb[0]);
-//		}
-//		if (lights[i].uDiff != -1)
-//		{
-//			glm::vec3 ambInt = lights[i].Diff;
-//
-//			if (i == 0) {
-//				ambInt *= lightIntensity;
-//			}
-//
-//			glUniform3fv(lights[i].uDiff, 1, &ambInt[0]);
-//		}
-//		if (lights[i].uPos != -1)
-//		{
-//			glm::mat4 lightModel = glm::mat4(1.0);
-//
-//			if (i == 0)
-//			{
-//				lightModel = glm::rotate(lightModel, lightYaw, glm::vec3(1.0, 0.0, 0.0));
-//				lightModel = glm::rotate(lightModel, lightPitch, glm::vec3(0.0, 1.0, 0.0));
-//			}
-//
-//			glm::vec4 viewPos = view * lightModel * lights[i].Pos;
-//
-//			glUniform4fv(lights[i].uPos, 1, &viewPos[0]);
-//		}
-//		if (lights[i].uDir != -1)
-//		{
-//			glm::vec4 viewDir = glm::transpose(glm::inverse(view)) * lights[i].Dir;
-//
-//			viewDir.w = 0.0f;
-//
-//			glUniform4fv(lights[i].uDir, 1, &viewDir[0]);
-//		}
-//		if (lights[i].uC != -1)
-//		{
-//			glUniform3fv(lights[i].uC, 1, &lights[i].C[0]);
-//		}
-//		if (lights[i].uCosCutOff != -1)
-//		{
-//			glUniform1f(lights[i].uCosCutOff, lights[i].CosCutOff);
-//		}
-//		if (lights[i].uSpotExponent != -1)
-//		{
-//			glUniform1f(lights[i].uSpotExponent, lights[i].SpotExponent);
-//		}
-//	}
-//
-//	// -> pintado del objeto!!!!
-//	//Se suben las variables uniformes
-//	glm::mat4 modelView = view * model;
-//	glm::mat4 modelViewProj = proj * view * model;
-//	glm::mat4 normal = glm::transpose(glm::inverse(modelView));
-//
-//
-//	if (uModelViewMat != -1) // Identificador a la variable uniforme
-//		glUniformMatrix4fv(uModelViewMat, 1, GL_FALSE,
-//			&(modelView[0][0]));
-//	if (uModelViewProjMat != -1)
-//		glUniformMatrix4fv(uModelViewProjMat, 1, GL_FALSE,
-//			&(modelViewProj[0][0]));
-//	if (uNormalMat != -1)
-//		glUniformMatrix4fv(uNormalMat, 1, GL_FALSE,
-//			&(normal[0][0]));
-//
-//	//Texturas
-//	if (uColorTex != -1)
-//	{
-//		glActiveTexture(GL_TEXTURE0); //Activa texture unit 0
-//		glBindTexture(GL_TEXTURE_2D, colorTexId);
-//		glUniform1i(uColorTex, 0);
-//	}
-//	if (uEmiTex != -1)
-//	{
-//		glActiveTexture(GL_TEXTURE0 + 1); //Activa texture unit 1
-//		glBindTexture(GL_TEXTURE_2D, emiTexId);
-//		glUniform1i(uEmiTex, 1);
-//	}
-//	if (uSpecTex != -1)
-//	{
-//		glActiveTexture(GL_TEXTURE0 + 2); //Activa texture unit 2 (especular)
-//		glBindTexture(GL_TEXTURE_2D, specTexId);
-//		glUniform1i(uSpecTex, 2);
-//	}
-//	if (uNormTex != -1)
-//	{
-//		glActiveTexture(GL_TEXTURE0 + 3); //Activa texture unit 3 (normal)
-//		glBindTexture(GL_TEXTURE_2D, normTexId);
-//		glUniform1i(uNormTex, 3);
-//	}
-//
-//
-//
-//	//Activar el vao del objeto
-//	glBindVertexArray(vao);
-//	glDrawElements(GL_TRIANGLES, malla->getNumTriangles() * 3,
-//		GL_UNSIGNED_INT, (void*)0); //Recoge los elementos del buffer de tres en tres para dibujar los triángulos del modelo (nº de triángulos * 3)
-//
-//	//Segundo cubo
-//	glm::mat4 modelView2 = view * model2;
-//	glm::mat4 modelViewProj2 = proj * view * model2;
-//	glm::mat4 normal2 = glm::transpose(glm::inverse(modelView2));
-//
-//	if (uModelViewMat != -1) // Identificador a la variable uniforme
-//		glUniformMatrix4fv(uModelViewMat, 1, GL_FALSE,
-//			&(modelView2[0][0]));
-//	if (uModelViewProjMat != -1)
-//		glUniformMatrix4fv(uModelViewProjMat, 1, GL_FALSE,
-//			&(modelViewProj2[0][0]));
-//	if (uNormalMat != -1)
-//		glUniformMatrix4fv(uNormalMat, 1, GL_FALSE,
-//			&(normal2[0][0]));
-//
-//	glDrawElements(GL_TRIANGLES, malla->getNumTriangles() * 3,
-//		GL_UNSIGNED_INT, (void*)0); //Recoge los elementos del buffer de tres en tres para dibujar los triángulos del modelo (nº de triángulos * 3)
-//
-//	glUseProgram(NULL);
-//
-//	glutSwapBuffers(); // Swap de los buffers
-//}
 
 void resizeFunc(int width, int height)
 {
 
 	float n = 0.1f;
 	float f = 50.0f;
-
-	proj = glm::perspective(glm::radians(60.0f), (float)width / (float)height, n, f);
 
 	scene.camera.SetPerspProjection(glm::radians(60.0f), (float)width / (float)height, n, f);
 
@@ -841,8 +497,6 @@ void keyboardFunc(unsigned char key, int x, int y)
 		view = glm::rotate(view, pitch, glm::vec3(0.0f, 1.0f, 0.0f));
 	}
 	scene.camera.SetViewMatrix(view);
-	std::cout << (*scene.camera.GetModelMatrix())[3].x << " " << (*scene.camera.GetModelMatrix())[3].y << " " << (*scene.camera.GetModelMatrix())[3].z << " " << std::endl;
-
 
 }
 void mouseFunc(int button, int state, int x, int y)
