@@ -51,27 +51,6 @@ glm::mat4* Object::GetModelMatrix()
 		return &m_modelMat;
 }
 
-glm::mat4* Object::GetNormalMatrix()
-{
-	return &m_normalMat;
-}
-
-
-glm::mat4 Object::GetPosMatrix()
-{
-	return m_posMat;
-}
-
-glm::mat4 Object::GetRotMatrix()
-{
-	return m_rotMat;
-}
-
-glm::mat4 Object::GetScaleMatrix()
-{
-	return m_scaleMat;
-}
-
 //Ejecuta en bucle de lógica
 void Object::Update(float dt) 
 {
@@ -82,11 +61,6 @@ void Object::Update(float dt)
 		m_updateMatrix = false;
 		UpdateMatrix();
 	}
-}
-
-void Object::RenderUpdate(float dt)
-{
-
 }
 
 void Object::SetPosition(glm::vec3 position)
@@ -151,6 +125,4 @@ void Object::UpdateMatrix()
 	{
 		m_modelMat = m_altModelMat;
 	}
-
-	m_normalMat = glm::inverse(glm::transpose(m_modelMat));
 }

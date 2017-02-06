@@ -1,5 +1,14 @@
 \hypertarget{class_object}{}\section{Object Class Reference}
 \label{class_object}\index{Object@{Object}}
+
+
+\hyperlink{class_object}{Object} class.  
+
+
+
+
+{\ttfamily \#include $<$Object.\+h$>$}
+
 Inheritance diagram for Object\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -9,117 +18,325 @@ Inheritance diagram for Object\+:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_object_ab37a94ec1146c22546445d4baaf55697}{}void {\bfseries Init\+Object} (char $\ast$name, \hyperlink{class_object}{Object} $\ast$parent, \hyperlink{class_mesh}{Mesh} $\ast$mesh)\label{class_object_ab37a94ec1146c22546445d4baaf55697}
-
-\item 
-\hypertarget{class_object_a344ba3716db86c373345265935280968}{}void {\bfseries Set\+Parent} (\hyperlink{class_object}{Object} $\ast$parent)\label{class_object_a344ba3716db86c373345265935280968}
-
-\item 
-\hypertarget{class_object_a6f86d9e3b77d79cc3a6a4d57a5c9ed72}{}\hyperlink{class_object}{Object} $\ast$ {\bfseries Get\+Parent} ()\label{class_object_a6f86d9e3b77d79cc3a6a4d57a5c9ed72}
-
-\item 
-\hypertarget{class_object_a6be7369b2a3382f82ea8d3e61c061b59}{}void {\bfseries Set\+Mesh} (\hyperlink{class_mesh}{Mesh} $\ast$mesh)\label{class_object_a6be7369b2a3382f82ea8d3e61c061b59}
-
-\item 
-\hypertarget{class_object_ac59efbef5ea2a39576d7a057eb5e11ac}{}\hyperlink{class_mesh}{Mesh} $\ast$ {\bfseries Get\+Mesh} ()\label{class_object_ac59efbef5ea2a39576d7a057eb5e11ac}
-
-\item 
-\hypertarget{class_object_a58e26d2cc568b514884336ed279dc00c}{}glm\+::mat4 $\ast$ {\bfseries Get\+Model\+Matrix} ()\label{class_object_a58e26d2cc568b514884336ed279dc00c}
-
-\item 
-\hypertarget{class_object_ae7ebb71e79aeb36213dd3e053a72b446}{}glm\+::mat4 $\ast$ {\bfseries Get\+Normal\+Matrix} ()\label{class_object_ae7ebb71e79aeb36213dd3e053a72b446}
-
-\item 
-\hypertarget{class_object_aa26a8254ffe085f5f68c37f5b7f19f23}{}glm\+::mat4 {\bfseries Get\+Pos\+Matrix} ()\label{class_object_aa26a8254ffe085f5f68c37f5b7f19f23}
-
-\item 
-\hypertarget{class_object_a806ea3c855a382f8f6986760505ac808}{}glm\+::mat4 {\bfseries Get\+Rot\+Matrix} ()\label{class_object_a806ea3c855a382f8f6986760505ac808}
-
-\item 
-\hypertarget{class_object_ac35d079dfc5a9fbab69fe6ab5d5e2696}{}glm\+::mat4 {\bfseries Get\+Scale\+Matrix} ()\label{class_object_ac35d079dfc5a9fbab69fe6ab5d5e2696}
-
-\item 
-\hypertarget{class_object_a03bd9ae689e9535934f46222644f44aa}{}virtual void {\bfseries Update} (float dt)\label{class_object_a03bd9ae689e9535934f46222644f44aa}
-
-\item 
-\hypertarget{class_object_a9b9491a79b85055e08ab3c8e7f2a4283}{}virtual void {\bfseries Render\+Update} (float dt)\label{class_object_a9b9491a79b85055e08ab3c8e7f2a4283}
-
-\item 
-\hypertarget{class_object_adbffb47c9daf536f5ccd668d060a0490}{}void {\bfseries Set\+Position} (glm\+::vec3 position)\label{class_object_adbffb47c9daf536f5ccd668d060a0490}
-
-\item 
-\hypertarget{class_object_a08faf59cf967fae31dd3ed0aea43a372}{}void {\bfseries Set\+Scale} (glm\+::vec3 scale)\label{class_object_a08faf59cf967fae31dd3ed0aea43a372}
-
-\item 
-\hypertarget{class_object_a0aaf9cce0a37d5bb0af6eb11ab8dce64}{}void {\bfseries Set\+Euler\+Rotation} (glm\+::vec3 euler\+Angles)\label{class_object_a0aaf9cce0a37d5bb0af6eb11ab8dce64}
-
-\item 
-\hypertarget{class_object_a5930b30196790ae109835e4f24a85b29}{}void {\bfseries Use\+Alternative\+Model\+Mat} (bool use)\label{class_object_a5930b30196790ae109835e4f24a85b29}
-
-\item 
-\hypertarget{class_object_a178b374670d4681c61556a352276f96a}{}void {\bfseries Set\+Alternative\+Model\+Mat} (glm\+::mat4 model\+Mat)\label{class_object_a178b374670d4681c61556a352276f96a}
-
-\item 
-\hypertarget{class_object_ab1946453ecbf12a897ba6a363704cd86}{}bool {\bfseries Set\+Active} (bool active)\label{class_object_ab1946453ecbf12a897ba6a363704cd86}
-
-\item 
-\hypertarget{class_object_a49327b515f7e613c882f33c2b058ab98}{}bool {\bfseries Is\+Active} ()\label{class_object_a49327b515f7e613c882f33c2b058ab98}
-
-\end{DoxyCompactItemize}
+\mbox{\Hypertarget{class_object_a40860402e64d8008fb42329df7097cdb}\label{class_object_a40860402e64d8008fb42329df7097cdb}} 
+\hyperlink{class_object_a40860402e64d8008fb42329df7097cdb}{Object} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_object_ae8f5483f459e46687bd01e6f9977afd3}\label{class_object_ae8f5483f459e46687bd01e6f9977afd3}} 
+\hyperlink{class_object_ae8f5483f459e46687bd01e6f9977afd3}{$\sim$\+Object} ()
+\begin{DoxyCompactList}\small\item\em Default destructor. \end{DoxyCompactList}\item 
+void \hyperlink{class_object_ab37a94ec1146c22546445d4baaf55697}{Init\+Object} (char $\ast$name, \hyperlink{class_object}{Object} $\ast$parent, \hyperlink{class_mesh}{Mesh} $\ast$mesh)
+\begin{DoxyCompactList}\small\item\em Initialize object. \end{DoxyCompactList}\item 
+void \hyperlink{class_object_a344ba3716db86c373345265935280968}{Set\+Parent} (\hyperlink{class_object}{Object} $\ast$parent)
+\begin{DoxyCompactList}\small\item\em Set parent. \end{DoxyCompactList}\item 
+\hyperlink{class_object}{Object} $\ast$ \hyperlink{class_object_a6f86d9e3b77d79cc3a6a4d57a5c9ed72}{Get\+Parent} ()
+\begin{DoxyCompactList}\small\item\em Get parent. \end{DoxyCompactList}\item 
+void \hyperlink{class_object_a6be7369b2a3382f82ea8d3e61c061b59}{Set\+Mesh} (\hyperlink{class_mesh}{Mesh} $\ast$mesh)
+\begin{DoxyCompactList}\small\item\em Set mesh. \end{DoxyCompactList}\item 
+\hyperlink{class_mesh}{Mesh} $\ast$ \hyperlink{class_object_ac59efbef5ea2a39576d7a057eb5e11ac}{Get\+Mesh} ()
+\begin{DoxyCompactList}\small\item\em Get mesh. \end{DoxyCompactList}\item 
+glm\+::mat4 $\ast$ \hyperlink{class_object_a58e26d2cc568b514884336ed279dc00c}{Get\+Model\+Matrix} ()
+\begin{DoxyCompactList}\small\item\em Get model matrix. \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_object_a03bd9ae689e9535934f46222644f44aa}{Update} (float dt)
+\begin{DoxyCompactList}\small\item\em Update object. \end{DoxyCompactList}\item 
+void \hyperlink{class_object_adbffb47c9daf536f5ccd668d060a0490}{Set\+Position} (glm\+::vec3 position)
+\begin{DoxyCompactList}\small\item\em Set object position. \end{DoxyCompactList}\item 
+void \hyperlink{class_object_a08faf59cf967fae31dd3ed0aea43a372}{Set\+Scale} (glm\+::vec3 scale)
+\begin{DoxyCompactList}\small\item\em Set object scale. \end{DoxyCompactList}\item 
+void \hyperlink{class_object_a0aaf9cce0a37d5bb0af6eb11ab8dce64}{Set\+Euler\+Rotation} (glm\+::vec3 euler\+Angles)
+\begin{DoxyCompactList}\small\item\em Set object rotaion. \end{DoxyCompactList}\item 
+void \hyperlink{class_object_a5930b30196790ae109835e4f24a85b29}{Use\+Alternative\+Model\+Mat} (bool use)
+\begin{DoxyCompactList}\small\item\em Use alternative model matrix. \end{DoxyCompactList}\item 
+void \hyperlink{class_object_a178b374670d4681c61556a352276f96a}{Set\+Alternative\+Model\+Mat} (glm\+::mat4 model\+Mat)
+\begin{DoxyCompactList}\small\item\em Set alternative model matrix. \end{DoxyCompactList}\item 
+bool \hyperlink{class_object_ab1946453ecbf12a897ba6a363704cd86}{Set\+Active} (bool active)
+\begin{DoxyCompactList}\small\item\em Set active object. \end{DoxyCompactList}\item 
+bool \hyperlink{class_object_a49327b515f7e613c882f33c2b058ab98}{Is\+Active} ()
+\begin{DoxyCompactList}\small\item\em Is active object. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_object_af08c7cf7a01b230d6967551c52bdff63}{}void {\bfseries Update\+Matrix} ()\label{class_object_af08c7cf7a01b230d6967551c52bdff63}
-
-\end{DoxyCompactItemize}
+void \hyperlink{class_object_af08c7cf7a01b230d6967551c52bdff63}{Update\+Matrix} ()
+\begin{DoxyCompactList}\small\item\em Update model matrix. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_object_ab37ae04046c449f0a8ab2833cfee5353}{}char $\ast$ {\bfseries m\+\_\+name}\label{class_object_ab37ae04046c449f0a8ab2833cfee5353}
-
+\mbox{\Hypertarget{class_object_ab37ae04046c449f0a8ab2833cfee5353}\label{class_object_ab37ae04046c449f0a8ab2833cfee5353}} 
+char $\ast$ \hyperlink{class_object_ab37ae04046c449f0a8ab2833cfee5353}{m\+\_\+name}
+\begin{DoxyCompactList}\small\item\em Name of the object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_object_a2ee3d966f96dbabae641ad390d82a6f3}\label{class_object_a2ee3d966f96dbabae641ad390d82a6f3}} 
+\hyperlink{class_object}{Object} $\ast$ {\bfseries m\+\_\+parent}
 \item 
-\hypertarget{class_object_a2ee3d966f96dbabae641ad390d82a6f3}{}\hyperlink{class_object}{Object} $\ast$ {\bfseries m\+\_\+parent}\label{class_object_a2ee3d966f96dbabae641ad390d82a6f3}
+\mbox{\Hypertarget{class_object_a82441da4d382a765bcf9c0a929f0a240}\label{class_object_a82441da4d382a765bcf9c0a929f0a240}} 
+\hyperlink{class_mesh}{Mesh} $\ast$ \hyperlink{class_object_a82441da4d382a765bcf9c0a929f0a240}{m\+\_\+linked\+Mesh}
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_mesh}{Mesh} used by the object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_object_a9f5194b69d79120761526865270df0a6}\label{class_object_a9f5194b69d79120761526865270df0a6}} 
+bool \hyperlink{class_object_a9f5194b69d79120761526865270df0a6}{m\+\_\+active}
+\begin{DoxyCompactList}\small\item\em If the object is active or not for the updates. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_object_a6628ff13c375c8a2bc9cc36c8585943c}\label{class_object_a6628ff13c375c8a2bc9cc36c8585943c}} 
+glm\+::vec3 \hyperlink{class_object_a6628ff13c375c8a2bc9cc36c8585943c}{m\+\_\+global\+Position}
+\begin{DoxyCompactList}\small\item\em Global position of the object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_object_ad717cc77240082806b13cd67338a4923}\label{class_object_ad717cc77240082806b13cd67338a4923}} 
+glm\+::vec3 \hyperlink{class_object_ad717cc77240082806b13cd67338a4923}{m\+\_\+global\+Scale}
+\begin{DoxyCompactList}\small\item\em Scale of the object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_object_a2b740c7fb22122a34286e0181fc69c8a}\label{class_object_a2b740c7fb22122a34286e0181fc69c8a}} 
+glm\+::vec3 \hyperlink{class_object_a2b740c7fb22122a34286e0181fc69c8a}{m\+\_\+euler\+Angles}
+\begin{DoxyCompactList}\small\item\em Rotation of the object in euler angles. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_object_a63576ab555502bfb8de52e0f75b0d012}\label{class_object_a63576ab555502bfb8de52e0f75b0d012}} 
+glm\+::mat4 \hyperlink{class_object_a63576ab555502bfb8de52e0f75b0d012}{m\+\_\+model\+Mat}
+\begin{DoxyCompactList}\small\item\em Model matrix of the object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_object_aa8ca8a51906713190326b0b2667d975e}\label{class_object_aa8ca8a51906713190326b0b2667d975e}} 
+glm\+::mat4 \hyperlink{class_object_aa8ca8a51906713190326b0b2667d975e}{m\+\_\+alt\+Model\+Mat}
+\begin{DoxyCompactList}\small\item\em Alternative model matrix for more complex transformations. \end{DoxyCompactList}\item 
+bool \hyperlink{class_object_ac7370557bcc44f3054712733de22d9ee}{m\+\_\+use\+Alt\+Mat} = false
+\begin{DoxyCompactList}\small\item\em Use the default or the alternative model matrix. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_object_a4e7183f8631f7473e648138facdee129}\label{class_object_a4e7183f8631f7473e648138facdee129}} 
+bool \hyperlink{class_object_a4e7183f8631f7473e648138facdee129}{m\+\_\+update\+Matrix} = false
+\begin{DoxyCompactList}\small\item\em Update the matrix if necessary. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
-\item 
-\hypertarget{class_object_a82441da4d382a765bcf9c0a929f0a240}{}\hyperlink{class_mesh}{Mesh} $\ast$ {\bfseries m\+\_\+linked\+Mesh}\label{class_object_a82441da4d382a765bcf9c0a929f0a240}
 
-\item 
-\hypertarget{class_object_a9f5194b69d79120761526865270df0a6}{}bool {\bfseries m\+\_\+active}\label{class_object_a9f5194b69d79120761526865270df0a6}
+\subsection{Detailed Description}
+\hyperlink{class_object}{Object} class. 
 
-\item 
-\hypertarget{class_object_a6628ff13c375c8a2bc9cc36c8585943c}{}glm\+::vec3 {\bfseries m\+\_\+global\+Position}\label{class_object_a6628ff13c375c8a2bc9cc36c8585943c}
+The scene contains objects, which can have a mesh to display and execute logic. 
 
-\item 
-\hypertarget{class_object_ad717cc77240082806b13cd67338a4923}{}glm\+::vec3 {\bfseries m\+\_\+global\+Scale}\label{class_object_ad717cc77240082806b13cd67338a4923}
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_object_ac59efbef5ea2a39576d7a057eb5e11ac}\label{class_object_ac59efbef5ea2a39576d7a057eb5e11ac}} 
+\index{Object@{Object}!Get\+Mesh@{Get\+Mesh}}
+\index{Get\+Mesh@{Get\+Mesh}!Object@{Object}}
+\subsubsection{\texorpdfstring{Get\+Mesh()}{GetMesh()}}
+{\footnotesize\ttfamily \hyperlink{class_mesh}{Mesh} $\ast$ Object\+::\+Get\+Mesh (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\item 
-\hypertarget{class_object_a2b740c7fb22122a34286e0181fc69c8a}{}glm\+::vec3 {\bfseries m\+\_\+euler\+Angles}\label{class_object_a2b740c7fb22122a34286e0181fc69c8a}
 
-\item 
-\hypertarget{class_object_a6efcd32bee6c6acb64292a4798da7c0f}{}glm\+::mat4 {\bfseries m\+\_\+pos\+Mat}\label{class_object_a6efcd32bee6c6acb64292a4798da7c0f}
 
-\item 
-\hypertarget{class_object_a6657aad81115123d8d9bca416d012b46}{}glm\+::mat4 {\bfseries m\+\_\+scale\+Mat}\label{class_object_a6657aad81115123d8d9bca416d012b46}
+Get mesh. 
 
-\item 
-\hypertarget{class_object_a9d7273efa1fbbe8a45c9042cf70222a5}{}glm\+::mat4 {\bfseries m\+\_\+rot\+Mat}\label{class_object_a9d7273efa1fbbe8a45c9042cf70222a5}
+\begin{DoxyReturn}{Returns}
+Linked mesh to the object. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_object_a58e26d2cc568b514884336ed279dc00c}\label{class_object_a58e26d2cc568b514884336ed279dc00c}} 
+\index{Object@{Object}!Get\+Model\+Matrix@{Get\+Model\+Matrix}}
+\index{Get\+Model\+Matrix@{Get\+Model\+Matrix}!Object@{Object}}
+\subsubsection{\texorpdfstring{Get\+Model\+Matrix()}{GetModelMatrix()}}
+{\footnotesize\ttfamily glm\+::mat4 $\ast$ Object\+::\+Get\+Model\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\item 
-\hypertarget{class_object_a63576ab555502bfb8de52e0f75b0d012}{}glm\+::mat4 {\bfseries m\+\_\+model\+Mat}\label{class_object_a63576ab555502bfb8de52e0f75b0d012}
 
-\item 
-\hypertarget{class_object_aa8ca8a51906713190326b0b2667d975e}{}glm\+::mat4 {\bfseries m\+\_\+alt\+Model\+Mat}\label{class_object_aa8ca8a51906713190326b0b2667d975e}
 
-\item 
-\hypertarget{class_object_af542c9ba8be80682203c4fe426eb071a}{}glm\+::mat4 {\bfseries m\+\_\+normal\+Mat}\label{class_object_af542c9ba8be80682203c4fe426eb071a}
+Get model matrix. 
 
-\item 
-\hypertarget{class_object_ac7370557bcc44f3054712733de22d9ee}{}bool {\bfseries m\+\_\+use\+Alt\+Mat} = false\label{class_object_ac7370557bcc44f3054712733de22d9ee}
+\begin{DoxyReturn}{Returns}
+Model matrix in use (default/standard). 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_object_a6f86d9e3b77d79cc3a6a4d57a5c9ed72}\label{class_object_a6f86d9e3b77d79cc3a6a4d57a5c9ed72}} 
+\index{Object@{Object}!Get\+Parent@{Get\+Parent}}
+\index{Get\+Parent@{Get\+Parent}!Object@{Object}}
+\subsubsection{\texorpdfstring{Get\+Parent()}{GetParent()}}
+{\footnotesize\ttfamily \hyperlink{class_object}{Object} $\ast$ Object\+::\+Get\+Parent (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\item 
-\hypertarget{class_object_a4e7183f8631f7473e648138facdee129}{}bool {\bfseries m\+\_\+update\+Matrix} = false\label{class_object_a4e7183f8631f7473e648138facdee129}
 
-\end{DoxyCompactItemize}
+
+Get parent. 
+
+\begin{DoxyReturn}{Returns}
+Linked parent to the object. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_object_ab37a94ec1146c22546445d4baaf55697}\label{class_object_ab37a94ec1146c22546445d4baaf55697}} 
+\index{Object@{Object}!Init\+Object@{Init\+Object}}
+\index{Init\+Object@{Init\+Object}!Object@{Object}}
+\subsubsection{\texorpdfstring{Init\+Object()}{InitObject()}}
+{\footnotesize\ttfamily void Object\+::\+Init\+Object (\begin{DoxyParamCaption}\item[{char $\ast$}]{name,  }\item[{\hyperlink{class_object}{Object} $\ast$}]{parent = {\ttfamily nullptr},  }\item[{\hyperlink{class_mesh}{Mesh} $\ast$}]{mesh = {\ttfamily nullptr} }\end{DoxyParamCaption})}
+
+
+
+Initialize object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Name of the object. \\
+\hline
+{\em parent} & Parent of the object. \\
+\hline
+{\em mesh} & \hyperlink{class_mesh}{Mesh} of the object. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_object_a49327b515f7e613c882f33c2b058ab98}\label{class_object_a49327b515f7e613c882f33c2b058ab98}} 
+\index{Object@{Object}!Is\+Active@{Is\+Active}}
+\index{Is\+Active@{Is\+Active}!Object@{Object}}
+\subsubsection{\texorpdfstring{Is\+Active()}{IsActive()}}
+{\footnotesize\ttfamily bool Object\+::\+Is\+Active (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Is active object. 
+
+\begin{DoxyReturn}{Returns}
+If the object is active or not. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_object_ab1946453ecbf12a897ba6a363704cd86}\label{class_object_ab1946453ecbf12a897ba6a363704cd86}} 
+\index{Object@{Object}!Set\+Active@{Set\+Active}}
+\index{Set\+Active@{Set\+Active}!Object@{Object}}
+\subsubsection{\texorpdfstring{Set\+Active()}{SetActive()}}
+{\footnotesize\ttfamily bool Object\+::\+Set\+Active (\begin{DoxyParamCaption}\item[{bool}]{active }\end{DoxyParamCaption})}
+
+
+
+Set active object. 
+
+Activates or deactivates the object. 
+\begin{DoxyParams}{Parameters}
+{\em active} & Sets the object active or not. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+If the object is active or not. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_object_a178b374670d4681c61556a352276f96a}\label{class_object_a178b374670d4681c61556a352276f96a}} 
+\index{Object@{Object}!Set\+Alternative\+Model\+Mat@{Set\+Alternative\+Model\+Mat}}
+\index{Set\+Alternative\+Model\+Mat@{Set\+Alternative\+Model\+Mat}!Object@{Object}}
+\subsubsection{\texorpdfstring{Set\+Alternative\+Model\+Mat()}{SetAlternativeModelMat()}}
+{\footnotesize\ttfamily void Object\+::\+Set\+Alternative\+Model\+Mat (\begin{DoxyParamCaption}\item[{glm\+::mat4}]{model\+Mat }\end{DoxyParamCaption})}
+
+
+
+Set alternative model matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model\+Mat} & Sets the alternative model matrix of the object \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_object_a0aaf9cce0a37d5bb0af6eb11ab8dce64}\label{class_object_a0aaf9cce0a37d5bb0af6eb11ab8dce64}} 
+\index{Object@{Object}!Set\+Euler\+Rotation@{Set\+Euler\+Rotation}}
+\index{Set\+Euler\+Rotation@{Set\+Euler\+Rotation}!Object@{Object}}
+\subsubsection{\texorpdfstring{Set\+Euler\+Rotation()}{SetEulerRotation()}}
+{\footnotesize\ttfamily void Object\+::\+Set\+Euler\+Rotation (\begin{DoxyParamCaption}\item[{glm\+::vec3}]{euler\+Angles }\end{DoxyParamCaption})}
+
+
+
+Set object rotaion. 
+
+Rotates the object using euler angles. 
+\begin{DoxyParams}{Parameters}
+{\em euler\+Angles} & Rotation of the object. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_object_a6be7369b2a3382f82ea8d3e61c061b59}\label{class_object_a6be7369b2a3382f82ea8d3e61c061b59}} 
+\index{Object@{Object}!Set\+Mesh@{Set\+Mesh}}
+\index{Set\+Mesh@{Set\+Mesh}!Object@{Object}}
+\subsubsection{\texorpdfstring{Set\+Mesh()}{SetMesh()}}
+{\footnotesize\ttfamily void Object\+::\+Set\+Mesh (\begin{DoxyParamCaption}\item[{\hyperlink{class_mesh}{Mesh} $\ast$}]{mesh }\end{DoxyParamCaption})}
+
+
+
+Set mesh. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mesh} & Link mesh to the object. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_object_a344ba3716db86c373345265935280968}\label{class_object_a344ba3716db86c373345265935280968}} 
+\index{Object@{Object}!Set\+Parent@{Set\+Parent}}
+\index{Set\+Parent@{Set\+Parent}!Object@{Object}}
+\subsubsection{\texorpdfstring{Set\+Parent()}{SetParent()}}
+{\footnotesize\ttfamily void Object\+::\+Set\+Parent (\begin{DoxyParamCaption}\item[{\hyperlink{class_object}{Object} $\ast$}]{parent }\end{DoxyParamCaption})}
+
+
+
+Set parent. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & Link parent to the object. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_object_adbffb47c9daf536f5ccd668d060a0490}\label{class_object_adbffb47c9daf536f5ccd668d060a0490}} 
+\index{Object@{Object}!Set\+Position@{Set\+Position}}
+\index{Set\+Position@{Set\+Position}!Object@{Object}}
+\subsubsection{\texorpdfstring{Set\+Position()}{SetPosition()}}
+{\footnotesize\ttfamily void Object\+::\+Set\+Position (\begin{DoxyParamCaption}\item[{glm\+::vec3}]{position }\end{DoxyParamCaption})}
+
+
+
+Set object position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & Moves the object to a specified position in global space. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_object_a08faf59cf967fae31dd3ed0aea43a372}\label{class_object_a08faf59cf967fae31dd3ed0aea43a372}} 
+\index{Object@{Object}!Set\+Scale@{Set\+Scale}}
+\index{Set\+Scale@{Set\+Scale}!Object@{Object}}
+\subsubsection{\texorpdfstring{Set\+Scale()}{SetScale()}}
+{\footnotesize\ttfamily void Object\+::\+Set\+Scale (\begin{DoxyParamCaption}\item[{glm\+::vec3}]{scale }\end{DoxyParamCaption})}
+
+
+
+Set object scale. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scale} & Scales the object. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_object_a03bd9ae689e9535934f46222644f44aa}\label{class_object_a03bd9ae689e9535934f46222644f44aa}} 
+\index{Object@{Object}!Update@{Update}}
+\index{Update@{Update}!Object@{Object}}
+\subsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily void Object\+::\+Update (\begin{DoxyParamCaption}\item[{float}]{dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Update object. 
+
+Logic used for the object. 
+\begin{DoxyParams}{Parameters}
+{\em dt} & Delta time. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_object_af08c7cf7a01b230d6967551c52bdff63}\label{class_object_af08c7cf7a01b230d6967551c52bdff63}} 
+\index{Object@{Object}!Update\+Matrix@{Update\+Matrix}}
+\index{Update\+Matrix@{Update\+Matrix}!Object@{Object}}
+\subsubsection{\texorpdfstring{Update\+Matrix()}{UpdateMatrix()}}
+{\footnotesize\ttfamily void Object\+::\+Update\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Update model matrix. 
+
+Updates the model matrix if necessary. \mbox{\Hypertarget{class_object_a5930b30196790ae109835e4f24a85b29}\label{class_object_a5930b30196790ae109835e4f24a85b29}} 
+\index{Object@{Object}!Use\+Alternative\+Model\+Mat@{Use\+Alternative\+Model\+Mat}}
+\index{Use\+Alternative\+Model\+Mat@{Use\+Alternative\+Model\+Mat}!Object@{Object}}
+\subsubsection{\texorpdfstring{Use\+Alternative\+Model\+Mat()}{UseAlternativeModelMat()}}
+{\footnotesize\ttfamily void Object\+::\+Use\+Alternative\+Model\+Mat (\begin{DoxyParamCaption}\item[{bool}]{use }\end{DoxyParamCaption})}
+
+
+
+Use alternative model matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em use} & True\+: use the alternative model matrix. False\+: use the default model matrix. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_object_ac7370557bcc44f3054712733de22d9ee}\label{class_object_ac7370557bcc44f3054712733de22d9ee}} 
+\index{Object@{Object}!m\+\_\+use\+Alt\+Mat@{m\+\_\+use\+Alt\+Mat}}
+\index{m\+\_\+use\+Alt\+Mat@{m\+\_\+use\+Alt\+Mat}!Object@{Object}}
+\subsubsection{\texorpdfstring{m\+\_\+use\+Alt\+Mat}{m\_useAltMat}}
+{\footnotesize\ttfamily bool Object\+::m\+\_\+use\+Alt\+Mat = false\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Use the default or the alternative model matrix. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_object_a63576ab555502bfb8de52e0f75b0d012}{m\+\_\+model\+Mat} 
+
+\hyperlink{class_object_aa8ca8a51906713190326b0b2667d975e}{m\+\_\+alt\+Model\+Mat} 
+\end{DoxySeeAlso}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

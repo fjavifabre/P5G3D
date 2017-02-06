@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['m_5fc',['m_c',['../class_light.html#a31a4d7e3042d7ffe99e3070bcaa6aa61',1,'Light']]],
-  ['m_5fcoscutoff',['m_cosCutOff',['../class_light.html#a5f99e10dc1c5c49785c4523d09588eef',1,'Light']]],
-  ['m_5fdir',['m_dir',['../class_light.html#a837f0e73f495fd9361b6eecaafaef275',1,'Light']]],
-  ['m_5fpos',['m_pos',['../class_light.html#a108cbac703d7fc2bc6eb39185d9bead9',1,'Light']]],
-  ['m_5fspotexponent',['m_spotExponent',['../class_light.html#a262000d67538f1a25613e18fe17668cd',1,'Light']]],
-  ['mesh',['Mesh',['../class_mesh.html',1,'Mesh'],['../class_mesh.html#a7cb142bf7cd75a954813ccebe1780b77',1,'Mesh::Mesh(const char *file, Shader *material)'],['../class_mesh.html#a6b89dd43d75a4c8d5597f88cf7645488',1,'Mesh::Mesh(const unsigned int nTriangles, const unsigned int nVertex, const unsigned int *index, const float *pos, Shader *material, const float *n=nullptr, const float *color=nullptr, const float *tex=nullptr, const float *tangent=nullptr)']]]
+  ['light',['Light',['../class_light.html',1,'Light'],['../class_light.html#aeb5df09a25a32f19fdffa761268ba24f',1,'Light::Light()']]],
+  ['lightparams',['LightParams',['../struct_light_params.html',1,'']]],
+  ['loadcolortex',['loadColorTex',['../class_mesh.html#ac06b928f547c1eec3b66ae5503608c21',1,'Mesh']]],
+  ['loademitex',['loadEmiTex',['../class_mesh.html#abb21ce55711b89f7018d103b50294f69',1,'Mesh']]],
+  ['loadnormtex',['loadNormTex',['../class_mesh.html#a443b1a0a0c36ff911f58f2a5f4616538',1,'Mesh']]],
+  ['loadspectex',['loadSpecTex',['../class_mesh.html#ada437d0826057661de46ab5ce2b497a4',1,'Mesh']]]
 ];
