@@ -15,14 +15,11 @@ Scene::~Scene()
 
 void Scene::RenderLoop()
 {
-	//glm::mat4* proj = camera.GetProjection();
-	//glm::mat4* view = camera.GetView();
-
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Limpia buffer de color y profundidad
 
 	sceneShaders.at(0).render(sceneLights, camera);
 
-	//glUseProgram(NULL);
+	glUseProgram(NULL);
 	
 	glutSwapBuffers(); // Swap de los buffers
 	//TODO implementar multiples pasadas

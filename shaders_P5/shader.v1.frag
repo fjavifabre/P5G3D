@@ -1,4 +1,5 @@
 #version 330 core
+#extension GL_ARB_explicit_uniform_location : enable
 
 struct LightSource
 {
@@ -19,7 +20,7 @@ in vec3 norm;
 in vec2 texCoord;
 in mat3 TBN;
 
-uniform sampler2D colorTex;
+layout(location = 0) uniform sampler2D colorTex;
 uniform sampler2D emiTex;
 uniform sampler2D specTex;
 uniform sampler2D normalTex;
@@ -63,7 +64,7 @@ void main()
 	finalColor += Ke;
 
 	outColor = vec4(finalColor, 1.0);
-	//outColor = vec4(1.0,0.0,0.0, 1.0);
+	//outColor = vec4(0.0,1.0,0.0, 1.0);
 }
 
 vec3 shade(LightSource light)

@@ -32,6 +32,6 @@ void main()
 	texCoord = inTexCoord;
 	norm = (normal * vec4(inNormal, 0.0)).xyz;
 	pos = (modelView * vec4(inPos, 1.0)).xyz;
-	
+
 	gl_Position =  modelViewProj * vec4 (inPos,1.0);
 }

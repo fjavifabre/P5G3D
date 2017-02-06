@@ -33,10 +33,10 @@ void Camera::SetViewMatrix(glm::mat4 view)
 {
 	m_altModelMat = view;
 
-	m_altModelMat = view;
+	m_modelMat = view;
 }
 
 glm::mat4* Camera::GetView()
 {
-	return &m_altModelMat;//return GetModelMatrix(); //TODO no entiendo esto de aqui realmente
+	return GetModelMatrix(); //TODO no entiendo esto de aqui realmente
 }

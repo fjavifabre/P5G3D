@@ -183,13 +183,14 @@ int main(int argc, char** argv)
 	scene.AddPointLight();
 
 	Mesh* m = scene.LoadMesh("../meshes/statue.obj", shader);
+
 	m->loadColorTex("../meshes/color.jpg");
 	m->loadNormTex("../meshes/normales.jpg");
 	m->loadSpecTex("../meshes/specular.jpg");
 
 
 	Object* obj = scene.CreateObject(m, "test");
-	obj->SetPosition(glm::vec3(0.0, -6.0, -5.0));
+	obj->SetPosition(glm::vec3(0.0, 0.0, 0.0));
 	obj->Update(0.0);
 
 

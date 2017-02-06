@@ -95,11 +95,11 @@ int Shader::getInColor()
 	return inColor;
 }
 
+
 int Shader::getInNormal()
 {
 	return inNormal;
 }
-
 int Shader::getInTangent()
 {
 	return inTangent;
@@ -165,7 +165,7 @@ void Shader::render(std::list<Light> &lightV, Camera &camera)
 			//Cargar las variables concretas del objeto
 			glm::mat4 model = *o->GetModelMatrix();
 			glm::mat4 modelView = *camera.GetView() * *o->GetModelMatrix();
-			glm::mat4 modelViewProj = *camera.GetProjection() * *camera.GetView() * *o->GetModelMatrix();
+			glm::mat4 modelViewProj = *camera.GetProjection() * modelView;
 			glm::mat4 normal = glm::transpose(glm::inverse(modelView));
 
 			std::cout << modelViewProj[3].x << " " << modelViewProj[3].y << " " << modelViewProj[3].z << std::endl;
