@@ -160,10 +160,7 @@ int main(int argc, char** argv)
 	initOGL();
 
 	Shader* shader =  scene.LoadShader("../shaders_P5/shader.v1.vert", "../shaders_P5/shader.v1.frag");
-	DirectionalLight* light = scene.AddDirectionalLight();
-	light->SetDirection(glm::vec3(1.0));
-	light->AmbientColor = glm::vec3(0.0);
-	light->DiffuseColor = glm::vec3(0.0);
+	scene.AddDirectionalLight();
 
 	Mesh* m = scene.LoadMesh("../meshes/statue.obj", shader);
 
@@ -270,84 +267,6 @@ void destroy()
 
 
 	delete malla;
-}
-
-void initShader(const char *vname, const char *fname)
-{
-	// Compila los shaders
-	vshader = loadShader(vname, GL_VERTEX_SHADER);
-	fshader = loadShader(fname, GL_FRAGMENT_SHADER);
-
-	// Crear programa
-	program = glCreateProgram();
-	// Asignar los shaders
-	glAttachShader(program, vshader);
-	glAttachShader(program, fshader);
-
-	// IMPORTANTE Los identificadores de los atributos ANTES DEL LINKEADO
-	glBindAttribLocation(program, 0, "inPos");
-	glBindAttribLocation(program, 1, "inColor");
-	glBindAttribLocation(program, 2, "inNormal");
-	glBindAttribLocation(program, 3, "inTexCoord");
-	glBindAttribLocation(program, 4, "inTangent");
-
-	// Linkearlos
-	glLinkProgram(program);
-
-	//Comprobar error
-	int linked;
-	glGetProgramiv(program, GL_LINK_STATUS, &linked);
-	if (!linked)
-	{
-		//Calculamos una cadena de error
-		GLint logLen;
-		glGetProgramiv(program, GL_INFO_LOG_LENGTH, &logLen);
-		char *logString = new char[logLen];
-		glGetProgramInfoLog(program, logLen, NULL, logString);
-		std::cout << "Error: " << logString << std::endl;
-		delete logString;
-		glDeleteProgram(program);
-		exit(-1);
-	}
-
-	// DESPUÉS DEL LINKEADO
-	uNormalMat = glGetUniformLocation(program, "normal");
-	uModelViewMat = glGetUniformLocation(program, "modelView");
-	uModelViewProjMat = glGetUniformLocation(program, "modelViewProj");
-	//Identificadores de textura
-	uColorTex = glGetUniformLocation(program, "colorTex");
-	uEmiTex = glGetUniformLocation(program, "emiTex");
-	uSpecTex = glGetUniformLocation(program, "specTex");
-	uNormTex = glGetUniformLocation(program, "normalTex");
-
-	//Array de luces
-	for (int i = 0; i < MAX_LIGHTS; i++)
-	{
-		std::string number = std::to_string(i);
-
-		lights[i].uAmb = glGetUniformLocation(program, ("lights[" + number + "].Amb").c_str());
-
-		lights[i].uDiff = glGetUniformLocation(program, ("lights[" + number + "].Diff").c_str());
-
-		lights[i].uPos = glGetUniformLocation(program, ("lights[" + number + "].Pos").c_str());
-
-		lights[i].uDir = glGetUniformLocation(program, ("lights[" + number + "].Dir").c_str());
-
-		lights[i].uC = glGetUniformLocation(program, ("lights[" + number + "].C").c_str());
-
-		lights[i].uCosCutOff = glGetUniformLocation(program, ("lights[" + number + "].CosCutOff").c_str());
-
-		lights[i].uSpotExponent = glGetUniformLocation(program, ("lights[" + number + "].SpotExponent").c_str());
-
-	}
-
-
-	inPos = glGetAttribLocation(program, "inPos");
-	inColor = glGetAttribLocation(program, "inColor");
-	inNormal = glGetAttribLocation(program, "inNormal");
-	inTexCoord = glGetAttribLocation(program, "inTexCoord");
-	inTangent = glGetAttribLocation(program, "inTangent");
-
 }
 
 void renderFunc()
