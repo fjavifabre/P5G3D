@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['diffusecolor',['DiffuseColor',['../class_light.html#ab3885005f09ec9411cc1f31c069dc7d9',1,'Light']]]
+  ['camera',['camera',['../class_scene.html#afed13ec4ba2d7ab75b273d507911b498',1,'Scene']]]
 ];
