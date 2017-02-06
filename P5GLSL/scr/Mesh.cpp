@@ -170,7 +170,7 @@ Mesh::Mesh(const unsigned int objectNTriangle, const unsigned int objectNVertex,
 
 void Mesh::ApplyMaterial(Shader * material)
 {
-
+	mat = material;
 	generateVAO();
 }
 
@@ -293,50 +293,50 @@ void Mesh::ApplyMaterial(Shader * material)
 	 glGenVertexArrays(1, &vao);
 	 glBindVertexArray(vao);
 
-	 if (inPos != -1 && vertexPos.size() > 0) //Localizador de la posición con la información de las posiciones de los vértices
+	 if (mat->getInPos() != -1 && vertexPos.size() > 0) //Localizador de la posición con la información de las posiciones de los vértices
 	 {
 		 glGenBuffers(1, &posVBO); //NO TOCA VAO
 		 glBindBuffer(GL_ARRAY_BUFFER, posVBO); //Activa VBO
 		 glBufferData(GL_ARRAY_BUFFER, getNumVertex() * sizeof(float) * 3,
 			 getVertexPos(), GL_STATIC_DRAW); //Sube información
-		 glVertexAttribPointer(inPos, 3, GL_FLOAT, GL_FALSE, 0, 0); //Vertice tiene tres elementos, del tipo float, no notmaliza, stride y offset
-		 glEnableVertexAttribArray(inPos); //Configura en el VAO que tiene que utilizar inPos. Si no se quiere utilizar, llamar a glDisable...
+		 glVertexAttribPointer(mat->getInPos(), 3, GL_FLOAT, GL_FALSE, 0, 0); //Vertice tiene tres elementos, del tipo float, no notmaliza, stride y offset
+		 glEnableVertexAttribArray(mat->getInPos()); //Configura en el VAO que tiene que utilizar inPos. Si no se quiere utilizar, llamar a glDisable...
 	 }
-	 if (inColor != -1 && vertexColor.size() > 0) //Se repite como en inPos
+	 if (mat->getInColor() != -1 && vertexColor.size() > 0) //Se repite como en inPos
 	 {
 		 glGenBuffers(1, &colorVBO);
 		 glBindBuffer(GL_ARRAY_BUFFER, colorVBO);
 		 glBufferData(GL_ARRAY_BUFFER, getNumVertex() * sizeof(float) * 3,
 			 getVertexColor(), GL_STATIC_DRAW);
-		 glVertexAttribPointer(inColor, 3, GL_FLOAT, GL_FALSE, 0, 0);
-		 glEnableVertexAttribArray(inColor);
+		 glVertexAttribPointer(mat->getInColor(), 3, GL_FLOAT, GL_FALSE, 0, 0);
+		 glEnableVertexAttribArray(mat->getInColor());
 	 }
-	 if (inNormal != -1 && vertexNormal.size() > 0)
+	 if (mat->getInNormal() != -1 && vertexNormal.size() > 0)
 	 {
 		 glGenBuffers(1, &normalVBO);
 		 glBindBuffer(GL_ARRAY_BUFFER, normalVBO);
 		 glBufferData(GL_ARRAY_BUFFER, getNumVertex() * sizeof(float) * 3,
 			getVertexNormals(), GL_STATIC_DRAW);
-		 glVertexAttribPointer(inNormal, 3, GL_FLOAT, GL_FALSE, 0, 0);
-		 glEnableVertexAttribArray(inNormal);
+		 glVertexAttribPointer(mat->getInNormal(), 3, GL_FLOAT, GL_FALSE, 0, 0);
+		 glEnableVertexAttribArray(mat->getInNormal());
 	 }
-	 if (inTexCoord != -1 && vertexTexCoord.size() > 0)
+	 if (mat->getInTexCoord() != -1 && vertexTexCoord.size() > 0)
 	 {
 		 glGenBuffers(1, &texCoordVBO);
 		 glBindBuffer(GL_ARRAY_BUFFER, texCoordVBO);
 		 glBufferData(GL_ARRAY_BUFFER, getNumVertex() * sizeof(float) * 2,
 			 getVertexTexCoord(), GL_STATIC_DRAW);
-		 glVertexAttribPointer(inTexCoord, 2, GL_FLOAT, GL_FALSE, 0, 0);
-		 glEnableVertexAttribArray(inTexCoord);
+		 glVertexAttribPointer(mat->getInTexCoord(), 2, GL_FLOAT, GL_FALSE, 0, 0);
+		 glEnableVertexAttribArray(mat->getInTexCoord());
 	 }
-	 if (inTangent != -1 && vertexTangent.size() > 0)
+	 if (mat->getInTangent() != -1 && vertexTangent.size() > 0)
 	 {
 		 glGenBuffers(1, &tangentVBO);
 		 glBindBuffer(GL_ARRAY_BUFFER, tangentVBO);
 		 glBufferData(GL_ARRAY_BUFFER, getNumVertex() * sizeof(float) * 3,
 			 getVertexTangent(), GL_STATIC_DRAW);
-		 glVertexAttribPointer(inTangent, 3, GL_FLOAT, GL_FALSE, 0, 0);
-		 glEnableVertexAttribArray(inTangent);
+		 glVertexAttribPointer(mat->getInTangent(), 3, GL_FLOAT, GL_FALSE, 0, 0);
+		 glEnableVertexAttribArray(mat->getInTangent());
 	 }
 
 	 //Indica como recorrer los elementos

@@ -189,8 +189,8 @@ int main(int argc, char** argv)
 
 
 	Object* obj = scene.CreateObject(m, "test");
-	obj->SetPosition(glm::vec3(0.0, -6.0, 0.0));
-	
+	obj->SetPosition(glm::vec3(0.0, -6.0, -5.0));
+	obj->Update(0.0);
 
 
 	//initShader("../shaders_P5/shader.v1.vert", "../shaders_P5/shader.v1.frag");

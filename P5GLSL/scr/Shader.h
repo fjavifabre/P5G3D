@@ -72,6 +72,12 @@ public:
 
 	void addMesh(Mesh *mesh);
 
+	int getInPos();
+	int getInColor();
+	int getInNormal();
+	int getInTexCoord();
+	int getInTangent();
+
 	~Shader();
 
 

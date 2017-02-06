@@ -85,6 +85,31 @@ Shader::Shader(const char* vertex, const char* fragment)
 	inTangent = glGetAttribLocation(program, "inTangent");
 }
 
+int Shader::getInPos()
+{
+	return inPos;
+}
+
+int Shader::getInColor()
+{
+	return inColor;
+}
+
+int Shader::getInNormal()
+{
+	return inNormal;
+}
+
+int Shader::getInTangent()
+{
+	return inTangent;
+}
+
+int Shader::getInTexCoord()
+{
+	return inTexCoord;
+}
+
 void Shader::render(std::list<Light> &lightV, Camera &camera)
 {
 	glUseProgram(program);
@@ -138,7 +163,7 @@ void Shader::render(std::list<Light> &lightV, Camera &camera)
 		for (Object *o : m->getObjects())
 		{
 			//Cargar las variables concretas del objeto
-			glm::mat4 model = glm::mat4(1.0);
+			glm::mat4 model = *o->GetModelMatrix();
 			glm::mat4 modelView = *camera.GetView() * *o->GetModelMatrix();
 			glm::mat4 modelViewProj = *camera.GetProjection() * *camera.GetView() * *o->GetModelMatrix();
 			glm::mat4 normal = glm::transpose(glm::inverse(modelView));

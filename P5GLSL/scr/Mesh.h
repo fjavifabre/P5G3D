@@ -55,11 +55,7 @@ private:
 	unsigned int tangentVBO;
 	unsigned int triangleIndexVBO;
 
-	int inPos;
-	int inColor;
-	int inNormal;
-	int inTexCoord;
-	int inTangent;
+	Shader* mat;
 
 	static unsigned char* loadTexture(const char* fileName, unsigned int &w, unsigned int &h);
 	static int loadTex(const char* fileName);
