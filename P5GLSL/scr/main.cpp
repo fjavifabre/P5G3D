@@ -942,6 +942,7 @@ void mouseMotionFunc(int x, int y)
 		view = glm::rotate(view, pitch, glm::vec3(0.0f, 1.0f, 0.0f));
 	}
 	scene.camera.SetViewMatrix(view);
+	glutPostRedisplay();
 
 
 }

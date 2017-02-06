@@ -46,6 +46,7 @@ vec3 shade(LightSource light);
 
 void main()
 {
+
 	Ka = texture(colorTex, texCoord).rgb;
 	Kd = texture(colorTex, texCoord).rgb;
 	Ke = texture(emiTex, texCoord).rgb;
@@ -64,6 +65,7 @@ void main()
 	finalColor += Ke;
 
 	outColor = vec4(finalColor, 1.0);
+	
 	//outColor = vec4(0.0,1.0,0.0, 1.0);
 }
 

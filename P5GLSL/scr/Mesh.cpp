@@ -254,7 +254,7 @@ void Mesh::ApplyMaterial(Shader * material)
 	 return map;
  }
 
- int Mesh::loadTex(const char* fileName)
+ unsigned int Mesh::loadTex(const char* fileName)
  {
 	 //Carga textura de fichero
 	 unsigned char *map;
@@ -265,7 +265,7 @@ void Mesh::ApplyMaterial(Shader * material)
 		 return -1;
 	 }
 
-	 unsigned int texId = -1;
+	 unsigned int texId = 0;
 	 glGenTextures(1, &texId);
 	 glBindTexture(GL_TEXTURE_2D, texId);
 	 glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, w, h, 0, GL_RGBA,
@@ -350,24 +350,24 @@ void Mesh::ApplyMaterial(Shader * material)
  bool Mesh::loadColorTex(const char* fileName)
  {
 	 colorTex = loadTex(fileName);
-	 return colorTex != -1;
+	 return colorTex != 0;
  }
 
  bool Mesh::loadSpecTex(const char* fileName)
  {
 	 specTex = loadTex(fileName);
-	 return specTex != -1;
+	 return specTex != 0;
  }
 
  bool  Mesh::loadEmiTex(const char* fileName)
  {
 	 emiTex = loadTex(fileName);
-	 return emiTex != -1;
+	 return emiTex != 0;
  }
  bool Mesh::loadNormTex(const char* fileName)
  {
 	 normTex = loadTex(fileName);
-	 return normTex != -1;
+	 return normTex != 0;
  }
 
  void Mesh::addObject(Object* o)
@@ -463,9 +463,22 @@ std::list<Object*>& Mesh::getObjects()
 
 Mesh::~Mesh()
 {
+
+	// Delete VAO and VBO
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+	if (mat->getInPos() != -1) glDeleteBuffers(1, &posVBO);
+	if (mat->getInColor() != -1) glDeleteBuffers(1, &colorVBO);
+	if (mat->getInNormal() != -1) glDeleteBuffers(1, &normalVBO);
+	if (mat->getInTexCoord() != -1) glDeleteBuffers(1, &texCoordVBO);
+	if (mat->getInTangent() != -1) glDeleteBuffers(1, &tangentVBO);
+	glDeleteBuffers(1, &triangleIndexVBO);
+	glBindVertexArray(0);
+	glDeleteVertexArrays(1, &vao);
+
 	//Delete textures
-	//if (colorTex != -1) glDeleteTextures(1, &colorTex);
-	//if (specTex != -1) glDeleteTextures(1, &specTex);
-	//if (emiTex != -1) glDeleteTextures(1, &emiTex);
-	//if (normTex != -1) glDeleteTextures(1, &normTex);
+	if (colorTex != 0) glDeleteTextures(1, &colorTex);
+	if (specTex != 0) glDeleteTextures(1, &specTex);
+	if (emiTex != 0) glDeleteTextures(1, &emiTex);
+	if (normTex != 0) glDeleteTextures(1, &normTex);
 }

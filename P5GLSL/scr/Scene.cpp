@@ -42,9 +42,7 @@ void Scene::UpdateLoop()
 //Loads and compiles shader, adds it to the shader vector and returns it
 Shader* Scene::LoadShader(char* vertexShader, char* fragmentShader)
 {
-	Shader newShader(vertexShader, fragmentShader);
-
-	sceneShaders.push_back(newShader);
+	sceneShaders.emplace_back(vertexShader, fragmentShader);
 
 	return &sceneShaders.back();
 }
@@ -52,9 +50,8 @@ Shader* Scene::LoadShader(char* vertexShader, char* fragmentShader)
 //Loads mesh, adds it to the mesh vectr and returns it
 Mesh* Scene::LoadMesh(char* mesh, Shader* shader)
 {
-	Mesh newMesh(mesh, shader);
-
-	sceneMeshes.push_back(newMesh);
+	
+	sceneMeshes.emplace_back(mesh, shader);
 
 	Mesh *ret = &sceneMeshes.back();
 
@@ -78,12 +75,11 @@ Mesh* Scene::LoadMesh(Mesh* mesh, Shader* shader)
 //Creates object, adds it to the object vector, and returns it
 Object* Scene::CreateObject(Mesh* mesh, char* name)
 {
-	Object newObject;
-	newObject.InitObject(name, nullptr, mesh);
 
-	sceneObjects.push_back(newObject);
+	sceneObjects.emplace_back();
 
 	Object *ret = &sceneObjects.back();
+	ret->InitObject(name, nullptr, mesh);
 
 	mesh->addObject(ret);
 

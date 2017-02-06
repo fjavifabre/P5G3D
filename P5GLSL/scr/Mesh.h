@@ -34,16 +34,16 @@ private:
 	//TEXTURAS
 
 	//Textura de color
-	int colorTex = -1;
+	unsigned int colorTex = 0;
 
 	//Textura especular
-	int specTex = -1;
+	unsigned int specTex = 0;
 
 	//Textura emisiva
-	int emiTex = -1;
+	unsigned int emiTex = 0;
 
 	//Textura de normales
-	int normTex = -1;
+	unsigned int normTex = 0;
 
 	//IDs VAO VBOs
 
@@ -58,7 +58,7 @@ private:
 	Shader* mat;
 
 	static unsigned char* loadTexture(const char* fileName, unsigned int &w, unsigned int &h);
-	static int loadTex(const char* fileName);
+	static unsigned int loadTex(const char* fileName);
 	void generateVAO();
 
 
