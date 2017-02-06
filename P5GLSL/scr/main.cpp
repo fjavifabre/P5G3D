@@ -1,5 +1,3 @@
-#include "BOX.h"
-#include "auxiliar.h"
 #include <list>
 
 #include <windows.h>
@@ -17,88 +15,14 @@
 #include <vector>
 
 #include "Scene.h"
-//#include "Mesh.h"
 #include "CatmullRom.h"
 
-
-#define CUBE 0 //Si es 1 se pinta cubo, si es 0 se carga un modelo
-
-//////////////////////////////////////////////////////////////
-// Datos que se almacenan en la memoria de la CPU
-//////////////////////////////////////////////////////////////
 
 //Matrices
 glm::mat4	view = glm::mat4(1.0f);
 glm::mat4	model = glm::mat4(1.0f); //Una por objeto
 glm::mat4	model2 = glm::mat4(1.0f); //Segundo cubo
 
-
-//////////////////////////////////////////////////////////////
-// Variables que nos dan acceso a Objetos OpenGL
-//////////////////////////////////////////////////////////////
-unsigned int vshader;
-unsigned int fshader;
-unsigned int program;
-
-//Variables Uniform
-int uModelViewMat;
-int uModelViewProjMat;
-int uNormalMat;
-
-
-//Luces
-struct LightParams {
-	//Identificadores
-	int uAmb;
-	int uDiff;
-	int uPos;
-	int uDir;
-	int uC;
-	int uCosCutOff;
-	int uSpotExponent;
-
-	//Valores
-	glm::vec3 Amb; // Intesidad ambiental
-	glm::vec3 Diff; // Intensidad difusa
-	glm::vec4 Pos; // Posición
-	glm::vec4 Dir; // Dirección
-	glm::vec3 C; // Atenuación
-	GLfloat CosCutOff;
-	GLfloat SpotExponent;
-};
-#define MAX_LIGHTS 2
-LightParams lights[MAX_LIGHTS];
-
-//Textures
-//Texturas Uniform
-int uColorTex;
-int uEmiTex;
-int uSpecTex;
-int uNormTex;
-
-//Atributos
-int inPos;
-int inColor;
-int inNormal;
-int inTexCoord;
-int inTangent;
-
-//VAO
-unsigned int vao;
-//VBOs que forman parte del objeto
-unsigned int posVBO;
-unsigned int colorVBO;
-unsigned int normalVBO;
-unsigned int texCoordVBO;
-unsigned int tangentVBO;
-unsigned int triangleIndexVBO;
-//Texturas
-unsigned int colorTexId;
-unsigned int emiTexId;
-unsigned int normTexId;
-
-//Especular (añadida por Borja)
-unsigned int specTexId;
 
 //Malla cargada con assimp (Javi)
 Mesh* malla;
@@ -159,6 +83,8 @@ int main(int argc, char** argv)
 	initContext(argc, argv);
 	initOGL();
 
+
+	// Motor de render: ejemplo
 	Shader* shader =  scene.LoadShader("../shaders_P5/shader.v1.vert", "../shaders_P5/shader.v1.frag");
 	DirectionalLight* light = scene.AddDirectionalLight();
 	light->SetDirection(glm::vec3(1.0, 0.0, 1.0));
@@ -174,9 +100,7 @@ int main(int argc, char** argv)
 	obj->SetPosition(glm::vec3(0.0, -2.0, 0.0));
 	obj->Update(0.0);
 
-
 	glutMainLoop(); // Loop principal
-	//destroy();
 
 	return 0;
 }
@@ -214,8 +138,6 @@ void initContext(int argc, char** argv)
 	glutKeyboardFunc(keyboardFunc);
 	glutMouseFunc(mouseFunc);
 	glutMotionFunc(mouseMotionFunc);
-
-
 }
 
 void initOGL()
@@ -242,33 +164,6 @@ void initOGL()
 	scene.camera.SetViewMatrix(view);
 
 }
-void destroy()
-{
-	glDetachShader(program, vshader);
-	glDetachShader(program, fshader);
-	glDeleteShader(vshader);
-	glDeleteShader(fshader);
-	glDeleteProgram(program);
-
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-	if (inPos != -1) glDeleteBuffers(1, &posVBO);
-	if (inColor != -1) glDeleteBuffers(1, &colorVBO);
-	if (inNormal != -1) glDeleteBuffers(1, &normalVBO);
-	if (inTexCoord != -1) glDeleteBuffers(1, &texCoordVBO);
-	if (inTangent != -1) glDeleteBuffers(1, &tangentVBO);
-	glDeleteBuffers(1, &triangleIndexVBO);
-	glBindVertexArray(0);
-	glDeleteVertexArrays(1, &vao);
-
-	glDeleteTextures(1, &colorTexId);
-	glDeleteTextures(1, &emiTexId);
-	glDeleteTextures(1, &specTexId);
-	glDeleteTextures(1, &normTexId);
-
-
-	delete malla;
-}
 
 void renderFunc()
 {
@@ -288,35 +183,10 @@ void resizeFunc(int width, int height)
 
 	glutPostRedisplay();
 }
+
 void idleFunc()
 {
-	model = glm::mat4(1.0f);
-	static float angle = 0.0f;
-	angle = (angle > 3.141592f * 2.0f) ? 0 : angle + 0.01f;
-	model = glm::rotate(model, -angle, glm::vec3(0.0f, 1.0f, 0.0f));
-	model = glm::translate(model, glm::vec3(0.0, -2.0, 0.0));
-
-	//Segundo cubo
-	model2 = glm::mat4(1.0f);
-	static float angle2 = 0.0f;
-	static float t = 0.0f;
-	static bool useCr1 = true;
-	angle2 = (angle2 > 3.141592f * 2.0f) ? 0 : angle2 + 0.01f;
-
-	//t = (t > 1.0f) ? 0.0f : t + 0.005f; 
-	t += 0.005f;
-	if (t > 1.0f)
-	{
-		useCr1 = !useCr1;
-		t = 0.0f;
-	}
-
-	model2 = glm::translate(model2, ((useCr1) ? cr1 : cr2).interpolate(t));//glm::vec3(2.0f, 0.0f, 0.0f));
-	model2 = glm::rotate(model2, angle2, glm::vec3(0.0f, 1.0f, 0.0f));
-	//model2 = glm::translate(model2, cubicSpline.interpolate(t));//glm::vec3(2.0f, 0.0f, 0.0f));
-	//model2 = glm::translate(model2, glm::vec3(0.0, -2.0, 0.0));
-
-	glutPostRedisplay();
+	scene.UpdateLoop();
 }
 
 void keyboardFunc(unsigned char key, int x, int y)
@@ -343,19 +213,15 @@ void keyboardFunc(unsigned char key, int x, int y)
 	case 's':
 		forward = -1.0f;
 		break;
-
 	case 'w':
 		forward = 1.0f;
 		break;
-
 	case 'd':
 		horizontal = -1.0f;
 		break;
-
 	case 'a':
 		horizontal = 1.0f;
 		break;
-
 	case 'r':
 		orbital = !orbital;
 		translate = false;
@@ -386,7 +252,6 @@ void keyboardFunc(unsigned char key, int x, int y)
 		if (lightIntensity < 0.0f)
 			lightIntensity = 0.0f;
 		return;
-
 	default:
 		translate = false;
 		break;
@@ -423,65 +288,26 @@ void mouseFunc(int button, int state, int x, int y)
 {
 
 	if (state == 0) {
-#if DEBUG_TEXT
-		std::cout << "Se ha pulsado el botón ";
-#endif
 		if (button == 0)
 		{
 			oldX = x;
 			oldY = y;
 		}
 	}
-
 	else {
-#if DEBUG_TEXT
-		std::cout << "Se ha soltado el botón ";
-#endif
-
 		if (button == 0)
 		{
 			oldX = x;
 			oldY = y;
 		}
-
 	}
-
-#if DEBUG_TEXT
-	if (button == 0) std::cout << "de la izquierda del ratón " << std::endl;
-	if (button == 1) std::cout << "central del ratón " << std::endl;
-	if (button == 2) std::cout << "de la derecha del ratón " << std::endl;
-
-	std::cout << "en la posición " << x << " " << y << std::endl << std::endl;
-#endif
 }
 
 void mouseMotionFunc(int x, int y)
 {
 
-#if DEBUG_TEXT
-	std::cout << "Moviendo hacia ";
-
-	if (oldX < x) {
-
-		std::cout << "derecha";
-
-	}
-	else if (oldX > x)
-	{
-		std::cout << "izquierda";
-	}
-#endif
-
 	if (x != oldX)
 		pitch += (float)(x - oldX) * mouseSensibility * ((invertMouse) ? -1.0f : 1.0f);
-
-#if DEBUG_TEXT
-	std::cout << "  -  ";
-
-	if (oldY < y) std::cout << "abajo";
-	else if (oldY > y) std::cout << "arriba";
-
-#endif
 
 	if (y != oldY)
 		yaw += (float)(y - oldY) * mouseSensibility * ((invertMouse) ? -1.0f : 1.0f);
@@ -492,13 +318,6 @@ void mouseMotionFunc(int x, int y)
 	if (yaw + 3.14159f < minYawAngle)
 		yaw = minYawAngle - 3.14159f;
 	oldX = x; oldY = y;
-
-#if DEBUG_TEXT
-	std::cout << "Pitch: " << pitch << " Yaw: " << yaw + 3.14159f << std::endl;
-
-	std::cout << std::endl;
-#endif
-
 
 	view = glm::mat4(1.0f);
 
@@ -516,17 +335,15 @@ void mouseMotionFunc(int x, int y)
 		view = glm::rotate(view, pitch, glm::vec3(0.0f, 1.0f, 0.0f));
 	}
 	scene.camera.SetViewMatrix(view);
+	
 	glutPostRedisplay();
-
-
 }
 
 bool checkExtension(std::string extName)
 {
 	int NumExtensions;
 	glGetIntegerv(GL_NUM_EXTENSIONS, &NumExtensions);
-
-
+	
 	const GLubyte *test = (GLubyte *)(extName.c_str());
 
 	//Para cada extension
@@ -542,10 +359,3 @@ bool checkExtension(std::string extName)
 	}
 	return false;
 }
-
-
-
-
-
-
-

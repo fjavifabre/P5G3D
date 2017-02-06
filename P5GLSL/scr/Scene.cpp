@@ -1,5 +1,5 @@
 #include "Scene.h"
-
+#include <iostream>
 
 Scene::Scene()
 {
@@ -32,11 +32,23 @@ void Scene::RenderLoop()
 
 void Scene::UpdateLoop()
 {
+	QueryPerformanceFrequency(&m_frequency);
+
+	// start timer
+	QueryPerformanceCounter(&m_t1);
+
+	// do something
 	for (Object &object : sceneObjects)
 	{
-		object.Update(deltaTime);
+		object.Update(m_elapsedTime);
 	}
-	
+
+	// stop timer
+	QueryPerformanceCounter(&m_t2);
+
+	// compute and print the elapsed time in seconds
+	m_elapsedTime = (m_t2.QuadPart - m_t1.QuadPart) * 1000.0 / m_frequency.QuadPart;
+	std::cout << m_elapsedTime << " miliseconds" << std::endl;
 }
 
 //Loads and compiles shader, adds it to the shader vector and returns it

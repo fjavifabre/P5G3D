@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <list>
+#include <time.h>
 
 #include "Shader.h"
 #include "Mesh.h"
@@ -47,10 +48,6 @@ public:
 
 	//! Vector of lights used in this Scene.
 	std::vector<Light> sceneLights;
-
-
-	//! WIP
-	float deltaTime;
 
 	//! Function to call in the render loop of the program.
 	/*!
@@ -133,7 +130,10 @@ public:
 	*/
 	SpotLight* AddSpotLight();
 
-	//Deleters
+private:
+	LARGE_INTEGER m_frequency;
+	LARGE_INTEGER m_t1, m_t2;
+	double m_elapsedTime;
 
 
 };

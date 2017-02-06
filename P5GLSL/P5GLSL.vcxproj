@@ -11,8 +11,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="scr\auxiliar.h" />
-    <ClInclude Include="scr\BOX.h" />
     <ClInclude Include="scr\Camera.h" />
     <ClInclude Include="scr\CatmullRom.h" />
     <ClInclude Include="scr\DirectionalLight.h" />
@@ -25,7 +23,6 @@
     <ClInclude Include="scr\SpotLight.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="scr\auxiliar.cpp" />
     <ClCompile Include="scr\Camera.cpp" />
     <ClCompile Include="scr\CatmullRom.cpp" />
     <ClCompile Include="scr\DirectionalLight.cpp" />

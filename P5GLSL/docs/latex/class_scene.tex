@@ -1,57 +1,240 @@
 \hypertarget{class_scene}{}\section{Scene Class Reference}
 \label{class_scene}\index{Scene@{Scene}}
+
+
+\hyperlink{class_camera}{Camera} class.  
+
+
+
+
+{\ttfamily \#include $<$Scene.\+h$>$}
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_scene_a71708279f69885e838e288c6689ddd1c}\label{class_scene_a71708279f69885e838e288c6689ddd1c}} 
-void {\bfseries Render\+Loop} ()
-\item 
-\mbox{\Hypertarget{class_scene_ab0293e9c900f18ce4ca26621d4b7ddfe}\label{class_scene_ab0293e9c900f18ce4ca26621d4b7ddfe}} 
-void {\bfseries Update\+Loop} ()
-\item 
-\mbox{\Hypertarget{class_scene_a6f0f7af3d07acbee2d6864c3ded98351}\label{class_scene_a6f0f7af3d07acbee2d6864c3ded98351}} 
-\hyperlink{class_shader}{Shader} $\ast$ {\bfseries Load\+Shader} (char $\ast$vertex\+Shader, char $\ast$fragment\+Shader)
-\item 
-\mbox{\Hypertarget{class_scene_a660e1d1c0aebaff994ea6d36d1e9fec5}\label{class_scene_a660e1d1c0aebaff994ea6d36d1e9fec5}} 
-\hyperlink{class_mesh}{Mesh} $\ast$ {\bfseries Load\+Mesh} (char $\ast$mesh, \hyperlink{class_shader}{Shader} $\ast$shader)
-\item 
-\mbox{\Hypertarget{class_scene_a676cf764adad1d7e30311582ccae2b7e}\label{class_scene_a676cf764adad1d7e30311582ccae2b7e}} 
-\hyperlink{class_mesh}{Mesh} $\ast$ {\bfseries Load\+Mesh} (\hyperlink{class_mesh}{Mesh} $\ast$mesh, \hyperlink{class_shader}{Shader} $\ast$shader)
-\item 
-\mbox{\Hypertarget{class_scene_adfdea29bf0ed9107c28f99fb8ebe34d1}\label{class_scene_adfdea29bf0ed9107c28f99fb8ebe34d1}} 
-\hyperlink{class_object}{Object} $\ast$ {\bfseries Create\+Object} (\hyperlink{class_mesh}{Mesh} $\ast$mesh, char $\ast$name)
-\item 
-\mbox{\Hypertarget{class_scene_a8ba56754e230d7a99736c5232bd912ea}\label{class_scene_a8ba56754e230d7a99736c5232bd912ea}} 
-\hyperlink{class_directional_light}{Directional\+Light} $\ast$ {\bfseries Add\+Directional\+Light} ()
-\item 
-\mbox{\Hypertarget{class_scene_ac33b9cc536096a447892f524802dd2ec}\label{class_scene_ac33b9cc536096a447892f524802dd2ec}} 
-\hyperlink{class_point_light}{Point\+Light} $\ast$ {\bfseries Add\+Point\+Light} ()
-\item 
-\mbox{\Hypertarget{class_scene_a5086a9e37b94c2dfb30dfacbee668c79}\label{class_scene_a5086a9e37b94c2dfb30dfacbee668c79}} 
-\hyperlink{class_spot_light}{Spot\+Light} $\ast$ {\bfseries Add\+Spot\+Light} ()
-\end{DoxyCompactItemize}
+\hyperlink{class_scene_ad10176d75a9cc0da56626f682d083507}{Scene} ()
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+\hyperlink{class_scene_a3b8cec2e32546713915f8c6303c951f1}{$\sim$\+Scene} ()
+\begin{DoxyCompactList}\small\item\em Class descturctor. \end{DoxyCompactList}\item 
+void \hyperlink{class_scene_a71708279f69885e838e288c6689ddd1c}{Render\+Loop} ()
+\begin{DoxyCompactList}\small\item\em Function to call in the render loop of the program. \end{DoxyCompactList}\item 
+void \hyperlink{class_scene_ab0293e9c900f18ce4ca26621d4b7ddfe}{Update\+Loop} ()
+\begin{DoxyCompactList}\small\item\em Function to call in the update loop of the program. \end{DoxyCompactList}\item 
+\hyperlink{class_shader}{Shader} $\ast$ \hyperlink{class_scene_a6f0f7af3d07acbee2d6864c3ded98351}{Load\+Shader} (char $\ast$vertex\+Shader, char $\ast$fragment\+Shader)
+\begin{DoxyCompactList}\small\item\em Function to add a \hyperlink{class_shader}{Shader} to this \hyperlink{class_scene}{Scene}. \end{DoxyCompactList}\item 
+\hyperlink{class_mesh}{Mesh} $\ast$ \hyperlink{class_scene_a660e1d1c0aebaff994ea6d36d1e9fec5}{Load\+Mesh} (char $\ast$mesh, \hyperlink{class_shader}{Shader} $\ast$shader)
+\begin{DoxyCompactList}\small\item\em Function to add a \hyperlink{class_mesh}{Mesh} to this \hyperlink{class_scene}{Scene}. \end{DoxyCompactList}\item 
+\hyperlink{class_mesh}{Mesh} $\ast$ \hyperlink{class_scene_a676cf764adad1d7e30311582ccae2b7e}{Load\+Mesh} (\hyperlink{class_mesh}{Mesh} $\ast$mesh, \hyperlink{class_shader}{Shader} $\ast$shader)
+\begin{DoxyCompactList}\small\item\em Function to add a \hyperlink{class_mesh}{Mesh} to this \hyperlink{class_scene}{Scene}. \end{DoxyCompactList}\item 
+\hyperlink{class_object}{Object} $\ast$ \hyperlink{class_scene_adfdea29bf0ed9107c28f99fb8ebe34d1}{Create\+Object} (\hyperlink{class_mesh}{Mesh} $\ast$mesh, char $\ast$name)
+\begin{DoxyCompactList}\small\item\em Function to add an \hyperlink{class_object}{Object} to this \hyperlink{class_scene}{Scene}. \end{DoxyCompactList}\item 
+\hyperlink{class_directional_light}{Directional\+Light} $\ast$ \hyperlink{class_scene_a8ba56754e230d7a99736c5232bd912ea}{Add\+Directional\+Light} ()
+\begin{DoxyCompactList}\small\item\em Function to add a Directional \hyperlink{class_light}{Light} to this \hyperlink{class_scene}{Scene}. \end{DoxyCompactList}\item 
+\hyperlink{class_point_light}{Point\+Light} $\ast$ \hyperlink{class_scene_ac33b9cc536096a447892f524802dd2ec}{Add\+Point\+Light} ()
+\begin{DoxyCompactList}\small\item\em Function to add a Point \hyperlink{class_light}{Light} to this \hyperlink{class_scene}{Scene}. \end{DoxyCompactList}\item 
+\hyperlink{class_spot_light}{Spot\+Light} $\ast$ \hyperlink{class_scene_a5086a9e37b94c2dfb30dfacbee668c79}{Add\+Spot\+Light} ()
+\begin{DoxyCompactList}\small\item\em Function to add a Spot \hyperlink{class_light}{Light} to this \hyperlink{class_scene}{Scene}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{class_scene_afed13ec4ba2d7ab75b273d507911b498}\label{class_scene_afed13ec4ba2d7ab75b273d507911b498}} 
-\hyperlink{class_camera}{Camera} {\bfseries camera}
-\item 
+\hyperlink{class_camera}{Camera} \hyperlink{class_scene_afed13ec4ba2d7ab75b273d507911b498}{camera}
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_camera}{Camera} used to render the \hyperlink{class_scene}{Scene}. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_scene_a5f692c13f2db4299793ffc4d36c7e2ba}\label{class_scene_a5f692c13f2db4299793ffc4d36c7e2ba}} 
-std\+::vector$<$ \hyperlink{class_shader}{Shader} $>$ {\bfseries scene\+Shaders}
-\item 
+std\+::vector$<$ \hyperlink{class_shader}{Shader} $>$ \hyperlink{class_scene_a5f692c13f2db4299793ffc4d36c7e2ba}{scene\+Shaders}
+\begin{DoxyCompactList}\small\item\em Vector of shaders used in this \hyperlink{class_scene}{Scene}. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_scene_a7be2dbccfae00f70b1d07b2c4d738ece}\label{class_scene_a7be2dbccfae00f70b1d07b2c4d738ece}} 
-std\+::vector$<$ \hyperlink{class_mesh}{Mesh} $>$ {\bfseries scene\+Meshes}
-\item 
+std\+::vector$<$ \hyperlink{class_mesh}{Mesh} $>$ \hyperlink{class_scene_a7be2dbccfae00f70b1d07b2c4d738ece}{scene\+Meshes}
+\begin{DoxyCompactList}\small\item\em Vector of meshes used in this \hyperlink{class_scene}{Scene}. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_scene_ad9e4d19ec059a134617ee31d1df03714}\label{class_scene_ad9e4d19ec059a134617ee31d1df03714}} 
-std\+::vector$<$ \hyperlink{class_object}{Object} $>$ {\bfseries scene\+Objects}
-\item 
-\mbox{\Hypertarget{class_scene_aa98be8079c5bed3a6a24aa55fe15f3f0}\label{class_scene_aa98be8079c5bed3a6a24aa55fe15f3f0}} 
-std\+::list$<$ \hyperlink{class_light}{Light} $>$ {\bfseries scene\+Lights}
-\item 
-\mbox{\Hypertarget{class_scene_a4624158c6d315465401ccdda659bc13b}\label{class_scene_a4624158c6d315465401ccdda659bc13b}} 
-float {\bfseries delta\+Time}
-\end{DoxyCompactItemize}
+std\+::vector$<$ \hyperlink{class_object}{Object} $>$ \hyperlink{class_scene_ad9e4d19ec059a134617ee31d1df03714}{scene\+Objects}
+\begin{DoxyCompactList}\small\item\em Vector of objects used in this \hyperlink{class_scene}{Scene}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_scene_adfe38881a26c650efb48cd53452dca7b}\label{class_scene_adfe38881a26c650efb48cd53452dca7b}} 
+std\+::vector$<$ \hyperlink{class_light}{Light} $>$ \hyperlink{class_scene_adfe38881a26c650efb48cd53452dca7b}{scene\+Lights}
+\begin{DoxyCompactList}\small\item\em Vector of lights used in this \hyperlink{class_scene}{Scene}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+\hyperlink{class_camera}{Camera} class. 
+
+Class used to set a scene to render. Contains essential functions to add lights, meshes, objects and set render loops. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_scene_ad10176d75a9cc0da56626f682d083507}\label{class_scene_ad10176d75a9cc0da56626f682d083507}} 
+\index{Scene@{Scene}!Scene@{Scene}}
+\index{Scene@{Scene}!Scene@{Scene}}
+\subsubsection{\texorpdfstring{Scene()}{Scene()}}
+{\footnotesize\ttfamily Scene\+::\+Scene (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Class constructor. 
+
+\hyperlink{class_scene}{Scene} class constructor. \mbox{\Hypertarget{class_scene_a3b8cec2e32546713915f8c6303c951f1}\label{class_scene_a3b8cec2e32546713915f8c6303c951f1}} 
+\index{Scene@{Scene}!````~Scene@{$\sim$\+Scene}}
+\index{````~Scene@{$\sim$\+Scene}!Scene@{Scene}}
+\subsubsection{\texorpdfstring{$\sim$\+Scene()}{~Scene()}}
+{\footnotesize\ttfamily Scene\+::$\sim$\+Scene (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Class descturctor. 
+
+\hyperlink{class_scene}{Scene} class destructor. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_scene_a8ba56754e230d7a99736c5232bd912ea}\label{class_scene_a8ba56754e230d7a99736c5232bd912ea}} 
+\index{Scene@{Scene}!Add\+Directional\+Light@{Add\+Directional\+Light}}
+\index{Add\+Directional\+Light@{Add\+Directional\+Light}!Scene@{Scene}}
+\subsubsection{\texorpdfstring{Add\+Directional\+Light()}{AddDirectionalLight()}}
+{\footnotesize\ttfamily \hyperlink{class_directional_light}{Directional\+Light} $\ast$ Scene\+::\+Add\+Directional\+Light (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function to add a Directional \hyperlink{class_light}{Light} to this \hyperlink{class_scene}{Scene}. 
+
+Creates a Directional \hyperlink{class_light}{Light} and adds it to the \hyperlink{class_scene}{Scene}.
+
+\begin{DoxyReturn}{Returns}
+The created \hyperlink{class_light}{Light} added to the \hyperlink{class_scene}{Scene}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_scene_ac33b9cc536096a447892f524802dd2ec}\label{class_scene_ac33b9cc536096a447892f524802dd2ec}} 
+\index{Scene@{Scene}!Add\+Point\+Light@{Add\+Point\+Light}}
+\index{Add\+Point\+Light@{Add\+Point\+Light}!Scene@{Scene}}
+\subsubsection{\texorpdfstring{Add\+Point\+Light()}{AddPointLight()}}
+{\footnotesize\ttfamily \hyperlink{class_point_light}{Point\+Light} $\ast$ Scene\+::\+Add\+Point\+Light (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function to add a Point \hyperlink{class_light}{Light} to this \hyperlink{class_scene}{Scene}. 
+
+Creates a Point \hyperlink{class_light}{Light} and adds it to the \hyperlink{class_scene}{Scene}.
+
+\begin{DoxyReturn}{Returns}
+The created \hyperlink{class_light}{Light} added to the \hyperlink{class_scene}{Scene}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_scene_a5086a9e37b94c2dfb30dfacbee668c79}\label{class_scene_a5086a9e37b94c2dfb30dfacbee668c79}} 
+\index{Scene@{Scene}!Add\+Spot\+Light@{Add\+Spot\+Light}}
+\index{Add\+Spot\+Light@{Add\+Spot\+Light}!Scene@{Scene}}
+\subsubsection{\texorpdfstring{Add\+Spot\+Light()}{AddSpotLight()}}
+{\footnotesize\ttfamily \hyperlink{class_spot_light}{Spot\+Light} $\ast$ Scene\+::\+Add\+Spot\+Light (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function to add a Spot \hyperlink{class_light}{Light} to this \hyperlink{class_scene}{Scene}. 
+
+Creates a Spot \hyperlink{class_light}{Light} and adds it to the \hyperlink{class_scene}{Scene}.
+
+\begin{DoxyReturn}{Returns}
+The created \hyperlink{class_light}{Light} added to the \hyperlink{class_scene}{Scene}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_scene_adfdea29bf0ed9107c28f99fb8ebe34d1}\label{class_scene_adfdea29bf0ed9107c28f99fb8ebe34d1}} 
+\index{Scene@{Scene}!Create\+Object@{Create\+Object}}
+\index{Create\+Object@{Create\+Object}!Scene@{Scene}}
+\subsubsection{\texorpdfstring{Create\+Object()}{CreateObject()}}
+{\footnotesize\ttfamily \hyperlink{class_object}{Object} $\ast$ Scene\+::\+Create\+Object (\begin{DoxyParamCaption}\item[{\hyperlink{class_mesh}{Mesh} $\ast$}]{mesh,  }\item[{char $\ast$}]{name }\end{DoxyParamCaption})}
+
+
+
+Function to add an \hyperlink{class_object}{Object} to this \hyperlink{class_scene}{Scene}. 
+
+Creates a \hyperlink{class_object}{Object} using a \hyperlink{class_mesh}{Mesh} and adds it to this \hyperlink{class_scene}{Scene}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em mesh} & \hyperlink{class_mesh}{Mesh} to use in the \hyperlink{class_object}{Object}. \\
+\hline
+{\em name} & Debug name of this \hyperlink{class_object}{Object}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The created \hyperlink{class_object}{Object} added to the \hyperlink{class_scene}{Scene}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_scene_a660e1d1c0aebaff994ea6d36d1e9fec5}\label{class_scene_a660e1d1c0aebaff994ea6d36d1e9fec5}} 
+\index{Scene@{Scene}!Load\+Mesh@{Load\+Mesh}}
+\index{Load\+Mesh@{Load\+Mesh}!Scene@{Scene}}
+\subsubsection{\texorpdfstring{Load\+Mesh()}{LoadMesh()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \hyperlink{class_mesh}{Mesh} $\ast$ Scene\+::\+Load\+Mesh (\begin{DoxyParamCaption}\item[{char $\ast$}]{mesh,  }\item[{\hyperlink{class_shader}{Shader} $\ast$}]{shader }\end{DoxyParamCaption})}
+
+
+
+Function to add a \hyperlink{class_mesh}{Mesh} to this \hyperlink{class_scene}{Scene}. 
+
+Creates a mesh from a file and adds it to this \hyperlink{class_scene}{Scene} using shader.
+
+
+\begin{DoxyParams}{Parameters}
+{\em mesh} & Path to mesh file. \\
+\hline
+{\em shader} & \hyperlink{class_shader}{Shader} to use to render this mesh. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The created \hyperlink{class_mesh}{Mesh} added to the \hyperlink{class_scene}{Scene}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_scene_a676cf764adad1d7e30311582ccae2b7e}\label{class_scene_a676cf764adad1d7e30311582ccae2b7e}} 
+\index{Scene@{Scene}!Load\+Mesh@{Load\+Mesh}}
+\index{Load\+Mesh@{Load\+Mesh}!Scene@{Scene}}
+\subsubsection{\texorpdfstring{Load\+Mesh()}{LoadMesh()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \hyperlink{class_mesh}{Mesh} $\ast$ Scene\+::\+Load\+Mesh (\begin{DoxyParamCaption}\item[{\hyperlink{class_mesh}{Mesh} $\ast$}]{mesh,  }\item[{\hyperlink{class_shader}{Shader} $\ast$}]{shader }\end{DoxyParamCaption})}
+
+
+
+Function to add a \hyperlink{class_mesh}{Mesh} to this \hyperlink{class_scene}{Scene}. 
+
+Adds a \hyperlink{class_mesh}{Mesh} to this \hyperlink{class_scene}{Scene} using shader.
+
+
+\begin{DoxyParams}{Parameters}
+{\em mesh} & \hyperlink{class_mesh}{Mesh} to add. \\
+\hline
+{\em shader} & \hyperlink{class_shader}{Shader} to use to render this mesh. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The \hyperlink{class_mesh}{Mesh} added to the \hyperlink{class_scene}{Scene}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_scene_a6f0f7af3d07acbee2d6864c3ded98351}\label{class_scene_a6f0f7af3d07acbee2d6864c3ded98351}} 
+\index{Scene@{Scene}!Load\+Shader@{Load\+Shader}}
+\index{Load\+Shader@{Load\+Shader}!Scene@{Scene}}
+\subsubsection{\texorpdfstring{Load\+Shader()}{LoadShader()}}
+{\footnotesize\ttfamily \hyperlink{class_shader}{Shader} $\ast$ Scene\+::\+Load\+Shader (\begin{DoxyParamCaption}\item[{char $\ast$}]{vertex\+Shader,  }\item[{char $\ast$}]{fragment\+Shader }\end{DoxyParamCaption})}
+
+
+
+Function to add a \hyperlink{class_shader}{Shader} to this \hyperlink{class_scene}{Scene}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vertex\+Shader} & Path to vertex shader file. \\
+\hline
+{\em vertex\+Shader} & Path to fragment shader file. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The compiled shader added to the \hyperlink{class_scene}{Scene} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_scene_a71708279f69885e838e288c6689ddd1c}\label{class_scene_a71708279f69885e838e288c6689ddd1c}} 
+\index{Scene@{Scene}!Render\+Loop@{Render\+Loop}}
+\index{Render\+Loop@{Render\+Loop}!Scene@{Scene}}
+\subsubsection{\texorpdfstring{Render\+Loop()}{RenderLoop()}}
+{\footnotesize\ttfamily void Scene\+::\+Render\+Loop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function to call in the render loop of the program. 
+
+Render all the objects in the scene using the requiered shaders and meshes. \mbox{\Hypertarget{class_scene_ab0293e9c900f18ce4ca26621d4b7ddfe}\label{class_scene_ab0293e9c900f18ce4ca26621d4b7ddfe}} 
+\index{Scene@{Scene}!Update\+Loop@{Update\+Loop}}
+\index{Update\+Loop@{Update\+Loop}!Scene@{Scene}}
+\subsubsection{\texorpdfstring{Update\+Loop()}{UpdateLoop()}}
+{\footnotesize\ttfamily void Scene\+::\+Update\+Loop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function to call in the update loop of the program. 
+
+Work in Progress. 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

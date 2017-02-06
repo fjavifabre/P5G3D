@@ -1,32 +1,176 @@
 \hypertarget{class_shader}{}\section{Shader Class Reference}
 \label{class_shader}\index{Shader@{Shader}}
+
+
+\hyperlink{class_shader}{Shader} class.  
+
+
+
+
+{\ttfamily \#include $<$Shader.\+h$>$}
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\hyperlink{class_shader_a7e02f1eaec796a7fc02c3191ce9fa5d4}{Shader} (const char $\ast$vertex, const char $\ast$fragment)
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+void \hyperlink{class_shader_a86da40ddee3a9d49d11a6d9ebd533e4d}{render} (std\+::vector$<$ \hyperlink{class_light}{Light} $>$ \&lightV, \hyperlink{class_camera}{Camera} \&camera)
+\begin{DoxyCompactList}\small\item\em Render function. \end{DoxyCompactList}\item 
+void \hyperlink{class_shader_ab6af37727a2f0a0e5f31fb05e9137853}{add\+Mesh} (\hyperlink{class_mesh}{Mesh} $\ast$mesh)
+\begin{DoxyCompactList}\small\item\em Add function. \end{DoxyCompactList}\item 
+int \hyperlink{class_shader_ad52dea081c158e54bd3dcd5168623a3f}{get\+In\+Pos} ()
+\begin{DoxyCompactList}\small\item\em Position Getter. \end{DoxyCompactList}\item 
+int \hyperlink{class_shader_ae39ec6d01ef565e170cce67c75d3fa3d}{get\+In\+Color} ()
+\begin{DoxyCompactList}\small\item\em Color Getter. \end{DoxyCompactList}\item 
+int \hyperlink{class_shader_a9647f6a0356188f9f56787dbebde4731}{get\+In\+Normal} ()
+\begin{DoxyCompactList}\small\item\em Normal Getter. \end{DoxyCompactList}\item 
+int \hyperlink{class_shader_a386214ac36c08a8405ec458f75d17d12}{get\+In\+Tex\+Coord} ()
+\begin{DoxyCompactList}\small\item\em Tex\+Coord Getter. \end{DoxyCompactList}\item 
+int \hyperlink{class_shader_aad0dc2b502af0bcf6c5aa99e60fc296a}{get\+In\+Tangent} ()
+\begin{DoxyCompactList}\small\item\em Tangent Getter. \end{DoxyCompactList}\item 
+\hyperlink{class_shader_aff01df87e8a102f270b5b135a295e59d}{$\sim$\+Shader} ()
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_shader}{Shader} class destructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{class_shader}{Shader} class. 
+
+Class used to define a \hyperlink{class_shader}{Shader}. Contains all functions related with render at G\+PU and I\+Ds of variables. 
+
+\subsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{class_shader_a7e02f1eaec796a7fc02c3191ce9fa5d4}\label{class_shader_a7e02f1eaec796a7fc02c3191ce9fa5d4}} 
-{\bfseries Shader} (const char $\ast$vertex, const char $\ast$fragment)
-\item 
-\mbox{\Hypertarget{class_shader_a4bb445563c154a27e3dc0e1036690841}\label{class_shader_a4bb445563c154a27e3dc0e1036690841}} 
-void {\bfseries render} (std\+::list$<$ \hyperlink{class_light}{Light} $>$ \&lightV, \hyperlink{class_camera}{Camera} \&camera)
-\item 
+\index{Shader@{Shader}!Shader@{Shader}}
+\index{Shader@{Shader}!Shader@{Shader}}
+\subsubsection{\texorpdfstring{Shader()}{Shader()}}
+{\footnotesize\ttfamily Shader\+::\+Shader (\begin{DoxyParamCaption}\item[{const char $\ast$}]{vertex,  }\item[{const char $\ast$}]{fragment }\end{DoxyParamCaption})}
+
+
+
+Class constructor. 
+
+\hyperlink{class_shader}{Shader} class constructor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em vertex} & Path to vertex shader file. \\
+\hline
+{\em fragment} & Path to fragment shader file. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_shader_aff01df87e8a102f270b5b135a295e59d}\label{class_shader_aff01df87e8a102f270b5b135a295e59d}} 
+\index{Shader@{Shader}!````~Shader@{$\sim$\+Shader}}
+\index{````~Shader@{$\sim$\+Shader}!Shader@{Shader}}
+\subsubsection{\texorpdfstring{$\sim$\+Shader()}{~Shader()}}
+{\footnotesize\ttfamily Shader\+::$\sim$\+Shader (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\hyperlink{class_shader}{Shader} class destructor. 
+
+Frees all memory used by this shader. 
+
+\subsection{Member Function Documentation}
 \mbox{\Hypertarget{class_shader_ab6af37727a2f0a0e5f31fb05e9137853}\label{class_shader_ab6af37727a2f0a0e5f31fb05e9137853}} 
-void {\bfseries add\+Mesh} (\hyperlink{class_mesh}{Mesh} $\ast$mesh)
-\item 
-\mbox{\Hypertarget{class_shader_ad52dea081c158e54bd3dcd5168623a3f}\label{class_shader_ad52dea081c158e54bd3dcd5168623a3f}} 
-int {\bfseries get\+In\+Pos} ()
-\item 
+\index{Shader@{Shader}!add\+Mesh@{add\+Mesh}}
+\index{add\+Mesh@{add\+Mesh}!Shader@{Shader}}
+\subsubsection{\texorpdfstring{add\+Mesh()}{addMesh()}}
+{\footnotesize\ttfamily void Shader\+::add\+Mesh (\begin{DoxyParamCaption}\item[{\hyperlink{class_mesh}{Mesh} $\ast$}]{mesh }\end{DoxyParamCaption})}
+
+
+
+Add function. 
+
+Adds a \hyperlink{class_mesh}{Mesh} to this shader.
+
+
+\begin{DoxyParams}{Parameters}
+{\em mesh} & Pointer to the \hyperlink{class_mesh}{Mesh} to add. \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{class_shader_ae39ec6d01ef565e170cce67c75d3fa3d}\label{class_shader_ae39ec6d01ef565e170cce67c75d3fa3d}} 
-int {\bfseries get\+In\+Color} ()
-\item 
+\index{Shader@{Shader}!get\+In\+Color@{get\+In\+Color}}
+\index{get\+In\+Color@{get\+In\+Color}!Shader@{Shader}}
+\subsubsection{\texorpdfstring{get\+In\+Color()}{getInColor()}}
+{\footnotesize\ttfamily int Shader\+::get\+In\+Color (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Color Getter. 
+
+\begin{DoxyReturn}{Returns}
+color variable ID in this shader. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_shader_a9647f6a0356188f9f56787dbebde4731}\label{class_shader_a9647f6a0356188f9f56787dbebde4731}} 
-int {\bfseries get\+In\+Normal} ()
-\item 
-\mbox{\Hypertarget{class_shader_a386214ac36c08a8405ec458f75d17d12}\label{class_shader_a386214ac36c08a8405ec458f75d17d12}} 
-int {\bfseries get\+In\+Tex\+Coord} ()
-\item 
+\index{Shader@{Shader}!get\+In\+Normal@{get\+In\+Normal}}
+\index{get\+In\+Normal@{get\+In\+Normal}!Shader@{Shader}}
+\subsubsection{\texorpdfstring{get\+In\+Normal()}{getInNormal()}}
+{\footnotesize\ttfamily int Shader\+::get\+In\+Normal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Normal Getter. 
+
+\begin{DoxyReturn}{Returns}
+normal variable ID in this shader. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_shader_ad52dea081c158e54bd3dcd5168623a3f}\label{class_shader_ad52dea081c158e54bd3dcd5168623a3f}} 
+\index{Shader@{Shader}!get\+In\+Pos@{get\+In\+Pos}}
+\index{get\+In\+Pos@{get\+In\+Pos}!Shader@{Shader}}
+\subsubsection{\texorpdfstring{get\+In\+Pos()}{getInPos()}}
+{\footnotesize\ttfamily int Shader\+::get\+In\+Pos (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Position Getter. 
+
+\begin{DoxyReturn}{Returns}
+position variable ID in this shader. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_shader_aad0dc2b502af0bcf6c5aa99e60fc296a}\label{class_shader_aad0dc2b502af0bcf6c5aa99e60fc296a}} 
-int {\bfseries get\+In\+Tangent} ()
-\end{DoxyCompactItemize}
+\index{Shader@{Shader}!get\+In\+Tangent@{get\+In\+Tangent}}
+\index{get\+In\+Tangent@{get\+In\+Tangent}!Shader@{Shader}}
+\subsubsection{\texorpdfstring{get\+In\+Tangent()}{getInTangent()}}
+{\footnotesize\ttfamily int Shader\+::get\+In\+Tangent (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Tangent Getter. 
+
+\begin{DoxyReturn}{Returns}
+tangent variable ID in this shader. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_shader_a386214ac36c08a8405ec458f75d17d12}\label{class_shader_a386214ac36c08a8405ec458f75d17d12}} 
+\index{Shader@{Shader}!get\+In\+Tex\+Coord@{get\+In\+Tex\+Coord}}
+\index{get\+In\+Tex\+Coord@{get\+In\+Tex\+Coord}!Shader@{Shader}}
+\subsubsection{\texorpdfstring{get\+In\+Tex\+Coord()}{getInTexCoord()}}
+{\footnotesize\ttfamily int Shader\+::get\+In\+Tex\+Coord (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Tex\+Coord Getter. 
+
+\begin{DoxyReturn}{Returns}
+texture coordinate variable ID in this shader. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_shader_a86da40ddee3a9d49d11a6d9ebd533e4d}\label{class_shader_a86da40ddee3a9d49d11a6d9ebd533e4d}} 
+\index{Shader@{Shader}!render@{render}}
+\index{render@{render}!Shader@{Shader}}
+\subsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily void Shader\+::render (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \hyperlink{class_light}{Light} $>$ \&}]{lightV,  }\item[{\hyperlink{class_camera}{Camera} \&}]{camera }\end{DoxyParamCaption})}
+
+
+
+Render function. 
+
+Renders all objects related with this shader.
+
+
+\begin{DoxyParams}{Parameters}
+{\em lightV} & Reference to vector of lights to use. \\
+\hline
+{\em camera} & Reference to \hyperlink{class_camera}{Camera} to use. \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
