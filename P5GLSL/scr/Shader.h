@@ -11,21 +11,26 @@
 #include "Light.h"
 #include "Camera.h"
 
+/* Number of max light allowed in the shaders */
 #define MAX_LIGHTS 2
 
+
+//!  Shader class. 
+/*!
+Class used to define a Shader. Contains all functions related with render at GPU and IDs of variables.
+*/
 class Shader
 {
 
-//Identificadores de luces
+//! Strcut to store informations related with IDs of lights in this shader.
 struct LightIds {
-		//Identificadores
-		int uAmb;
-		int uDiff;
-		int uPos;
-		int uDir;
-		int uC;
-		int uCosCutOff;
-		int uSpotExponent;
+		int uAmb;  //!< Ambiental component ID.
+		int uDiff; //!< Diffuse component ID.
+		int uPos; //!< Position ID.
+		int uDir; //!< Direction ID.
+		int uC; //!< Attenuation ID.
+		int uCosCutOff; //!< Cosine Cutoff ID.
+		int uSpotExponent; //!< Spot attenuation exponent ID.
 
 
 };
@@ -65,19 +70,72 @@ private:
 	static char* loadStringFromFile(const char *fileName, unsigned int &fileLen);
 
 public:
+
+	//! Class constructor.
+	/*!
+	Shader class constructor.
+
+	\param vertex Path to vertex shader file.
+	\param fragment Path to fragment shader file.
+	*/
 	Shader(const char* vertex, const char* fragment);
 
-	//Renderizar usando las luces definidas en escena
-	void render(std::vector<Light> &lightV, Camera &camera); //TODO: chage to camera obj
+	//! Render function.
+	/*!
+	Renders all objects related with this shader.
 
+	\param lightV Reference to vector of lights to use.
+	\param camera Reference to Camera to use.
+	*/
+	void render(std::vector<Light> &lightV, Camera &camera);
+
+	//! Add function.
+	/*!
+	Adds a Mesh to this shader.
+
+	\param mesh Pointer to the Mesh to add.
+	*/
 	void addMesh(Mesh *mesh);
 
+	//! Position Getter.
+	/*!
+
+	\return position variable ID in this shader.
+	*/
 	int getInPos();
+
+	//! Color Getter.
+	/*!
+
+	\return color variable ID in this shader.
+	*/
 	int getInColor();
+
+	//! Normal Getter.
+	/*!
+
+	\return normal variable ID in this shader.
+	*/
 	int getInNormal();
+
+	//! TexCoord Getter.
+	/*!
+
+	\return texture coordinate variable ID in this shader.
+	*/
 	int getInTexCoord();
+
+	//! Tangent Getter.
+	/*!
+
+	\return tangent variable ID in this shader.
+	*/
 	int getInTangent();
 
+	//! Shader class destructor.
+	/*!
+	Frees all memory used by this shader.
+	*/
 	~Shader();
 
 

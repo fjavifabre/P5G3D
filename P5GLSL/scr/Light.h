@@ -24,8 +24,6 @@ public:
 	~Light();
 
 
-	//¿Cambiar shader para utilizar componente especular distinta o juntarlo todo en solo color de la luz?
-
 	//! Ambient color.
 	/*!
 	Ambient color of the light.
@@ -44,27 +42,27 @@ public:
 
 	//! Light position.
 	/*!
-	Returns the position of the light.
+	\return the position of the light.
 	*/
 	glm::vec4* GetPosition();
 	//! Light direction.
 	/*!
-	Returns the direction of the light.
+	\return the direction of the light.
 	*/
 	glm::vec4* GetDirection();
 	//! Light atternuation.
 	/*!
-	Returns the atternuation of the light.
+	\return the atternuation of the light.
 	*/
 	glm::vec3* GetAttenuation();
 	//! Light cosine cut off.
 	/*!
-	Returns the cosine of the cut off of the light. If it is a directional or a spot light returns -1.
+	\return the cosine of the cut off of the light. If it is a directional or a spot light \return -1.
 	*/
 	GLfloat GetCosCutOff();
 	//! Light spot exponent.
 	/*!
-	Returns the spot exponent of the light. If it is a directional or a spot light returns 0.
+	\return the spot exponent of the light. If it is a directional or a spot light \return 0.
 	*/
 	GLfloat GetSpotExponent();
 
