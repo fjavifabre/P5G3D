@@ -1,74 +1,470 @@
 \hypertarget{class_mesh}{}\section{Mesh Class Reference}
 \label{class_mesh}\index{Mesh@{Mesh}}
+
+
+\hyperlink{class_mesh}{Mesh} class.  
+
+
+
+
+{\ttfamily \#include $<$Mesh.\+h$>$}
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_mesh_af00a97ca15339b6d131be3ce502bebe9}\label{class_mesh_af00a97ca15339b6d131be3ce502bebe9}} 
-{\bfseries Mesh} (const char $\ast$file)
-\item 
-\mbox{\Hypertarget{class_mesh_a52065a07657fadff457f4009b3e694d0}\label{class_mesh_a52065a07657fadff457f4009b3e694d0}} 
-{\bfseries Mesh} (const unsigned int n\+Triangles, const unsigned int n\+Vertex, const unsigned int $\ast$index, const float $\ast$pos, const float $\ast$n=nullptr, const float $\ast$color=nullptr, const float $\ast$tex=nullptr, const float $\ast$tangent=nullptr)
-\item 
-\mbox{\Hypertarget{class_mesh_a99962ed2f4a6a0999127f5e4defef6dc}\label{class_mesh_a99962ed2f4a6a0999127f5e4defef6dc}} 
-unsigned int $\ast$ {\bfseries get\+Triangle\+Index} ()
-\item 
-\mbox{\Hypertarget{class_mesh_a2345e6c20aa6a0f05521b8aeb62203f4}\label{class_mesh_a2345e6c20aa6a0f05521b8aeb62203f4}} 
-float $\ast$ {\bfseries get\+Vertex\+Pos} ()
-\item 
-\mbox{\Hypertarget{class_mesh_ab16f1115ed7865c9e7322c85e2d785af}\label{class_mesh_ab16f1115ed7865c9e7322c85e2d785af}} 
-float $\ast$ {\bfseries get\+Vertex\+Normals} ()
-\item 
-\mbox{\Hypertarget{class_mesh_ade2dd22f7cbe37df8e51ba65c800bbc8}\label{class_mesh_ade2dd22f7cbe37df8e51ba65c800bbc8}} 
-float $\ast$ {\bfseries get\+Vertex\+Color} ()
-\item 
-\mbox{\Hypertarget{class_mesh_ab6ba57a10fbed17d8f9dc8ec09b92657}\label{class_mesh_ab6ba57a10fbed17d8f9dc8ec09b92657}} 
-float $\ast$ {\bfseries get\+Vertex\+Tex\+Coord} ()
-\item 
-\mbox{\Hypertarget{class_mesh_ae5cd8d05ef13c4e71bea276a9783adaf}\label{class_mesh_ae5cd8d05ef13c4e71bea276a9783adaf}} 
-float $\ast$ {\bfseries get\+Vertex\+Tangent} ()
-\item 
-\mbox{\Hypertarget{class_mesh_a838bd5498ec781707bb28830ff5e064d}\label{class_mesh_a838bd5498ec781707bb28830ff5e064d}} 
-unsigned int {\bfseries get\+Color\+Tex} ()
-\item 
-\mbox{\Hypertarget{class_mesh_ad4787ea15b5ad63eed00a1a0ef272637}\label{class_mesh_ad4787ea15b5ad63eed00a1a0ef272637}} 
-unsigned int {\bfseries get\+Spec\+Tex} ()
-\item 
-\mbox{\Hypertarget{class_mesh_ad0b8c57f20a5319e2e730cfa61271904}\label{class_mesh_ad0b8c57f20a5319e2e730cfa61271904}} 
-unsigned int {\bfseries get\+Emi\+Tex} ()
-\item 
-\mbox{\Hypertarget{class_mesh_a8b60518f329c4e3d15824ef68c794fa1}\label{class_mesh_a8b60518f329c4e3d15824ef68c794fa1}} 
-unsigned int {\bfseries get\+Norm\+Tex} ()
-\item 
-\mbox{\Hypertarget{class_mesh_add2e2bafe60711ec9f67308c140640a9}\label{class_mesh_add2e2bafe60711ec9f67308c140640a9}} 
-unsigned int {\bfseries get\+V\+AO} ()
-\item 
-\mbox{\Hypertarget{class_mesh_ae4163571bceed9d224fc43e943dda118}\label{class_mesh_ae4163571bceed9d224fc43e943dda118}} 
-int {\bfseries get\+Num\+Vertex} ()
-\item 
-\mbox{\Hypertarget{class_mesh_a4452aed4ac63ff0639b839bba095347e}\label{class_mesh_a4452aed4ac63ff0639b839bba095347e}} 
-int {\bfseries get\+Num\+Triangles} ()
-\item 
-\mbox{\Hypertarget{class_mesh_ac06b928f547c1eec3b66ae5503608c21}\label{class_mesh_ac06b928f547c1eec3b66ae5503608c21}} 
-bool {\bfseries load\+Color\+Tex} (const char $\ast$file)
-\item 
-\mbox{\Hypertarget{class_mesh_ada437d0826057661de46ab5ce2b497a4}\label{class_mesh_ada437d0826057661de46ab5ce2b497a4}} 
-bool {\bfseries load\+Spec\+Tex} (const char $\ast$file)
-\item 
-\mbox{\Hypertarget{class_mesh_abb21ce55711b89f7018d103b50294f69}\label{class_mesh_abb21ce55711b89f7018d103b50294f69}} 
-bool {\bfseries load\+Emi\+Tex} (const char $\ast$file)
-\item 
-\mbox{\Hypertarget{class_mesh_a443b1a0a0c36ff911f58f2a5f4616538}\label{class_mesh_a443b1a0a0c36ff911f58f2a5f4616538}} 
-bool {\bfseries load\+Norm\+Tex} (const char $\ast$file)
-\item 
-\mbox{\Hypertarget{class_mesh_a81e2edec37429d2830a551d07476c7ba}\label{class_mesh_a81e2edec37429d2830a551d07476c7ba}} 
-void {\bfseries add\+Object} (\hyperlink{class_object}{Object} $\ast$o)
-\item 
-\mbox{\Hypertarget{class_mesh_a7c209ba6e5596edaeb9062cf23d3532b}\label{class_mesh_a7c209ba6e5596edaeb9062cf23d3532b}} 
-void {\bfseries remove\+Object} (\hyperlink{class_object}{Object} $\ast$o)
-\item 
-\mbox{\Hypertarget{class_mesh_aadc3cc59b0dccf99961105431a717579}\label{class_mesh_aadc3cc59b0dccf99961105431a717579}} 
-std\+::list$<$ \hyperlink{class_object}{Object} $\ast$ $>$ \& {\bfseries get\+Objects} ()
-\end{DoxyCompactItemize}
+\hyperlink{class_mesh_a7cb142bf7cd75a954813ccebe1780b77}{Mesh} (const char $\ast$file, \hyperlink{class_shader}{Shader} $\ast$material)
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+\hyperlink{class_mesh_a6b89dd43d75a4c8d5597f88cf7645488}{Mesh} (const unsigned int n\+Triangles, const unsigned int n\+Vertex, const unsigned int $\ast$index, const float $\ast$pos, \hyperlink{class_shader}{Shader} $\ast$material, const float $\ast$n=nullptr, const float $\ast$color=nullptr, const float $\ast$tex=nullptr, const float $\ast$tangent=nullptr)
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+void \hyperlink{class_mesh_a0cf8b6c8062509bd89d8bcc773f45c64}{Apply\+Material} (\hyperlink{class_shader}{Shader} $\ast$material)
+\begin{DoxyCompactList}\small\item\em Function to set a shader in charge of render this mesh. \end{DoxyCompactList}\item 
+unsigned int $\ast$ \hyperlink{class_mesh_a99962ed2f4a6a0999127f5e4defef6dc}{get\+Triangle\+Index} ()
+\begin{DoxyCompactList}\small\item\em Triangles index getter. \end{DoxyCompactList}\item 
+float $\ast$ \hyperlink{class_mesh_a2345e6c20aa6a0f05521b8aeb62203f4}{get\+Vertex\+Pos} ()
+\begin{DoxyCompactList}\small\item\em Vertices position getter. \end{DoxyCompactList}\item 
+float $\ast$ \hyperlink{class_mesh_ab16f1115ed7865c9e7322c85e2d785af}{get\+Vertex\+Normals} ()
+\begin{DoxyCompactList}\small\item\em Vertices normal getter. \end{DoxyCompactList}\item 
+float $\ast$ \hyperlink{class_mesh_ade2dd22f7cbe37df8e51ba65c800bbc8}{get\+Vertex\+Color} ()
+\begin{DoxyCompactList}\small\item\em Vertices color getter. \end{DoxyCompactList}\item 
+float $\ast$ \hyperlink{class_mesh_ab6ba57a10fbed17d8f9dc8ec09b92657}{get\+Vertex\+Tex\+Coord} ()
+\begin{DoxyCompactList}\small\item\em Vertices texture coordinates getter. \end{DoxyCompactList}\item 
+float $\ast$ \hyperlink{class_mesh_ae5cd8d05ef13c4e71bea276a9783adaf}{get\+Vertex\+Tangent} ()
+\begin{DoxyCompactList}\small\item\em Vertices tangent getter. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{class_mesh_a838bd5498ec781707bb28830ff5e064d}{get\+Color\+Tex} ()
+\begin{DoxyCompactList}\small\item\em Color texture getter. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{class_mesh_ad4787ea15b5ad63eed00a1a0ef272637}{get\+Spec\+Tex} ()
+\begin{DoxyCompactList}\small\item\em Specular texture getter. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{class_mesh_ad0b8c57f20a5319e2e730cfa61271904}{get\+Emi\+Tex} ()
+\begin{DoxyCompactList}\small\item\em Emissive texture getter. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{class_mesh_a8b60518f329c4e3d15824ef68c794fa1}{get\+Norm\+Tex} ()
+\begin{DoxyCompactList}\small\item\em Normal texture getter. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{class_mesh_add2e2bafe60711ec9f67308c140640a9}{get\+V\+A\+O} ()
+\begin{DoxyCompactList}\small\item\em V\+A\+O I\+D getter. \end{DoxyCompactList}\item 
+int \hyperlink{class_mesh_ae4163571bceed9d224fc43e943dda118}{get\+Num\+Vertex} ()
+\begin{DoxyCompactList}\small\item\em Number of vertex getter. \end{DoxyCompactList}\item 
+int \hyperlink{class_mesh_a4452aed4ac63ff0639b839bba095347e}{get\+Num\+Triangles} ()
+\begin{DoxyCompactList}\small\item\em Number of triangles. \end{DoxyCompactList}\item 
+bool \hyperlink{class_mesh_ac06b928f547c1eec3b66ae5503608c21}{load\+Color\+Tex} (const char $\ast$file)
+\begin{DoxyCompactList}\small\item\em Color texture loader. \end{DoxyCompactList}\item 
+bool \hyperlink{class_mesh_ada437d0826057661de46ab5ce2b497a4}{load\+Spec\+Tex} (const char $\ast$file)
+\begin{DoxyCompactList}\small\item\em Specular texture loader. \end{DoxyCompactList}\item 
+bool \hyperlink{class_mesh_abb21ce55711b89f7018d103b50294f69}{load\+Emi\+Tex} (const char $\ast$file)
+\begin{DoxyCompactList}\small\item\em Emissive texture loader. \end{DoxyCompactList}\item 
+bool \hyperlink{class_mesh_a443b1a0a0c36ff911f58f2a5f4616538}{load\+Norm\+Tex} (const char $\ast$file)
+\begin{DoxyCompactList}\small\item\em Normal texture loader. \end{DoxyCompactList}\item 
+void \hyperlink{class_mesh_a81e2edec37429d2830a551d07476c7ba}{add\+Object} (\hyperlink{class_object}{Object} $\ast$o)
+\begin{DoxyCompactList}\small\item\em Function to add object so they use this mesh. \end{DoxyCompactList}\item 
+void \hyperlink{class_mesh_a7c209ba6e5596edaeb9062cf23d3532b}{remove\+Object} (\hyperlink{class_object}{Object} $\ast$o)
+\begin{DoxyCompactList}\small\item\em Function to remove using this mesh. \end{DoxyCompactList}\item 
+std\+::list$<$ \hyperlink{class_object}{Object} $\ast$ $>$ \& \hyperlink{class_mesh_aadc3cc59b0dccf99961105431a717579}{get\+Objects} ()
+\begin{DoxyCompactList}\small\item\em Function to obtain the list of Objects using this mesh. \end{DoxyCompactList}\item 
+\hyperlink{class_mesh_a5efe4da1a4c0971cfb037bd70304c303}{$\sim$\+Mesh} ()
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_mesh}{Mesh} class destructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{class_mesh}{Mesh} class. 
+
+Class used to define and control a mesh. Contains functions related with its points, textures and properties. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_mesh_a7cb142bf7cd75a954813ccebe1780b77}{}\index{Mesh@{Mesh}!Mesh@{Mesh}}
+\index{Mesh@{Mesh}!Mesh@{Mesh}}
+\subsubsection[{Mesh}]{\setlength{\rightskip}{0pt plus 5cm}Mesh\+::\+Mesh (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{file, }
+\item[{{\bf Shader} $\ast$}]{material}
+\end{DoxyParamCaption}
+)}\label{class_mesh_a7cb142bf7cd75a954813ccebe1780b77}
+
+
+Class constructor. 
+
+\hyperlink{class_mesh}{Mesh} class constructor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & File where the mesh is stored. \\
+\hline
+{\em material} & \hyperlink{class_shader}{Shader} that will render the mesh. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_mesh_a6b89dd43d75a4c8d5597f88cf7645488}{}\index{Mesh@{Mesh}!Mesh@{Mesh}}
+\index{Mesh@{Mesh}!Mesh@{Mesh}}
+\subsubsection[{Mesh}]{\setlength{\rightskip}{0pt plus 5cm}Mesh\+::\+Mesh (
+\begin{DoxyParamCaption}
+\item[{const unsigned int}]{n\+Triangles, }
+\item[{const unsigned int}]{n\+Vertex, }
+\item[{const unsigned int $\ast$}]{index, }
+\item[{const float $\ast$}]{pos, }
+\item[{{\bf Shader} $\ast$}]{material, }
+\item[{const float $\ast$}]{n = {\ttfamily nullptr}, }
+\item[{const float $\ast$}]{color = {\ttfamily nullptr}, }
+\item[{const float $\ast$}]{tex = {\ttfamily nullptr}, }
+\item[{const float $\ast$}]{tangent = {\ttfamily nullptr}}
+\end{DoxyParamCaption}
+)}\label{class_mesh_a6b89dd43d75a4c8d5597f88cf7645488}
+
+
+Class constructor. 
+
+\hyperlink{class_mesh}{Mesh} class constructor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em n\+Triangles} & Number of triangles in the mesh. \\
+\hline
+{\em n\+Vertex} & Number of vertex in the mesh. \\
+\hline
+{\em index} & Array of vertex index. \\
+\hline
+{\em pos} & Array of vertex positions. \\
+\hline
+{\em material} & \hyperlink{class_shader}{Shader} that will render the mesh. \\
+\hline
+{\em n} & Array of vertex normals. \\
+\hline
+{\em tex} & Array of vertex texture coordinates. \\
+\hline
+{\em tangent} & Array of vertex tangents. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_mesh_a5efe4da1a4c0971cfb037bd70304c303}{}\index{Mesh@{Mesh}!````~Mesh@{$\sim$\+Mesh}}
+\index{````~Mesh@{$\sim$\+Mesh}!Mesh@{Mesh}}
+\subsubsection[{$\sim$\+Mesh}]{\setlength{\rightskip}{0pt plus 5cm}Mesh\+::$\sim$\+Mesh (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_mesh_a5efe4da1a4c0971cfb037bd70304c303}
+
+
+\hyperlink{class_mesh}{Mesh} class destructor. 
+
+Frees all memory used by all the textures and buffers in this mesh. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_mesh_a81e2edec37429d2830a551d07476c7ba}{}\index{Mesh@{Mesh}!add\+Object@{add\+Object}}
+\index{add\+Object@{add\+Object}!Mesh@{Mesh}}
+\subsubsection[{add\+Object}]{\setlength{\rightskip}{0pt plus 5cm}void Mesh\+::add\+Object (
+\begin{DoxyParamCaption}
+\item[{{\bf Object} $\ast$}]{o}
+\end{DoxyParamCaption}
+)}\label{class_mesh_a81e2edec37429d2830a551d07476c7ba}
+
+
+Function to add object so they use this mesh. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em o} & \hyperlink{class_object}{Object} to add. Sets a object to use this mesh. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_mesh_a0cf8b6c8062509bd89d8bcc773f45c64}{}\index{Mesh@{Mesh}!Apply\+Material@{Apply\+Material}}
+\index{Apply\+Material@{Apply\+Material}!Mesh@{Mesh}}
+\subsubsection[{Apply\+Material}]{\setlength{\rightskip}{0pt plus 5cm}void Mesh\+::\+Apply\+Material (
+\begin{DoxyParamCaption}
+\item[{{\bf Shader} $\ast$}]{material}
+\end{DoxyParamCaption}
+)}\label{class_mesh_a0cf8b6c8062509bd89d8bcc773f45c64}
+
+
+Function to set a shader in charge of render this mesh. 
+
+Sets the shader used to render this mesh.
+
+
+\begin{DoxyParams}{Parameters}
+{\em material} & \hyperlink{class_shader}{Shader} to use. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_mesh_a838bd5498ec781707bb28830ff5e064d}{}\index{Mesh@{Mesh}!get\+Color\+Tex@{get\+Color\+Tex}}
+\index{get\+Color\+Tex@{get\+Color\+Tex}!Mesh@{Mesh}}
+\subsubsection[{get\+Color\+Tex}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int Mesh\+::get\+Color\+Tex (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_mesh_a838bd5498ec781707bb28830ff5e064d}
+
+
+Color texture getter. 
+
+\begin{DoxyReturn}{Returns}
+The color texture I\+D. 
+\end{DoxyReturn}
+\hypertarget{class_mesh_ad0b8c57f20a5319e2e730cfa61271904}{}\index{Mesh@{Mesh}!get\+Emi\+Tex@{get\+Emi\+Tex}}
+\index{get\+Emi\+Tex@{get\+Emi\+Tex}!Mesh@{Mesh}}
+\subsubsection[{get\+Emi\+Tex}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int Mesh\+::get\+Emi\+Tex (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_mesh_ad0b8c57f20a5319e2e730cfa61271904}
+
+
+Emissive texture getter. 
+
+\begin{DoxyReturn}{Returns}
+The emissive texture I\+D. 
+\end{DoxyReturn}
+\hypertarget{class_mesh_a8b60518f329c4e3d15824ef68c794fa1}{}\index{Mesh@{Mesh}!get\+Norm\+Tex@{get\+Norm\+Tex}}
+\index{get\+Norm\+Tex@{get\+Norm\+Tex}!Mesh@{Mesh}}
+\subsubsection[{get\+Norm\+Tex}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int Mesh\+::get\+Norm\+Tex (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_mesh_a8b60518f329c4e3d15824ef68c794fa1}
+
+
+Normal texture getter. 
+
+\begin{DoxyReturn}{Returns}
+The normal texture I\+D. 
+\end{DoxyReturn}
+\hypertarget{class_mesh_a4452aed4ac63ff0639b839bba095347e}{}\index{Mesh@{Mesh}!get\+Num\+Triangles@{get\+Num\+Triangles}}
+\index{get\+Num\+Triangles@{get\+Num\+Triangles}!Mesh@{Mesh}}
+\subsubsection[{get\+Num\+Triangles}]{\setlength{\rightskip}{0pt plus 5cm}int Mesh\+::get\+Num\+Triangles (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_mesh_a4452aed4ac63ff0639b839bba095347e}
+
+
+Number of triangles. 
+
+\begin{DoxyReturn}{Returns}
+The number of triangles in the mesh. 
+\end{DoxyReturn}
+\hypertarget{class_mesh_ae4163571bceed9d224fc43e943dda118}{}\index{Mesh@{Mesh}!get\+Num\+Vertex@{get\+Num\+Vertex}}
+\index{get\+Num\+Vertex@{get\+Num\+Vertex}!Mesh@{Mesh}}
+\subsubsection[{get\+Num\+Vertex}]{\setlength{\rightskip}{0pt plus 5cm}int Mesh\+::get\+Num\+Vertex (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_mesh_ae4163571bceed9d224fc43e943dda118}
+
+
+Number of vertex getter. 
+
+\begin{DoxyReturn}{Returns}
+The number of vertex in the mesh. 
+\end{DoxyReturn}
+\hypertarget{class_mesh_aadc3cc59b0dccf99961105431a717579}{}\index{Mesh@{Mesh}!get\+Objects@{get\+Objects}}
+\index{get\+Objects@{get\+Objects}!Mesh@{Mesh}}
+\subsubsection[{get\+Objects}]{\setlength{\rightskip}{0pt plus 5cm}std\+::list$<$ {\bf Object} $\ast$ $>$ \& Mesh\+::get\+Objects (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_mesh_aadc3cc59b0dccf99961105431a717579}
+
+
+Function to obtain the list of Objects using this mesh. 
+
+\begin{DoxyReturn}{Returns}
+A list with pointers to all objects using this mesh. 
+\end{DoxyReturn}
+\hypertarget{class_mesh_ad4787ea15b5ad63eed00a1a0ef272637}{}\index{Mesh@{Mesh}!get\+Spec\+Tex@{get\+Spec\+Tex}}
+\index{get\+Spec\+Tex@{get\+Spec\+Tex}!Mesh@{Mesh}}
+\subsubsection[{get\+Spec\+Tex}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int Mesh\+::get\+Spec\+Tex (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_mesh_ad4787ea15b5ad63eed00a1a0ef272637}
+
+
+Specular texture getter. 
+
+\begin{DoxyReturn}{Returns}
+The specular texture I\+D. 
+\end{DoxyReturn}
+\hypertarget{class_mesh_a99962ed2f4a6a0999127f5e4defef6dc}{}\index{Mesh@{Mesh}!get\+Triangle\+Index@{get\+Triangle\+Index}}
+\index{get\+Triangle\+Index@{get\+Triangle\+Index}!Mesh@{Mesh}}
+\subsubsection[{get\+Triangle\+Index}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int $\ast$ Mesh\+::get\+Triangle\+Index (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_mesh_a99962ed2f4a6a0999127f5e4defef6dc}
+
+
+Triangles index getter. 
+
+\begin{DoxyReturn}{Returns}
+A pointer to the triangles index array. 
+\end{DoxyReturn}
+\hypertarget{class_mesh_add2e2bafe60711ec9f67308c140640a9}{}\index{Mesh@{Mesh}!get\+V\+A\+O@{get\+V\+A\+O}}
+\index{get\+V\+A\+O@{get\+V\+A\+O}!Mesh@{Mesh}}
+\subsubsection[{get\+V\+A\+O}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int Mesh\+::get\+V\+A\+O (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_mesh_add2e2bafe60711ec9f67308c140640a9}
+
+
+V\+A\+O I\+D getter. 
+
+\begin{DoxyReturn}{Returns}
+V\+A\+O I\+D. 
+\end{DoxyReturn}
+\hypertarget{class_mesh_ade2dd22f7cbe37df8e51ba65c800bbc8}{}\index{Mesh@{Mesh}!get\+Vertex\+Color@{get\+Vertex\+Color}}
+\index{get\+Vertex\+Color@{get\+Vertex\+Color}!Mesh@{Mesh}}
+\subsubsection[{get\+Vertex\+Color}]{\setlength{\rightskip}{0pt plus 5cm}float $\ast$ Mesh\+::get\+Vertex\+Color (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_mesh_ade2dd22f7cbe37df8e51ba65c800bbc8}
+
+
+Vertices color getter. 
+
+\begin{DoxyReturn}{Returns}
+A pointer to the vertices normal array. 
+\end{DoxyReturn}
+\hypertarget{class_mesh_ab16f1115ed7865c9e7322c85e2d785af}{}\index{Mesh@{Mesh}!get\+Vertex\+Normals@{get\+Vertex\+Normals}}
+\index{get\+Vertex\+Normals@{get\+Vertex\+Normals}!Mesh@{Mesh}}
+\subsubsection[{get\+Vertex\+Normals}]{\setlength{\rightskip}{0pt plus 5cm}float $\ast$ Mesh\+::get\+Vertex\+Normals (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_mesh_ab16f1115ed7865c9e7322c85e2d785af}
+
+
+Vertices normal getter. 
+
+\begin{DoxyReturn}{Returns}
+A pointer to the vertices normal array. 
+\end{DoxyReturn}
+\hypertarget{class_mesh_a2345e6c20aa6a0f05521b8aeb62203f4}{}\index{Mesh@{Mesh}!get\+Vertex\+Pos@{get\+Vertex\+Pos}}
+\index{get\+Vertex\+Pos@{get\+Vertex\+Pos}!Mesh@{Mesh}}
+\subsubsection[{get\+Vertex\+Pos}]{\setlength{\rightskip}{0pt plus 5cm}float $\ast$ Mesh\+::get\+Vertex\+Pos (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_mesh_a2345e6c20aa6a0f05521b8aeb62203f4}
+
+
+Vertices position getter. 
+
+\begin{DoxyReturn}{Returns}
+A pointer to the vertices position array. 
+\end{DoxyReturn}
+\hypertarget{class_mesh_ae5cd8d05ef13c4e71bea276a9783adaf}{}\index{Mesh@{Mesh}!get\+Vertex\+Tangent@{get\+Vertex\+Tangent}}
+\index{get\+Vertex\+Tangent@{get\+Vertex\+Tangent}!Mesh@{Mesh}}
+\subsubsection[{get\+Vertex\+Tangent}]{\setlength{\rightskip}{0pt plus 5cm}float $\ast$ Mesh\+::get\+Vertex\+Tangent (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_mesh_ae5cd8d05ef13c4e71bea276a9783adaf}
+
+
+Vertices tangent getter. 
+
+\begin{DoxyReturn}{Returns}
+A pointer to the vertices tangent array. 
+\end{DoxyReturn}
+\hypertarget{class_mesh_ab6ba57a10fbed17d8f9dc8ec09b92657}{}\index{Mesh@{Mesh}!get\+Vertex\+Tex\+Coord@{get\+Vertex\+Tex\+Coord}}
+\index{get\+Vertex\+Tex\+Coord@{get\+Vertex\+Tex\+Coord}!Mesh@{Mesh}}
+\subsubsection[{get\+Vertex\+Tex\+Coord}]{\setlength{\rightskip}{0pt plus 5cm}float $\ast$ Mesh\+::get\+Vertex\+Tex\+Coord (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_mesh_ab6ba57a10fbed17d8f9dc8ec09b92657}
+
+
+Vertices texture coordinates getter. 
+
+\begin{DoxyReturn}{Returns}
+A pointer to the vertices texture coordinates array. 
+\end{DoxyReturn}
+\hypertarget{class_mesh_ac06b928f547c1eec3b66ae5503608c21}{}\index{Mesh@{Mesh}!load\+Color\+Tex@{load\+Color\+Tex}}
+\index{load\+Color\+Tex@{load\+Color\+Tex}!Mesh@{Mesh}}
+\subsubsection[{load\+Color\+Tex}]{\setlength{\rightskip}{0pt plus 5cm}bool Mesh\+::load\+Color\+Tex (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{file}
+\end{DoxyParamCaption}
+)}\label{class_mesh_ac06b928f547c1eec3b66ae5503608c21}
+
+
+Color texture loader. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & File to load as texture. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the texture loaded successfully, otherwise false . 
+\end{DoxyReturn}
+\hypertarget{class_mesh_abb21ce55711b89f7018d103b50294f69}{}\index{Mesh@{Mesh}!load\+Emi\+Tex@{load\+Emi\+Tex}}
+\index{load\+Emi\+Tex@{load\+Emi\+Tex}!Mesh@{Mesh}}
+\subsubsection[{load\+Emi\+Tex}]{\setlength{\rightskip}{0pt plus 5cm}bool Mesh\+::load\+Emi\+Tex (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{file}
+\end{DoxyParamCaption}
+)}\label{class_mesh_abb21ce55711b89f7018d103b50294f69}
+
+
+Emissive texture loader. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & File to load as texture. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the texture loaded successfully, otherwise false . 
+\end{DoxyReturn}
+\hypertarget{class_mesh_a443b1a0a0c36ff911f58f2a5f4616538}{}\index{Mesh@{Mesh}!load\+Norm\+Tex@{load\+Norm\+Tex}}
+\index{load\+Norm\+Tex@{load\+Norm\+Tex}!Mesh@{Mesh}}
+\subsubsection[{load\+Norm\+Tex}]{\setlength{\rightskip}{0pt plus 5cm}bool Mesh\+::load\+Norm\+Tex (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{file}
+\end{DoxyParamCaption}
+)}\label{class_mesh_a443b1a0a0c36ff911f58f2a5f4616538}
+
+
+Normal texture loader. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & File to load as texture. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the texture loaded successfully, otherwise false . 
+\end{DoxyReturn}
+\hypertarget{class_mesh_ada437d0826057661de46ab5ce2b497a4}{}\index{Mesh@{Mesh}!load\+Spec\+Tex@{load\+Spec\+Tex}}
+\index{load\+Spec\+Tex@{load\+Spec\+Tex}!Mesh@{Mesh}}
+\subsubsection[{load\+Spec\+Tex}]{\setlength{\rightskip}{0pt plus 5cm}bool Mesh\+::load\+Spec\+Tex (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{file}
+\end{DoxyParamCaption}
+)}\label{class_mesh_ada437d0826057661de46ab5ce2b497a4}
+
+
+Specular texture loader. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & File to load as texture. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the texture loaded successfully, otherwise false . 
+\end{DoxyReturn}
+\hypertarget{class_mesh_a7c209ba6e5596edaeb9062cf23d3532b}{}\index{Mesh@{Mesh}!remove\+Object@{remove\+Object}}
+\index{remove\+Object@{remove\+Object}!Mesh@{Mesh}}
+\subsubsection[{remove\+Object}]{\setlength{\rightskip}{0pt plus 5cm}void Mesh\+::remove\+Object (
+\begin{DoxyParamCaption}
+\item[{{\bf Object} $\ast$}]{o}
+\end{DoxyParamCaption}
+)}\label{class_mesh_a7c209ba6e5596edaeb9062cf23d3532b}
+
+
+Function to remove using this mesh. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em o} & \hyperlink{class_object}{Object} to remove. \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

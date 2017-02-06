@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['camera',['Camera',['../class_camera.html#a01f94c3543f56ede7af49dc778f19331',1,'Camera']]]
+  ['addobject',['addObject',['../class_mesh.html#a81e2edec37429d2830a551d07476c7ba',1,'Mesh']]],
+  ['applymaterial',['ApplyMaterial',['../class_mesh.html#a0cf8b6c8062509bd89d8bcc773f45c64',1,'Mesh']]]
 ];

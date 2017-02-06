@@ -1,5 +1,8 @@
 var searchData=
 [
-  ['_7ecamera',['~Camera',['../class_camera.html#ad1897942d0ccf91052386388a497349f',1,'Camera']]],
-  ['_7elight',['~Light',['../class_light.html#ad0e59fad13bb6cfadc25b2c477e9ddc7',1,'Light']]]
+  ['scene',['Scene',['../class_scene.html',1,'']]],
+  ['setorthoprojection',['SetOrthoProjection',['../class_camera.html#aaee3d9ca2a77a31574da1e927047af84',1,'Camera']]],
+  ['setperspprojection',['SetPerspProjection',['../class_camera.html#ab8bb3c4e5dd304753fc6a2937175d1d9',1,'Camera']]],
+  ['shader',['Shader',['../class_shader.html',1,'']]],
+  ['spotlight',['SpotLight',['../class_spot_light.html',1,'']]]
 ];

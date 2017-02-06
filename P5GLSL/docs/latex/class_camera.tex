@@ -26,6 +26,9 @@ void \hyperlink{class_camera_ab8bb3c4e5dd304753fc6a2937175d1d9}{Set\+Persp\+Proj
 \begin{DoxyCompactList}\small\item\em Perspective projection. \end{DoxyCompactList}\item 
 void \hyperlink{class_camera_aaee3d9ca2a77a31574da1e927047af84}{Set\+Ortho\+Projection} (float left, float right, float bottom, float top, float near, float far)
 \begin{DoxyCompactList}\small\item\em Orthographic projection. \end{DoxyCompactList}\item 
+\hypertarget{class_camera_aaeadc93f9c5800d2b52af7f88c3ede5a}{}void {\bfseries Set\+View\+Matrix} (glm\+::mat4 view)\label{class_camera_aaeadc93f9c5800d2b52af7f88c3ede5a}
+
+\item 
 glm\+::mat4 $\ast$ \hyperlink{class_camera_a0a515e9b67a4f4f9d012209431e45448}{Get\+Projection} ()
 \begin{DoxyCompactList}\small\item\em Returns the projection matrix. \end{DoxyCompactList}\item 
 glm\+::mat4 $\ast$ \hyperlink{class_camera_a7a1951025a21533f97f06071df681f7b}{Get\+View} ()
@@ -39,22 +42,24 @@ glm\+::mat4 $\ast$ \hyperlink{class_camera_a7a1951025a21533f97f06071df681f7b}{Ge
 Class used to control a camera. Contains essential functions like position, rotation and matrix projections 
 
 \subsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{class_camera_a01f94c3543f56ede7af49dc778f19331}\label{class_camera_a01f94c3543f56ede7af49dc778f19331}} 
+\hypertarget{class_camera_a01f94c3543f56ede7af49dc778f19331}{}\index{Camera@{Camera}!Camera@{Camera}}
 \index{Camera@{Camera}!Camera@{Camera}}
-\index{Camera@{Camera}!Camera@{Camera}}
-\subsubsection{\texorpdfstring{Camera()}{Camera()}}
-{\footnotesize\ttfamily Camera\+::\+Camera (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
+\subsubsection[{Camera}]{\setlength{\rightskip}{0pt plus 5cm}Camera\+::\+Camera (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_camera_a01f94c3543f56ede7af49dc778f19331}
 
 
 Class constructor. 
 
-\hyperlink{class_camera}{Camera} class constructor. \mbox{\Hypertarget{class_camera_ad1897942d0ccf91052386388a497349f}\label{class_camera_ad1897942d0ccf91052386388a497349f}} 
-\index{Camera@{Camera}!````~Camera@{$\sim$\+Camera}}
+\hyperlink{class_camera}{Camera} class constructor. \hypertarget{class_camera_ad1897942d0ccf91052386388a497349f}{}\index{Camera@{Camera}!````~Camera@{$\sim$\+Camera}}
 \index{````~Camera@{$\sim$\+Camera}!Camera@{Camera}}
-\subsubsection{\texorpdfstring{$\sim$\+Camera()}{~Camera()}}
-{\footnotesize\ttfamily Camera\+::$\sim$\+Camera (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
+\subsubsection[{$\sim$\+Camera}]{\setlength{\rightskip}{0pt plus 5cm}Camera\+::$\sim$\+Camera (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_camera_ad1897942d0ccf91052386388a497349f}
 
 
 Class destructor. 
@@ -62,32 +67,40 @@ Class destructor.
 \hyperlink{class_camera}{Camera} class destructor. 
 
 \subsection{Member Function Documentation}
-\mbox{\Hypertarget{class_camera_a0a515e9b67a4f4f9d012209431e45448}\label{class_camera_a0a515e9b67a4f4f9d012209431e45448}} 
-\index{Camera@{Camera}!Get\+Projection@{Get\+Projection}}
+\hypertarget{class_camera_a0a515e9b67a4f4f9d012209431e45448}{}\index{Camera@{Camera}!Get\+Projection@{Get\+Projection}}
 \index{Get\+Projection@{Get\+Projection}!Camera@{Camera}}
-\subsubsection{\texorpdfstring{Get\+Projection()}{GetProjection()}}
-{\footnotesize\ttfamily glm\+::mat4 $\ast$ Camera\+::\+Get\+Projection (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
+\subsubsection[{Get\+Projection}]{\setlength{\rightskip}{0pt plus 5cm}glm\+::mat4 $\ast$ Camera\+::\+Get\+Projection (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_camera_a0a515e9b67a4f4f9d012209431e45448}
 
 
 Returns the projection matrix. 
 
-Returns the selected camera projection matrix (perspective or orthographic). \mbox{\Hypertarget{class_camera_a7a1951025a21533f97f06071df681f7b}\label{class_camera_a7a1951025a21533f97f06071df681f7b}} 
-\index{Camera@{Camera}!Get\+View@{Get\+View}}
+Returns the selected camera projection matrix (perspective or orthographic). \hypertarget{class_camera_a7a1951025a21533f97f06071df681f7b}{}\index{Camera@{Camera}!Get\+View@{Get\+View}}
 \index{Get\+View@{Get\+View}!Camera@{Camera}}
-\subsubsection{\texorpdfstring{Get\+View()}{GetView()}}
-{\footnotesize\ttfamily glm\+::mat4 $\ast$ Camera\+::\+Get\+View (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
+\subsubsection[{Get\+View}]{\setlength{\rightskip}{0pt plus 5cm}glm\+::mat4 $\ast$ Camera\+::\+Get\+View (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_camera_a7a1951025a21533f97f06071df681f7b}
 
 
 Returns the view matrix. 
 
-Returns the camera view matrix. \mbox{\Hypertarget{class_camera_aaee3d9ca2a77a31574da1e927047af84}\label{class_camera_aaee3d9ca2a77a31574da1e927047af84}} 
-\index{Camera@{Camera}!Set\+Ortho\+Projection@{Set\+Ortho\+Projection}}
+Returns the camera view matrix. \hypertarget{class_camera_aaee3d9ca2a77a31574da1e927047af84}{}\index{Camera@{Camera}!Set\+Ortho\+Projection@{Set\+Ortho\+Projection}}
 \index{Set\+Ortho\+Projection@{Set\+Ortho\+Projection}!Camera@{Camera}}
-\subsubsection{\texorpdfstring{Set\+Ortho\+Projection()}{SetOrthoProjection()}}
-{\footnotesize\ttfamily void Camera\+::\+Set\+Ortho\+Projection (\begin{DoxyParamCaption}\item[{float}]{left,  }\item[{float}]{right,  }\item[{float}]{bottom,  }\item[{float}]{top,  }\item[{float}]{near,  }\item[{float}]{far }\end{DoxyParamCaption})}
-
+\subsubsection[{Set\+Ortho\+Projection}]{\setlength{\rightskip}{0pt plus 5cm}void Camera\+::\+Set\+Ortho\+Projection (
+\begin{DoxyParamCaption}
+\item[{float}]{left, }
+\item[{float}]{right, }
+\item[{float}]{bottom, }
+\item[{float}]{top, }
+\item[{float}]{near, }
+\item[{float}]{far}
+\end{DoxyParamCaption}
+)}\label{class_camera_aaee3d9ca2a77a31574da1e927047af84}
 
 
 Orthographic projection. 
@@ -107,12 +120,16 @@ Sets the camera with an orthographic projection matrix.
 {\em far} & Far plane \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{class_camera_ab8bb3c4e5dd304753fc6a2937175d1d9}\label{class_camera_ab8bb3c4e5dd304753fc6a2937175d1d9}} 
-\index{Camera@{Camera}!Set\+Persp\+Projection@{Set\+Persp\+Projection}}
+\hypertarget{class_camera_ab8bb3c4e5dd304753fc6a2937175d1d9}{}\index{Camera@{Camera}!Set\+Persp\+Projection@{Set\+Persp\+Projection}}
 \index{Set\+Persp\+Projection@{Set\+Persp\+Projection}!Camera@{Camera}}
-\subsubsection{\texorpdfstring{Set\+Persp\+Projection()}{SetPerspProjection()}}
-{\footnotesize\ttfamily void Camera\+::\+Set\+Persp\+Projection (\begin{DoxyParamCaption}\item[{float}]{fovy,  }\item[{float}]{aspect,  }\item[{float}]{near,  }\item[{float}]{far }\end{DoxyParamCaption})}
-
+\subsubsection[{Set\+Persp\+Projection}]{\setlength{\rightskip}{0pt plus 5cm}void Camera\+::\+Set\+Persp\+Projection (
+\begin{DoxyParamCaption}
+\item[{float}]{fovy, }
+\item[{float}]{aspect, }
+\item[{float}]{near, }
+\item[{float}]{far}
+\end{DoxyParamCaption}
+)}\label{class_camera_ab8bb3c4e5dd304753fc6a2937175d1d9}
 
 
 Perspective projection. 

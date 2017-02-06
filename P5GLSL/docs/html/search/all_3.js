@@ -1,10 +1,24 @@
 var searchData=
 [
   ['getattenuation',['GetAttenuation',['../class_light.html#ac017022a6e8dd3a29de1e024cfde9d9b',1,'Light']]],
+  ['getcolortex',['getColorTex',['../class_mesh.html#a838bd5498ec781707bb28830ff5e064d',1,'Mesh']]],
   ['getcoscutoff',['GetCosCutOff',['../class_light.html#ad1ddee3ac2e66ee13e41544603587393',1,'Light']]],
   ['getdirection',['GetDirection',['../class_light.html#a5373bb221bc648c203236d52b787416a',1,'Light']]],
+  ['getemitex',['getEmiTex',['../class_mesh.html#ad0b8c57f20a5319e2e730cfa61271904',1,'Mesh']]],
+  ['getnormtex',['getNormTex',['../class_mesh.html#a8b60518f329c4e3d15824ef68c794fa1',1,'Mesh']]],
+  ['getnumtriangles',['getNumTriangles',['../class_mesh.html#a4452aed4ac63ff0639b839bba095347e',1,'Mesh']]],
+  ['getnumvertex',['getNumVertex',['../class_mesh.html#ae4163571bceed9d224fc43e943dda118',1,'Mesh']]],
+  ['getobjects',['getObjects',['../class_mesh.html#aadc3cc59b0dccf99961105431a717579',1,'Mesh']]],
   ['getposition',['GetPosition',['../class_light.html#a5ae42d0f1ff71f86b52ede3a37da455d',1,'Light']]],
   ['getprojection',['GetProjection',['../class_camera.html#a0a515e9b67a4f4f9d012209431e45448',1,'Camera']]],
+  ['getspectex',['getSpecTex',['../class_mesh.html#ad4787ea15b5ad63eed00a1a0ef272637',1,'Mesh']]],
   ['getspotexponent',['GetSpotExponent',['../class_light.html#ad40e4b5500b2b8d9be2ec76dc99e8868',1,'Light']]],
+  ['gettriangleindex',['getTriangleIndex',['../class_mesh.html#a99962ed2f4a6a0999127f5e4defef6dc',1,'Mesh']]],
+  ['getvao',['getVAO',['../class_mesh.html#add2e2bafe60711ec9f67308c140640a9',1,'Mesh']]],
+  ['getvertexcolor',['getVertexColor',['../class_mesh.html#ade2dd22f7cbe37df8e51ba65c800bbc8',1,'Mesh']]],
+  ['getvertexnormals',['getVertexNormals',['../class_mesh.html#ab16f1115ed7865c9e7322c85e2d785af',1,'Mesh']]],
+  ['getvertexpos',['getVertexPos',['../class_mesh.html#a2345e6c20aa6a0f05521b8aeb62203f4',1,'Mesh']]],
+  ['getvertextangent',['getVertexTangent',['../class_mesh.html#ae5cd8d05ef13c4e71bea276a9783adaf',1,'Mesh']]],
+  ['getvertextexcoord',['getVertexTexCoord',['../class_mesh.html#ab6ba57a10fbed17d8f9dc8ec09b92657',1,'Mesh']]],
   ['getview',['GetView',['../class_camera.html#a7a1951025a21533f97f06071df681f7b',1,'Camera']]]
 ];
