@@ -160,7 +160,8 @@ int main(int argc, char** argv)
 	initOGL();
 
 	Shader* shader =  scene.LoadShader("../shaders_P5/shader.v1.vert", "../shaders_P5/shader.v1.frag");
-	scene.AddDirectionalLight();
+	DirectionalLight* light = scene.AddDirectionalLight();
+	light->SetDirection(glm::vec3(1.0, 0.0, 1.0));
 
 	Mesh* m = scene.LoadMesh("../meshes/statue.obj", shader);
 
@@ -170,7 +171,7 @@ int main(int argc, char** argv)
 
 
 	Object* obj = scene.CreateObject(m, "test");
-	obj->SetPosition(glm::vec3(0.0, 0.0, 0.0));
+	obj->SetPosition(glm::vec3(0.0, -2.0, 0.0));
 	obj->Update(0.0);
 
 
