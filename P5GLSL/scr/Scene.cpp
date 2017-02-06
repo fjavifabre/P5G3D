@@ -48,7 +48,6 @@ void Scene::UpdateLoop()
 
 	// compute and print the elapsed time in seconds
 	m_elapsedTime = (m_t2.QuadPart - m_t1.QuadPart) * 1000.0 / m_frequency.QuadPart;
-	std::cout << m_elapsedTime << " miliseconds" << std::endl;
 }
 
 //Loads and compiles shader, adds it to the shader vector and returns it

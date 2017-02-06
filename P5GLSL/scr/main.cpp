@@ -283,6 +283,7 @@ void keyboardFunc(unsigned char key, int x, int y)
 	}
 	scene.camera.SetViewMatrix(view);
 
+	glutPostRedisplay();
 }
 void mouseFunc(int button, int state, int x, int y)
 {
