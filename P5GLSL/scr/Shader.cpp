@@ -110,7 +110,7 @@ int Shader::getInTexCoord()
 	return inTexCoord;
 }
 
-void Shader::render(std::list<Light> &lightV, Camera &camera)
+void Shader::render(std::vector<Light> &lightV, Camera &camera)
 {
 	glUseProgram(program);
 
