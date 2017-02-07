@@ -1,0 +1,9 @@
+﻿/**
+\mainpage Main Page
+
+This is a simple Real-Time Rendering Engine in C++ using OpenGL 3.3+. The project has an example with a simple mesh loaded and a Phong shader for testing.
+
+You can check the code <a href="https://github.com/fjavifabre/P5G3D">here</a>. It's Open Source!
+
+Made by F. Javier Fabre and Borja Villarino.
+*/

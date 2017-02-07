@@ -1,0 +1,19 @@
+var searchData=
+[
+  ['scene',['Scene',['../class_scene.html#ad10176d75a9cc0da56626f682d083507',1,'Scene']]],
+  ['setactive',['SetActive',['../class_object.html#ab1946453ecbf12a897ba6a363704cd86',1,'Object']]],
+  ['setalternativemodelmat',['SetAlternativeModelMat',['../class_object.html#a178b374670d4681c61556a352276f96a',1,'Object']]],
+  ['setattenuation',['SetAttenuation',['../class_point_light.html#a5dee3d9dfd33530fd0b5c4e3caa733a5',1,'PointLight::SetAttenuation()'],['../class_spot_light.html#addcb3fc1007d25b33f4275ff16f26073',1,'SpotLight::SetAttenuation()']]],
+  ['setcoscutoff',['SetCosCutOff',['../class_spot_light.html#ac7a4c2343ed2d8da4f2511d50318cb5f',1,'SpotLight']]],
+  ['setdirection',['SetDirection',['../class_directional_light.html#afdd5ff26965bdc32a0254af59332afd5',1,'DirectionalLight::SetDirection()'],['../class_spot_light.html#ac8239339ffa7dd31ea07a4cdcc36c4f4',1,'SpotLight::SetDirection()']]],
+  ['seteulerrotation',['SetEulerRotation',['../class_object.html#a0aaf9cce0a37d5bb0af6eb11ab8dce64',1,'Object']]],
+  ['setmesh',['SetMesh',['../class_object.html#a6be7369b2a3382f82ea8d3e61c061b59',1,'Object']]],
+  ['setorthoprojection',['SetOrthoProjection',['../class_camera.html#aaee3d9ca2a77a31574da1e927047af84',1,'Camera']]],
+  ['setparent',['SetParent',['../class_object.html#a344ba3716db86c373345265935280968',1,'Object']]],
+  ['setperspprojection',['SetPerspProjection',['../class_camera.html#ab8bb3c4e5dd304753fc6a2937175d1d9',1,'Camera']]],
+  ['setposition',['SetPosition',['../class_object.html#adbffb47c9daf536f5ccd668d060a0490',1,'Object::SetPosition()'],['../class_point_light.html#a54075ad125124b48c3ae0de94f8846ec',1,'PointLight::SetPosition()'],['../class_spot_light.html#a66a62acf516440ac717b4aa464c3c94a',1,'SpotLight::SetPosition()']]],
+  ['setscale',['SetScale',['../class_object.html#a08faf59cf967fae31dd3ed0aea43a372',1,'Object']]],
+  ['setspotexponent',['SetSpotExponent',['../class_spot_light.html#aa45ba8d849a2a9a994f144c2610fa498',1,'SpotLight']]],
+  ['shader',['Shader',['../class_shader.html#a7e02f1eaec796a7fc02c3191ce9fa5d4',1,'Shader']]],
+  ['spotlight',['SpotLight',['../class_spot_light.html#ae4045cd7c8c6d18af39b57c9cf6f9ce6',1,'SpotLight']]]
+];
