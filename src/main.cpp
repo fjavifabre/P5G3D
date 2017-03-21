@@ -4,8 +4,8 @@
 
 #include <gl/glew.h> //Siempre antes que GL
 #include <gl/gl.h>
-#define SOLVE_FGLUT_WARNING
-#include <gl/freeglut.h> 
+#define SOLVE_FGLUT_WARNING 
+#include <GLFW\glfw3.h>
 #include <iostream>
 #define GLM_FORCE_RADIANS
 #include <glm/glm.hpp>  //Librería matemática
@@ -110,6 +110,7 @@ int main(int argc, char** argv)
 void initContext(int argc, char** argv)
 {
 	// Crea el contexto
+	glfwInit();
 	glutInit(&argc, argv);
 	glutInitContextVersion(3, 3);
 	glutInitContextProfile(GLUT_CORE_PROFILE); // No hay retrocompatibilidad
