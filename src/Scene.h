@@ -14,6 +14,8 @@
 #include "PointLight.h"
 #include "SpotLight.h"
 
+#include <GLFW\glfw3.h>
+
 //!  Camera class. 
 /*!
 Class used to set a scene to render. Contains essential functions to add lights, meshes, objects and set render loops.
@@ -53,7 +55,7 @@ public:
 	/*!
 	Render all the objects in the scene using the requiered shaders and meshes.
 	*/
-	void RenderLoop();
+	void RenderLoop(GLFWwindow *window);
 
 	//! Function to call in the update loop of the program.
 	/*!
@@ -131,9 +133,7 @@ public:
 	SpotLight* AddSpotLight();
 
 private:
-	LARGE_INTEGER m_frequency;
-	LARGE_INTEGER m_t1, m_t2;
-	double m_elapsedTime;
+	double m_elapsedTime = 0.0;
 
 
 };

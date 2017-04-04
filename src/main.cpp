@@ -40,6 +40,7 @@ float maxYawAngle = 175 * 3.14159f / 180.0f;
 
 float cameraSpeed = 0.1f;
 
+bool movingMouse = false;
 int oldX = 0;
 int oldY = 0;
 
@@ -90,7 +91,6 @@ int main(int argc, char** argv)
 	initContext(argc, argv);
 	initOGL();
 
-
 	// Motor de render: ejemplo
 	Shader* shader =  scene.LoadShader("../shaders_P5/shader.v1.vert", "../shaders_P5/shader.v1.frag");
 	DirectionalLight* light = scene.AddDirectionalLight();
@@ -107,14 +107,28 @@ int main(int argc, char** argv)
 	obj->SetPosition(glm::vec3(0.0, -2.0, 0.0));
 	obj->Update(0.0);
 
-	glutMainLoop(); // Loop principal
+	while (!glfwWindowShouldClose(taranisWindow))
+	{
+		idleFunc();
+		renderFunc();
 
+		glfwPollEvents();
+	}
+
+	std::cout << "Bye!" << std::endl;
 
 	glfwDestroyWindow(taranisWindow);
 
 	glfwTerminate();
 
+	system("pause");
+
 	return 0;
+}
+
+void gameLoop()
+{
+
 }
 
 //////////////////////////////////////////
@@ -144,10 +158,10 @@ void initContext(int argc, char** argv)
 
 	glfwMakeContextCurrent(taranisWindow);
 
-	glutInitContextProfile(GLUT_CORE_PROFILE); // No hay retrocompatibilidad
+	//glutInitContextProfile(GLUT_CORE_PROFILE); // No hay retrocompatibilidad
 
 											   // Define el framebuffer y crea la ventana
-	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH); //Elementos del buffer: doble buffer, formato RGBA y con profundidad
+	//glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH); //Elementos del buffer: doble buffer, formato RGBA y con profundidad
 
 	// Inicializa las extensiones
 	glewExperimental = GL_TRUE;
@@ -163,15 +177,14 @@ void initContext(int argc, char** argv)
 	//Callback para cuando se cierra la ventana
 	glfwSetWindowCloseCallback(taranisWindow, window_closed);
 
-	glfwSetKeyCallback(taranisWindow, keyboardFunc);
-
 	// Funciones que tratan los eventos
-	glutReshapeFunc(resizeFunc);
-	glutDisplayFunc(renderFunc);
-	glutIdleFunc(idleFunc);
-	glutKeyboardFunc(keyboardFunc);
-	glutMouseFunc(mouseFunc);
-	glutMotionFunc(mouseMotionFunc);
+	glfwSetKeyCallback(taranisWindow, keyboardFunc);
+	glfwSetWindowSizeCallback(taranisWindow, resizeFunc);
+	glfwSetCursorPosCallback(taranisWindow, mouseMotionFunc);
+	glfwSetMouseButtonCallback(taranisWindow, mouseFunc);
+
+	//Evitar tearing
+	glfwSwapInterval(1);
 }
 
 void initOGL()
@@ -201,11 +214,11 @@ void initOGL()
 
 void renderFunc()
 {
-	scene.RenderLoop();
+	scene.RenderLoop(taranisWindow);
 }
 
 
-void resizeFunc(int width, int height)
+void resizeFunc(GLFWwindow* window, int width, int height)
 {
 
 	float n = 0.1f;
@@ -215,7 +228,7 @@ void resizeFunc(int width, int height)
 
 	glViewport(0, 0, width, height);
 
-	glutPostRedisplay();
+	//glutPostRedisplay();
 }
 
 void idleFunc()
@@ -324,29 +337,34 @@ void keyboardFunc(GLFWwindow* window, int key, int scancode, int action, int mod
 	}
 	scene.camera.SetViewMatrix(view);
 
-	glutPostRedisplay();
+	//glutPostRedisplay();
 }
-void mouseFunc(int button, int state, int x, int y)
+void mouseFunc(GLFWwindow* window, int button, int action, int mods)
 {
 
-	if (state == 0) {
-		if (button == 0)
+	if (action == GLFW_PRESS) {
+		if (button == GLFW_MOUSE_BUTTON_LEFT)
 		{
-			oldX = x;
-			oldY = y;
+			movingMouse = true;
 		}
 	}
-	else {
-		if (button == 0)
+	if(action == GLFW_RELEASE) {
+		if (button == GLFW_MOUSE_BUTTON_LEFT)
 		{
-			oldX = x;
-			oldY = y;
+			movingMouse = false;
 		}
 	}
 }
 
-void mouseMotionFunc(int x, int y)
+void mouseMotionFunc(GLFWwindow* window, double x, double y)
 {
+	//Posibles problemas en el movimiento del ratón!
+	if (movingMouse)
+	{
+		oldX = x;
+		oldY = y;
+	}
+
 
 	if (x != oldX)
 		pitch += (float)(x - oldX) * mouseSensibility * ((invertMouse) ? -1.0f : 1.0f);
@@ -378,7 +396,7 @@ void mouseMotionFunc(int x, int y)
 	}
 	scene.camera.SetViewMatrix(view);
 	
-	glutPostRedisplay();
+	//glutPostRedisplay();
 }
 
 bool checkExtension(std::string extName)
@@ -404,12 +422,5 @@ bool checkExtension(std::string extName)
 
 void window_closed(GLFWwindow *window)
 {
-	std::cout << "Bye!" << std::endl;
-
-	glfwDestroyWindow(window);
-
-	glfwTerminate();
-
-	system("pause");
-	exit(0);
+	//Callback for when the window closes
 }
