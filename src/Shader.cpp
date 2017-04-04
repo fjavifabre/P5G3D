@@ -159,6 +159,8 @@ void Shader::render(std::vector<Light> &lightV, Camera &camera)
 	for (Mesh *m : meshes)
 	{
 		//Para cada objeto que usa esa malla
+
+
 		glBindVertexArray(m->getVAO());
 		for (Object *o : m->getObjects())
 		{

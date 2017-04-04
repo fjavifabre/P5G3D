@@ -74,7 +74,14 @@ void destroy();
 //Funcion manual check extensiones
 bool checkExtension(std::string extName);
 
+GLFWwindow* taranisWindow;
+
 Scene scene;
+
+void error_callback(int error, const char* description)
+{
+	fprintf(stderr, "Error: %s\n", description);
+}
 
 int main(int argc, char** argv)
 {
@@ -102,6 +109,11 @@ int main(int argc, char** argv)
 
 	glutMainLoop(); // Loop principal
 
+
+	glfwDestroyWindow(taranisWindow);
+
+	glfwTerminate();
+
 	return 0;
 }
 
@@ -110,16 +122,32 @@ int main(int argc, char** argv)
 void initContext(int argc, char** argv)
 {
 	// Crea el contexto
-	glfwInit();
-	glutInit(&argc, argv);
-	glutInitContextVersion(3, 3);
+	if (!glfwInit())
+	{
+		std::cout << "Initialization failed!" << std::endl;
+		system("pause");
+		exit(-1);
+	}
+	
+	glfwSetErrorCallback(error_callback);
+
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+
+	taranisWindow = glfwCreateWindow(500, 500, "Taranis Engine", NULL, NULL);
+	if (!taranisWindow)
+	{
+		std::cout << "Couldn't create window!" << std::endl;
+		system("pause");
+		exit(-1);
+	}
+
+	glfwMakeContextCurrent(taranisWindow);
+
 	glutInitContextProfile(GLUT_CORE_PROFILE); // No hay retrocompatibilidad
 
 											   // Define el framebuffer y crea la ventana
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH); //Elementos del buffer: doble buffer, formato RGBA y con profundidad
-	glutInitWindowSize(500, 500);
-	glutInitWindowPosition(0, 0);
-	glutCreateWindow("Prácticas GLSL");
 
 	// Inicializa las extensiones
 	glewExperimental = GL_TRUE;
@@ -131,6 +159,11 @@ void initContext(int argc, char** argv)
 	}
 	const GLubyte *oglVersion = glGetString(GL_VERSION);
 	std::cout << "This system supports OpenGL Version: " << oglVersion << std::endl;
+
+	//Callback para cuando se cierra la ventana
+	glfwSetWindowCloseCallback(taranisWindow, window_closed);
+
+	glfwSetKeyCallback(taranisWindow, keyboardFunc);
 
 	// Funciones que tratan los eventos
 	glutReshapeFunc(resizeFunc);
@@ -190,7 +223,7 @@ void idleFunc()
 	scene.UpdateLoop();
 }
 
-void keyboardFunc(unsigned char key, int x, int y)
+void keyboardFunc(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
 	std::cout << "Se ha pulsado la tecla " << key << std::endl << std::endl;
 
@@ -208,55 +241,62 @@ void keyboardFunc(unsigned char key, int x, int y)
 	glm::vec3 horizontalDirection = glm::cross(forwardDirection, glm::vec3(0.0f, -1.0f, 0.0f));
 
 	bool translate = true; //Si no se usa este booleano, los cálculos de vectores fallarán y darán errores
-	switch (key)
+	if (action == GLFW_PRESS)
 	{
 
-	case 's':
-		forward = -1.0f;
-		break;
-	case 'w':
-		forward = 1.0f;
-		break;
-	case 'd':
-		horizontal = -1.0f;
-		break;
-	case 'a':
-		horizontal = 1.0f;
-		break;
-	case 'r':
-		orbital = !orbital;
-		translate = false;
-		translation = glm::vec3(0.0f);
-		translation.z = -7.0f;
-		pitch = 0.0f;
-		yaw = 0.0f;
-		break;
-	case '4':
-		lightPitch -= 0.05f;
-		return;
-	case '6':
-		lightPitch += 0.05f;
-		return;
-	case '2':
-		lightYaw += 0.05f;
-		return;
-	case '8':
-		lightYaw -= 0.05f;
-		return;
-	case '+':
-		lightIntensity += 0.1f;
-		if (lightIntensity > 1.0f)
-			lightIntensity = 1.0f;
-		return;
-	case '-':
-		lightIntensity -= 0.1f;
-		if (lightIntensity < 0.0f)
-			lightIntensity = 0.0f;
-		return;
-	default:
-		translate = false;
-		break;
+		switch (key)
+		{
+
+		case GLFW_KEY_S:
+			forward = -1.0f;
+			break;
+		case GLFW_KEY_W:
+			forward = 1.0f;
+			break;
+		case GLFW_KEY_D:
+			horizontal = -1.0f;
+			break;
+		case GLFW_KEY_A:
+			horizontal = 1.0f;
+			break;
+		case GLFW_KEY_R:
+			orbital = !orbital;
+			translate = false;
+			translation = glm::vec3(0.0f);
+			translation.z = -7.0f;
+			pitch = 0.0f;
+			yaw = 0.0f;
+			break;
+		case GLFW_KEY_KP_4:
+			lightPitch -= 0.05f;
+			return;
+		case GLFW_KEY_KP_6:
+			lightPitch += 0.05f;
+			return;
+		case GLFW_KEY_KP_2:
+			lightYaw += 0.05f;
+			return;
+		case GLFW_KEY_KP_8:
+			lightYaw -= 0.05f;
+			return;
+		case GLFW_KEY_KP_ADD:
+			lightIntensity += 0.1f;
+			if (lightIntensity > 1.0f)
+				lightIntensity = 1.0f;
+			return;
+		case GLFW_KEY_KP_SUBTRACT:
+			lightIntensity -= 0.1f;
+			if (lightIntensity < 0.0f)
+				lightIntensity = 0.0f;
+			return;
+		case GLFW_KEY_ESCAPE:
+			glfwWindowShouldClose(taranisWindow);
+		default:
+			translate = false;
+			break;
+		}
 	}
+
 	if (translate && !orbital)
 	{
 		forwardDirection *= forward;
@@ -360,4 +400,16 @@ bool checkExtension(std::string extName)
 		}
 	}
 	return false;
+}
+
+void window_closed(GLFWwindow *window)
+{
+	std::cout << "Bye!" << std::endl;
+
+	glfwDestroyWindow(window);
+
+	glfwTerminate();
+
+	system("pause");
+	exit(0);
 }
