@@ -1,6 +1,6 @@
 #pragma once
 #include <glm\glm.hpp>
-#include <gl/freeglut.h> 
+#include <GLFW\glfw3.h>
 
 //!  Light class. 
 /*!

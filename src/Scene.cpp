@@ -4,7 +4,6 @@
 Scene::Scene()
 {
 	//camera.SetPerspProjection(glm::radians(60.0f), 1.0f, 0.1f, 50.0f);
-
 }
 
 
@@ -13,7 +12,7 @@ Scene::~Scene()
 
 }
 
-void Scene::RenderLoop()
+void Scene::RenderLoop(GLFWwindow *window)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Limpia buffer de color y profundidad
 
@@ -21,7 +20,8 @@ void Scene::RenderLoop()
 
 	glUseProgram(NULL);
 	
-	glutSwapBuffers(); // Swap de los buffers
+	glfwSwapBuffers(window);
+	//glutSwapBuffers(); // Swap de los buffers
 	//TODO implementar multiples pasadas
 
 	//for (Shader &shader : sceneShaders)
@@ -32,22 +32,16 @@ void Scene::RenderLoop()
 
 void Scene::UpdateLoop()
 {
-	QueryPerformanceFrequency(&m_frequency);
-
-	// start timer
-	QueryPerformanceCounter(&m_t1);
-
+	double t1 = glfwGetTime();
 	// do something
 	for (Object &object : sceneObjects)
 	{
 		object.Update(m_elapsedTime);
 	}
 
-	// stop timer
-	QueryPerformanceCounter(&m_t2);
-
+	double t2 = glfwGetTime();
 	// compute and print the elapsed time in seconds
-	m_elapsedTime = (m_t2.QuadPart - m_t1.QuadPart) * 1000.0 / m_frequency.QuadPart;
+	m_elapsedTime = t2 - t1;
 }
 
 //Loads and compiles shader, adds it to the shader vector and returns it
