@@ -1,17 +1,103 @@
 #include "Mesh.h"
 
-#include <assimp/Importer.hpp>
-#include <assimp/scene.h>         
-#include <assimp/postprocess.h>
+//#include <assimp/Importer.hpp>
+//#include <assimp/scene.h>         
+//#include <assimp/postprocess.h>
 
 #include <gl/glew.h> //Siempre antes que GL
 #include <gl/gl.h>
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <string>
 
 //Carga de texturas
-#include <FreeImage.h>
+//#include <FreeImage.h>
 #define _CRT_SECURE_DEPRECATE_MEMORY
 #include <memory.h>
 #include "Shader.h"
+
+void Mesh::Loader(std::string fileName)
+{
+
+
+	std::ifstream is(fileName);
+	if (is.fail()) throw "Unable to open " + fileName;
+
+	std::cout << "Loading " << fileName << std::endl;
+	std::cout.flush();
+
+	std::string lineString;
+	while (std::getline(is, lineString))
+	{
+		std::istringstream line(lineString);
+
+		std::string prefix; //Line prefix
+		line >> prefix;
+
+
+
+		if (prefix == "v") //Vertex
+		{
+			glm::vec3 p;
+			line >> p.x >> p.y >> p.z;
+			
+			vertexPos.push_back(p.x);
+			vertexPos.push_back(p.y);
+			vertexPos.push_back(p.z);
+			
+		}
+
+		else if (prefix == "vt") //Tex Coord
+		{
+			glm::vec2 tc;
+			line >> tc.x >> tc.y;
+
+			vertexTexCoord.push_back(tc.x);
+			vertexTexCoord.push_back(tc.y);
+		}
+
+		else if (prefix == "vn") //Normal
+		{
+			glm::vec3 n;
+			line >> n.x >> n.y >> n.z;
+
+			vertexNormal.push_back(n.x);
+			vertexNormal.push_back(n.y);
+			vertexNormal.push_back(n.z);
+
+		}
+
+		else if (prefix == "f") //Face
+		{
+			//Update
+
+			unsigned int v1, v2, v3, v4=-1;
+			line >> v1 >> v2 >> v3 >> v4;
+
+			triangleIndex.push_back(v1);
+			triangleIndex.push_back(v2);
+			triangleIndex.push_back(v3);
+
+
+			//Quad --> split second triangle
+			if (v4 != -1)
+			{
+				triangleIndex.push_back(v4);
+				triangleIndex.push_back(v1);
+				triangleIndex.push_back(v3);
+			}
+
+		}
+	}
+
+}
+
+
+
+
+
+
 
 //TODO mejorar, solo genera la primera malla del archivo
 Mesh::Mesh(const char* file, Shader * material)

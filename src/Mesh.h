@@ -89,6 +89,8 @@ private:
 	*/
 	void generateVAO();
 
+	void Loader(std::string fileName);
+
 
 public:
 	//! Class constructor.
