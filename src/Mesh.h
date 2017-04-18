@@ -25,19 +25,22 @@ private:
 	std::vector<unsigned int> triangleIndex;
 
 	//! Position of the vertices in the mesh
-	std::vector<float> vertexPos;
+	std::vector<glm::vec3> vertexPos;
 
 	//! Normal vectors of the vertices in the mesh
-	std::vector<float> vertexNormal;
+	std::vector<glm::vec3> vertexNormal;
 
 	//! Color of the vertices in the mesh
-	std::vector<float> vertexColor;
+	std::vector<glm::vec3> vertexColor;
 
 	//! Texture coordinates of the vertices in the mesh
-	std::vector<float> vertexTexCoord;
+	std::vector<glm::vec2> vertexTexCoord;
 
 	//! Tangent vector of the vertices in the mesh
-	std::vector<float> vertexTangent;
+	std::vector<glm::vec3> vertexTangent;
+
+	//! Bitanget vector of the vectices in the mesh
+	std::vector<glm::vec3> vertexBitangent;
 
 
 	//! Color texture ID
@@ -54,13 +57,20 @@ private:
 
 	//IDs VAO VBOs
 
-	unsigned int vao; //!< VAO ID of this mesh
+	unsigned int m_VAO; //!< VAO ID of this mesh
+
+	//TODO well try to use one only VBO
+
+	unsigned int m_VBO; //!< VBO ID of this mesh
+
+	/*
 	unsigned int posVBO; //!< Position VBO ID of this mesh
 	unsigned int colorVBO; //!< Color VBO ID of this mesh
 	unsigned int normalVBO; //!< Normal VBO ID of this mesh
 	unsigned int texCoordVBO; //!< Texture coordinates VBO ID of this mesh
 	unsigned int tangentVBO; //!< Tangent vectors VBO ID of this mesh
 	unsigned int triangleIndexVBO; //!< Triangle VBO ID of this mesh
+	*/
 
 	//! Shader in charge of rendering this mesh
 	Shader* mat;
@@ -89,7 +99,7 @@ private:
 	*/
 	void generateVAO();
 
-	void Loader(std::string fileName);
+	void Loader(std::string fileName, bool generateNormals, bool generateTangents);
 
 
 public:
@@ -266,5 +276,10 @@ public:
 	Frees all memory used by all the textures and buffers in this mesh.
 	*/
 	~Mesh();
+
+
+
+	//TEST
+	void Generate(bool interleaved=true);
 };
 

@@ -2,6 +2,7 @@
 
 #include <stb_image.h>
 #include <gl\glew.h>
+#include <assert.h>
 
 namespace Taranis
 {
@@ -9,8 +10,8 @@ namespace Taranis
 	{
 		unsigned char * image = stbi_load(fileName.c_str(), &m_w, &m_h, NULL, STBI_rgb_alpha);
 
-		glGenTextures(1, &m_id);
-		glBindTexture(GL_TEXTURE_2D, m_id);
+		glGenTextures(1, &ID);
+		glBindTexture(GL_TEXTURE_2D, ID);
 
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, m_w, m_h, 0, GL_RGBA, GL_UNSIGNED_BYTE, (GLvoid*)image);
 
@@ -30,8 +31,8 @@ namespace Taranis
 
 	Texture::Texture(int w, int h, GLuint internalFormat, GLenum format, GLenum type)
 	{
-		glGenTextures(1, &m_id);
-		glBindTexture(GL_TEXTURE_2D, m_id);
+		glGenTextures(1, &ID);
+		glBindTexture(GL_TEXTURE_2D, ID);
 
 		//Create empty
 		glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, m_w, m_h, 0, format, type, 0);
@@ -44,7 +45,7 @@ namespace Taranis
 
 	Texture::~Texture()
 	{
-		glDeleteTextures(1, &m_id);
+		glDeleteTextures(1, &ID);
 	}
 
 	Texture* Texture::MakeTexture(std::string name, std::string fileName)
@@ -90,5 +91,31 @@ namespace Taranis
 
 		}
 		
+	}
+
+	void Texture::Bind(int unit)
+	{
+		if (unit >= 0)
+			glActiveTexture(GL_TEXTURE0 + unit);
+		glBindTexture(Target, ID);
+	}
+
+	void Texture::Resize(unsigned int width, unsigned int height, unsigned int depth)
+	{
+		Bind();
+		if (Target == GL_TEXTURE_1D)
+		{
+			glTexImage1D(GL_TEXTURE_1D, 0, InternalFormat, width, 0, Format, Type, 0);
+		}
+		else if (Target == GL_TEXTURE_2D)
+		{
+			assert(height > 0);
+			glTexImage2D(GL_TEXTURE_2D, 0, InternalFormat, width, height, 0, Format, Type, 0);
+		}
+		else if (Target == GL_TEXTURE_3D)
+		{
+			assert(height > 0 && depth > 0);
+			glTexImage3D(GL_TEXTURE_3D, 0, InternalFormat, width, height, depth, 0, Format, Type, 0);
+		}
 	}
 }
