@@ -17,73 +17,73 @@ namespace Taranis
 		fshader = loadShader(fragment, GL_FRAGMENT_SHADER);
 
 		// Crear programa
-		program = glCreateProgram();
+		ID = glCreateProgram();
 		// Asignar los shaders
-		glAttachShader(program, vshader);
-		glAttachShader(program, fshader);
+		glAttachShader(ID, vshader);
+		glAttachShader(ID, fshader);
 
 		// IMPORTANTE Los identificadores de los atributos ANTES DEL LINKEADO
-		glBindAttribLocation(program, 0, "inPos");
-		glBindAttribLocation(program, 1, "inColor");
-		glBindAttribLocation(program, 2, "inNormal");
-		glBindAttribLocation(program, 3, "inTexCoord");
-		glBindAttribLocation(program, 4, "inTangent");
+		glBindAttribLocation(ID, 0, "inPos");
+		glBindAttribLocation(ID, 1, "inColor");
+		glBindAttribLocation(ID, 2, "inNormal");
+		glBindAttribLocation(ID, 3, "inTexCoord");
+		glBindAttribLocation(ID, 4, "inTangent");
 
 		// Linkearlos
-		glLinkProgram(program);
+		glLinkProgram(ID);
 
 		//Comprobar error
 		int linked;
-		glGetProgramiv(program, GL_LINK_STATUS, &linked);
+		glGetProgramiv(ID, GL_LINK_STATUS, &linked);
 		if (!linked)
 		{
 			//Calculamos una cadena de error
 			GLint logLen;
-			glGetProgramiv(program, GL_INFO_LOG_LENGTH, &logLen);
+			glGetProgramiv(ID, GL_INFO_LOG_LENGTH, &logLen);
 			char *logString = new char[logLen];
-			glGetProgramInfoLog(program, logLen, NULL, logString);
+			glGetProgramInfoLog(ID, logLen, NULL, logString);
 			delete logString;
-			glDeleteProgram(program);
+			glDeleteProgram(ID);
 			exit(-1);
 		}
 
 		// DESPUÉS DEL LINKEADO
-		uNormalMat = glGetUniformLocation(program, "normal");
-		uModelViewMat = glGetUniformLocation(program, "modelView");
-		uModelViewProjMat = glGetUniformLocation(program, "modelViewProj");
+		uNormalMat = glGetUniformLocation(ID, "normal");
+		uModelViewMat = glGetUniformLocation(ID, "modelView");
+		uModelViewProjMat = glGetUniformLocation(ID, "modelViewProj");
 		//Identificadores de textura
-		uColorTex = glGetUniformLocation(program, "colorTex");
-		uEmiTex = glGetUniformLocation(program, "emiTex");
-		uSpecTex = glGetUniformLocation(program, "specTex");
-		uNormTex = glGetUniformLocation(program, "normalTex");
+		uColorTex = glGetUniformLocation(ID, "colorTex");
+		uEmiTex = glGetUniformLocation(ID, "emiTex");
+		uSpecTex = glGetUniformLocation(ID, "specTex");
+		uNormTex = glGetUniformLocation(ID, "normalTex");
 
 		//Array de luces
 		for (int i = 0; i < MAX_LIGHTS; i++)
 		{
 			std::string number = std::to_string(i);
 
-			lights[i].uAmb = glGetUniformLocation(program, ("lights[" + number + "].Amb").c_str());
+			lights[i].uAmb = glGetUniformLocation(ID, ("lights[" + number + "].Amb").c_str());
 
-			lights[i].uDiff = glGetUniformLocation(program, ("lights[" + number + "].Diff").c_str());
+			lights[i].uDiff = glGetUniformLocation(ID, ("lights[" + number + "].Diff").c_str());
 
-			lights[i].uPos = glGetUniformLocation(program, ("lights[" + number + "].Pos").c_str());
+			lights[i].uPos = glGetUniformLocation(ID, ("lights[" + number + "].Pos").c_str());
 
-			lights[i].uDir = glGetUniformLocation(program, ("lights[" + number + "].Dir").c_str());
+			lights[i].uDir = glGetUniformLocation(ID, ("lights[" + number + "].Dir").c_str());
 
-			lights[i].uC = glGetUniformLocation(program, ("lights[" + number + "].C").c_str());
+			lights[i].uC = glGetUniformLocation(ID, ("lights[" + number + "].C").c_str());
 
-			lights[i].uCosCutOff = glGetUniformLocation(program, ("lights[" + number + "].CosCutOff").c_str());
+			lights[i].uCosCutOff = glGetUniformLocation(ID, ("lights[" + number + "].CosCutOff").c_str());
 
-			lights[i].uSpotExponent = glGetUniformLocation(program, ("lights[" + number + "].SpotExponent").c_str());
+			lights[i].uSpotExponent = glGetUniformLocation(ID, ("lights[" + number + "].SpotExponent").c_str());
 
 		}
 
 
-		inPos = glGetAttribLocation(program, "inPos");
-		inColor = glGetAttribLocation(program, "inColor");
-		inNormal = glGetAttribLocation(program, "inNormal");
-		inTexCoord = glGetAttribLocation(program, "inTexCoord");
-		inTangent = glGetAttribLocation(program, "inTangent");
+		inPos = glGetAttribLocation(ID, "inPos");
+		inColor = glGetAttribLocation(ID, "inColor");
+		inNormal = glGetAttribLocation(ID, "inNormal");
+		inTexCoord = glGetAttribLocation(ID, "inTexCoord");
+		inTangent = glGetAttribLocation(ID, "inTangent");
 	}
 
 	int Shader::getInPos()
@@ -113,7 +113,7 @@ namespace Taranis
 
 	void Shader::render(std::vector<Light> &lightV, Camera &camera)
 	{
-		glUseProgram(program);
+		glUseProgram(ID);
 
 		//Subir luces
 		//for (int i = 0; i < MAX_LIGHTS; i++)
@@ -374,7 +374,7 @@ namespace Taranis
 
 	void Shader::Use()
 	{
-		glUseProgram(program);
+		glUseProgram(ID);
 	}
 
 	bool Shader::HasUniform(std::string name)
@@ -453,11 +453,11 @@ namespace Taranis
 	Shader::~Shader()
 	{
 		//Liberar shaders y programa
-		glDetachShader(program, vshader);
-		glDetachShader(program, fshader);
+		glDetachShader(ID, vshader);
+		glDetachShader(ID, fshader);
 		glDeleteShader(vshader);
 		glDeleteShader(fshader);
-		glDeleteProgram(program);
+		glDeleteProgram(ID);
 	}
 }
 
