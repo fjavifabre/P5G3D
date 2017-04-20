@@ -92,6 +92,23 @@ namespace Taranis
 			m_DepthStencil.Resize(width, height);
 		}
 	}
+
+	void RenderTarget::Resize(glm::vec2 size)
+	{
+		Width = size.x;
+		Height = size.y;
+
+		for (unsigned int i = 0; i < m_ColorAttachments.size(); ++i)
+		{
+			m_ColorAttachments[i].Resize(size.x, size.y);
+		}
+		
+
+		if (HasDepthAndStencil)
+		{
+			m_DepthStencil.Resize(size.x, size.y);
+		}
+	}
 	
 	
 	void RenderTarget::SetTarget(GLenum target)

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <GLFW\glfw3.h>
+#include <glm\glm.hpp>
 
 #include "Texture.h"
 
@@ -34,6 +35,7 @@ namespace Taranis
 		Texture* GetColorTexture(unsigned int index);
 
 		void Resize(unsigned int width, unsigned int height);
+		void Resize(glm::vec2 size);
 
 		void SetTarget(GLenum target);
 
