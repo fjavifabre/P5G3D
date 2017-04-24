@@ -1,0 +1,12 @@
+D:/Proyectos/Taranis/build/CMakeFiles/main.dir
+D:/Proyectos/Taranis/build/CMakeFiles/INSTALL.dir
+D:/Proyectos/Taranis/build/CMakeFiles/ALL_BUILD.dir
+D:/Proyectos/Taranis/build/CMakeFiles/ZERO_CHECK.dir
+D:/Proyectos/Taranis/build/ext/glfw/CMakeFiles/INSTALL.dir
+D:/Proyectos/Taranis/build/ext/glfw/CMakeFiles/ALL_BUILD.dir
+D:/Proyectos/Taranis/build/ext/glfw/src/CMakeFiles/glfw.dir
+D:/Proyectos/Taranis/build/ext/glfw/src/CMakeFiles/INSTALL.dir
+D:/Proyectos/Taranis/build/ext/glew/CMakeFiles/libglew_static.dir
+D:/Proyectos/Taranis/build/ext/glew/CMakeFiles/libglewmx_static.dir
+D:/Proyectos/Taranis/build/ext/glew/CMakeFiles/INSTALL.dir
+D:/Proyectos/Taranis/build/ext/glew/CMakeFiles/ALL_BUILD.dir
