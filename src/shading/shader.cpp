@@ -10,6 +10,61 @@
 
 namespace Taranis
 {
+
+	inline SHADER_TYPE typeConversion(GLenum glType)
+	{
+		switch (glType)
+		{
+
+		case GL_BOOL:
+			return SHADER_TYPE_BOOL;
+
+		case GL_UNSIGNED_INT:
+		case GL_INT:
+			return SHADER_TYPE_INT;
+
+		case GL_FLOAT:
+		case GL_DOUBLE:
+			return SHADER_TYPE_FLOAT;
+
+		case GL_SAMPLER_1D:
+			return SHADER_TYPE_SAMPLER1D;
+
+		case GL_SAMPLER_2D:
+			return SHADER_TYPE_SAMPLER2D;
+
+		case GL_SAMPLER_CUBE:
+			return SHADER_TYPE_SAMPLERCUBE;
+
+		case GL_FLOAT_VEC2:
+		case GL_DOUBLE_VEC2:
+			return SHADER_TYPE_VEC2;
+
+		case GL_FLOAT_VEC3:
+		case GL_DOUBLE_VEC3:
+			return SHADER_TYPE_VEC3;
+
+		case GL_FLOAT_VEC4:
+		case GL_DOUBLE_VEC4:
+			return SHADER_TYPE_VEC4;
+
+
+		case GL_FLOAT_MAT2:
+		case GL_DOUBLE_MAT2:
+			return SHADER_TYPE_MAT2;
+
+		case GL_FLOAT_MAT3:
+		case GL_DOUBLE_MAT3:
+			return SHADER_TYPE_MAT3;
+
+		case GL_FLOAT_MAT4:
+		case GL_DOUBLE_MAT4:
+			return SHADER_TYPE_MAT4;
+		}
+
+		return SHADER_TYPE_BOOL; //TODO solve
+	}
+
 	Shader::Shader(const char* vertex, const char* fragment)
 	{
 		// Compila los shaders
@@ -22,12 +77,6 @@ namespace Taranis
 		glAttachShader(ID, vshader);
 		glAttachShader(ID, fshader);
 
-		// IMPORTANTE Los identificadores de los atributos ANTES DEL LINKEADO
-		glBindAttribLocation(ID, 0, "inPos");
-		glBindAttribLocation(ID, 1, "inColor");
-		glBindAttribLocation(ID, 2, "inNormal");
-		glBindAttribLocation(ID, 3, "inTexCoord");
-		glBindAttribLocation(ID, 4, "inTangent");
 
 		// Linkearlos
 		glLinkProgram(ID);
@@ -47,43 +96,38 @@ namespace Taranis
 			exit(-1);
 		}
 
-		// DESPUÉS DEL LINKEADO
-		uNormalMat = glGetUniformLocation(ID, "normal");
-		uModelViewMat = glGetUniformLocation(ID, "modelView");
-		uModelViewProjMat = glGetUniformLocation(ID, "modelViewProj");
-		//Identificadores de textura
-		uColorTex = glGetUniformLocation(ID, "colorTex");
-		uEmiTex = glGetUniformLocation(ID, "emiTex");
-		uSpecTex = glGetUniformLocation(ID, "specTex");
-		uNormTex = glGetUniformLocation(ID, "normalTex");
+		glDeleteShader(vshader);
+		glDeleteShader(fshader);
 
-		//Array de luces
-		for (int i = 0; i < MAX_LIGHTS; i++)
+		// Attributes and uniforms
+		int nAttributes, nUniforms;
+		glGetProgramiv(ID, GL_ACTIVE_ATTRIBUTES, &nAttributes);
+		glGetProgramiv(ID, GL_ACTIVE_UNIFORMS, &nUniforms);
+		Attributes.resize(nAttributes);
+		Uniforms.resize(nUniforms);
+
+		char buffer[128];
+		for (unsigned int i = 0; i < nAttributes; i++)
 		{
-			std::string number = std::to_string(i);
+			GLenum glType;
+			glGetActiveAttrib(ID, i, sizeof(buffer), 0, &Attributes[i].Size, &glType, buffer);
+			Attributes[i].Name = std::string(buffer);
 
-			lights[i].uAmb = glGetUniformLocation(ID, ("lights[" + number + "].Amb").c_str());
+			Attributes[i].Type = typeConversion(glType);
+			Attributes[i].Location = glGetAttribLocation(ID, buffer);
+		}
 
-			lights[i].uDiff = glGetUniformLocation(ID, ("lights[" + number + "].Diff").c_str());
+		for (unsigned int i = 0; i < nUniforms; i++)
+		{
+			GLenum glType;
+			glGetActiveUniform(ID, i, sizeof(buffer), 0, &Uniforms[i].Size, &glType, buffer);
+			Uniforms[i].Name = std::string(buffer);
 
-			lights[i].uPos = glGetUniformLocation(ID, ("lights[" + number + "].Pos").c_str());
-
-			lights[i].uDir = glGetUniformLocation(ID, ("lights[" + number + "].Dir").c_str());
-
-			lights[i].uC = glGetUniformLocation(ID, ("lights[" + number + "].C").c_str());
-
-			lights[i].uCosCutOff = glGetUniformLocation(ID, ("lights[" + number + "].CosCutOff").c_str());
-
-			lights[i].uSpotExponent = glGetUniformLocation(ID, ("lights[" + number + "].SpotExponent").c_str());
-
+			Uniforms[i].Type = typeConversion(glType);
+			Uniforms[i].Location = glGetUniformLocation(ID, buffer);
 		}
 
 
-		inPos = glGetAttribLocation(ID, "inPos");
-		inColor = glGetAttribLocation(ID, "inColor");
-		inNormal = glGetAttribLocation(ID, "inNormal");
-		inTexCoord = glGetAttribLocation(ID, "inTexCoord");
-		inTangent = glGetAttribLocation(ID, "inTangent");
 	}
 
 	int Shader::getInPos()

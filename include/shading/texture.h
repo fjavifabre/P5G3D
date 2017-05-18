@@ -1,5 +1,6 @@
 #pragma once
 
+#include <GL/glew.h>
 #include <string>
 #include <map>
 
@@ -13,25 +14,7 @@ namespace Taranis
 	class Texture
 	{
 
-	public:
-		//TODO use getters/setters
-
-		//GLenum Target = GL_TEXTURE2D; //Now only 2D
-
-	private:
-			//int m_w, m_h; //Size
-			
-			
-			//Texture(std::string fileName);
-			//Texture(int w, int h, GLuint internalFormat, GLenum format, GLenum type); //Empty texture
-
-			//~Texture();
-
-			//static std::map<std::string, std::pair<Texture*, unsigned int>> m_map;
-
-			
-
-	public:
+		public:
 
 			//Use setters and getters
 			unsigned int ID; //Texture ID

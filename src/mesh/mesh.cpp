@@ -127,17 +127,17 @@ namespace Taranis
 				unsigned int v1, v2, v3, v4 = -1;
 				line >> v1 >> v2 >> v3 >> v4;
 
-				triangleIndex.push_back(v1);
-				triangleIndex.push_back(v2);
-				triangleIndex.push_back(v3);
+				triangleIndex.push_back(v1-1);
+				triangleIndex.push_back(v2-1);
+				triangleIndex.push_back(v3-1);
 
 
 				//Quad --> split second triangle
 				if (v4 != -1)
 				{
-					triangleIndex.push_back(v4);
-					triangleIndex.push_back(v1);
-					triangleIndex.push_back(v3);
+					triangleIndex.push_back(v4-1);
+					triangleIndex.push_back(v1-1);
+					triangleIndex.push_back(v3-1);
 				}
 
 			}
@@ -170,9 +170,9 @@ namespace Taranis
 
 				glm::vec3 p = glm::cross(B - A, C - A);
 
-				vertexNormal[i] += p;
-				vertexNormal[i + 1] += p;
-				vertexNormal[i + 2] += p;
+				vertexNormal[triangleIndex[i]] += p;
+				vertexNormal[triangleIndex[i + 1]] += p;
+				vertexNormal[triangleIndex[i + 2]] += p;
 
 			}
 
@@ -182,7 +182,7 @@ namespace Taranis
 		}
 
 		//Tangents
-		if (generateTangets && vertexTangent.size() == 0)
+		if (generateTangets && vertexTangent.size() == 0 && vertexTexCoord.size() != 0)
 		{
 			for (int i = 0; i < vertexPos.size(); i += 3)
 			{
@@ -236,6 +236,7 @@ namespace Taranis
 	{
 
 		Loader(std::string(file), true, true);
+		Topology = TOPOLOGY::TRIANGLES;
 
 
 	}

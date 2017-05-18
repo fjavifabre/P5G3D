@@ -83,7 +83,7 @@ namespace Taranis
 
 		//IDs VAO VBOs
 
-		unsigned int m_VAO; //!< VAO ID of this mesh
+		unsigned int m_VAO = 0; //!< VAO ID of this mesh
 
 							//TODO well try to use one only VBO
 

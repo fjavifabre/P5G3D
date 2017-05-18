@@ -2,16 +2,17 @@
 
 #include <gl/glew.h> //Siempre antes que GL
 //#include <gl/gl.h>
-//#include <GLFW\glfw3.h>
+#include <GLFW\glfw3.h>
 
 #include "renderer\renderer.h"
 
 #include "utils\log.h"
-
+#include "mesh\mesh.h"
 
 #include <iostream>
 
 #include "mesh/mesh.h"
+#include "renderer/renderer.h"
 
 
 
@@ -104,6 +105,28 @@ void main()
 	initOGL();
 
 	// Example mesh
-	Taranis::Mesh* mesh = new Taranis::Mesh("bunny.obj");
+	Taranis::Mesh* mesh = new Taranis::Mesh("D:/Proyectos/Taranis/bunny.obj");
+	mesh->Generate();
+
+	Camera* myCamera = new Camera();
+
+	Taranis::Renderer myRenderer;
+	myRenderer.Init();
+	myRenderer.SetCamera(myCamera);
+	myRenderer.SetRenderSize(500, 500);
+
+	while (!glfwWindowShouldClose(taranisWindow))
+	{
+		glfwPollEvents();
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+		myRenderer.RenderPushedCommands();
+
+		glfwSwapBuffers(taranisWindow);
+
+	}
+
+
+	system("pause");
 	
 }

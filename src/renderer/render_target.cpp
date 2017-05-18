@@ -20,12 +20,12 @@ namespace Taranis
 			Texture texture;
 
 			// Filtering
-			/* 
+			
 			texture.FilterMin = GL_LINEAR;
             texture.FilterMax = GL_LINEAR;
             texture.Mipmapping = false;
-			
-			*/
+			texture.WrapS = GL_CLAMP_TO_EDGE;
+			texture.WrapT = GL_CLAMP_TO_EDGE;
 
 			//TODO add more
 

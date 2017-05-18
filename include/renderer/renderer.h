@@ -1,11 +1,13 @@
 #pragma once
 
 #include "command_buffer.h"
-#include "mesh/quad.h"
 #include "camera/camera.h"
+//#include "mesh/quad.h"
+//#include "camera/camera.h"
 
 //#include "light/light.h"
-class Light;
+
+
 
 /*
 	Main renderer class
@@ -15,6 +17,8 @@ class Light;
 
 namespace Taranis
 {
+	class Light;
+	class Quad;
 
 	class Renderer
 	{

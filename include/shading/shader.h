@@ -1,9 +1,11 @@
 #pragma once
 
+#include <gl/glew.h>
+
 #include "mesh/mesh.h"
 #include <list>
 
-#include <gl/glew.h> //Siempre antes que GL
+ //Siempre antes que GL
 //#include <gl/gl.h>
 #define GLM_FORCE_RADIANS
 #define GLM_ENABLE_EXPERIMENTAL
@@ -56,6 +58,8 @@ namespace Taranis
 		int uNormalMat;
 		LightIds lights[MAX_LIGHTS];
 
+		// Start deprecated
+
 		//Texturas Uniform
 		int uColorTex;
 		int uEmiTex;
@@ -68,6 +72,8 @@ namespace Taranis
 		int inNormal;
 		int inTexCoord;
 		int inTangent;
+
+		// End deprecated
 
 		//New storing system --->
 		std::vector<Uniform> Uniforms;
@@ -90,6 +96,8 @@ namespace Taranis
 		\param fragment Path to fragment shader file.
 		*/
 		Shader(const char* vertex, const char* fragment);
+
+		Shader(const char* vertex, const char* geometric, const char* fragment);
 
 
 		//! Add function.

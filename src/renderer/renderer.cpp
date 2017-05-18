@@ -4,6 +4,8 @@
 
 #include "utils/string_id.h"
 #include "utils/log.h"
+#include "mesh/quad.h"
+
 
 namespace Taranis
 {
@@ -36,7 +38,20 @@ namespace Taranis
 	{
 		//TODO
 
+		//Default shaders
+		Shader *postProcessing = new Shader(
+			"shaders/screen_quad.vs",
+			"shaders/post_processing.fs");
+
+		//Default materials
+		m_PostProcessingMaterial1 = new Material(postProcessing);
+
+		//Render items
 		m_Plane = new Quad();
+
+		m_CustomTarget = new RenderTarget(1, 1, GL_FLOAT, 1, true);
+		m_PostProcessTarget1 = new RenderTarget(1, 1, GL_UNSIGNED_BYTE, 1, false);
+
 	}
 
 	void Renderer::SetRenderSize(unsigned int width, unsigned int height)
@@ -181,7 +196,7 @@ namespace Taranis
 				glBindFramebuffer(GL_FRAMEBUFFER, m_CustomTarget->m_ID);
 				/*m_Camera->SetPerspective(m_Camera->FOV,*/
 				m_Camera->SetPerspProjection(100,
-					(float)renderTarget->Width / (float)renderTarget->Height,
+					m_Size.x / m_Size.y,
 					0.1, 100.0f);
 
 				glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
@@ -309,7 +324,7 @@ namespace Taranis
 		auto* uniforms = material->GetUniforms();
 		for (auto it = uniforms->begin(); it != uniforms->end(); ++it)
 		{
-			switch (it->second.Type)
+			switch (it->second.Type())
 			{
 			case SHADER_TYPE_BOOL:
 				material->GetShader()->Set(it->first, it->second.GetBool());
@@ -357,5 +372,14 @@ namespace Taranis
 
 
 
+	}
+
+	RenderTarget* Renderer::getCurrentTarget()
+	{
+		return m_CurrentRenderTargetCustom;
+		//if(m_RenderTargetsCustom.size() > 0)
+		//return m_RenderTargetsCustom[m_RenderTargetsCustom.size() - 1];
+		//else
+		//return nullptr;
 	}
 }

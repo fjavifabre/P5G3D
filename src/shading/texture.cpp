@@ -1,7 +1,10 @@
 #include "shading/texture.h"
 
-#include <stb_image.h>
 #include <gl\glew.h>
+
+#define STB_IMAGE_IMPLEMENTATION
+#include <stb_image.h>
+
 #include <assert.h>
 
 namespace Taranis
@@ -124,17 +127,26 @@ namespace Taranis
 		if (Target == GL_TEXTURE_1D)
 		{
 			glTexImage1D(GL_TEXTURE_1D, 0, InternalFormat, width, 0, Format, Type, 0);
+			Width = width;
 		}
 		else if (Target == GL_TEXTURE_2D)
 		{
 			assert(height > 0);
 			glTexImage2D(GL_TEXTURE_2D, 0, InternalFormat, width, height, 0, Format, Type, 0);
+			Width = width;
+			Height = height;
 		}
 		else if (Target == GL_TEXTURE_3D)
 		{
 			assert(height > 0 && depth > 0);
 			glTexImage3D(GL_TEXTURE_3D, 0, InternalFormat, width, height, depth, 0, Format, Type, 0);
+			Width = width;
+			Height = height;
+			Depth = depth;
 		}
+
+
+
 	}
 
 	void Texture::SetWrapMode(GLenum wrapMode, bool bind)
